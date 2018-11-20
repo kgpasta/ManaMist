@@ -13,7 +13,7 @@ namespace ManaMist.Models
 
         public bool CanBuild(Coordinate currentCoordinate, Coordinate coordinate, Entity entity)
         {
-            return currentCoordinate.IsAdjacent(currentCoordinate) && entity.name == "Worker";
+            return currentCoordinate.IsAdjacent(currentCoordinate) && entity is Worker;
         }
     }
 }
