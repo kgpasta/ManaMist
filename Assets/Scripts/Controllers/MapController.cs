@@ -5,17 +5,17 @@ using System.Collections.Generic;
 using ManaMist.Controllers;
 using ManaMist.Models;
 using ManaMist.Utility;
+using UnityEngine;
 
 namespace ManaMist.Controllers
 {
-    public class MapController
+    public class MapController : ScriptableObject
     {
         private Dictionary<Coordinate, MapTile> coordinateToMapTile { get; set; } = new Dictionary<Coordinate, MapTile>();
 
         private Dictionary<string, Coordinate> entityIdToCoordinate { get; set; } = new Dictionary<string, Coordinate>();
 
         private const int MAP_DIMENSION = 50;
-
 
         public MapController()
         {
@@ -86,7 +86,7 @@ namespace ManaMist.Controllers
 
         private MapTile StringToMapTile(string str)
         {
-            Terrain terrain = Terrain.NONE;
+            Models.Terrain terrain = Models.Terrain.NONE;
             Resource resource = Resource.NONE;
 
             char[] charArr = str.ToCharArray();
@@ -123,38 +123,38 @@ namespace ManaMist.Controllers
             return resource;
         }
 
-        private Terrain CharToTerrain(char character)
+        private Models.Terrain CharToTerrain(char character)
         {
-            Terrain terrain = Terrain.NONE;
+            Models.Terrain terrain = Models.Terrain.NONE;
 
             switch (character)
             {
                 case 'G':
-                    terrain = Terrain.GRASS;
+                    terrain = Models.Terrain.GRASS;
                     break;
 
                 case 'H':
-                    terrain = Terrain.HILL;
+                    terrain = Models.Terrain.HILL;
                     break;
 
                 case 'F':
-                    terrain = Terrain.FOREST;
+                    terrain = Models.Terrain.FOREST;
                     break;
 
                 case 'M':
-                    terrain = Terrain.MOUNTAIN;
+                    terrain = Models.Terrain.MOUNTAIN;
                     break;
 
                 case 'W':
-                    terrain = Terrain.WATER;
+                    terrain = Models.Terrain.WATER;
                     break;
 
                 case 'S':
-                    terrain = Terrain.SWAMP;
+                    terrain = Models.Terrain.SWAMP;
                     break;
 
                 case 'D':
-                    terrain = Terrain.DESERT;
+                    terrain = Models.Terrain.DESERT;
                     break;
             }
 

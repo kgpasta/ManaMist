@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEngine;
 
 namespace ManaMist.Controllers
 {
@@ -15,7 +16,7 @@ namespace ManaMist.Controllers
         public int turnNumber { get; set; }
     }
 
-    public class TurnController
+    public class TurnController : ScriptableObject
     {
         private Queue<int> playerQueue;
         public int currentPlayer;

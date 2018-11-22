@@ -6,20 +6,21 @@ using ManaMist.Models;
 using ManaMist.Players;
 using ManaMist.Processors;
 using ManaMist.Utility;
+using UnityEngine;
 
 namespace ManaMist.Managers
 {
-    public class GameManager
+    public class GameManager : ScriptableObject
     {
-        private Player playerOne;
+        public Player playerOne;
 
-        private Player playerTwo;
+        public Player playerTwo;
 
-        private Player activePlayer;
+        public Player activePlayer;
 
-        private MapController mapController;
+        public MapController mapController;
 
-        private TurnController turnController;
+        public TurnController turnController;
 
         public GameManager(TurnController turnController, MapController mapController)
         {
