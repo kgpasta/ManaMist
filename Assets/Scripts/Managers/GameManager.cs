@@ -12,15 +12,14 @@ namespace ManaMist.Managers
 {
     public class GameManager : MonoBehaviour
     {
+        [Header("Players")]
         public Player playerOne;
-
         public Player playerTwo;
-
         public Player activePlayer;
 
-        public MapController mapController;
-
+        [Header("Controllers")]
         public TurnController turnController;
+        public MapController mapController;
 
         public GameManager(TurnController turnController, MapController mapController)
         {

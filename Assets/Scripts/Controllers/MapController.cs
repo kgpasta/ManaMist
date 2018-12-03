@@ -9,9 +9,14 @@ using UnityEngine;
 
 namespace ManaMist.Controllers
 {
-    [CreateAssetMenu(menuName = "ManaMist/Map Controller")]
-    public class MapController : ScriptableObject
+    public class MapController : MonoBehaviour
     {
+        [Header("UI Elements")]
+        public Transform MapGridParentTransform = null;
+
+        [Header("Prefab References")]
+        public GameObject MapTilePrefabReference = null;
+
         private Dictionary<Coordinate, MapTile> coordinateToMapTile { get; set; } = new Dictionary<Coordinate, MapTile>();
 
         private Dictionary<string, Coordinate> entityIdToCoordinate { get; set; } = new Dictionary<string, Coordinate>();
@@ -102,7 +107,14 @@ namespace ManaMist.Controllers
                 resource = StringToResource(charArr.Length > 2 ? (charArr[1] + charArr[2]).ToString() : charArr[1].ToString());
             }
 
-            return new MapTile(terrain, resource);
+            MapTile mapTile = ScriptableObject.CreateInstance<MapTile>();
+            mapTile.terrain = terrain;
+            mapTile.resource = resource;
+
+            GameObject newMapTileWidgetInstance = Instantiate(MapTilePrefabReference, MapGridParentTransform);
+            newMapTileWidgetInstance.GetComponent<MapTileWidget>().mapTile = mapTile;
+
+            return mapTile;
         }
 
         private Resource StringToResource(string str)

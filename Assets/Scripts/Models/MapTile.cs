@@ -2,20 +2,14 @@
 using System;
 using System.Collections.Generic;
 using System.Text;
+using UnityEngine;
 
 namespace ManaMist.Models
 {
-    public class MapTile
+    public class MapTile : ScriptableObject
     {
-        public Terrain terrain { get; set; }
-        public Resource resource { get; set; }
-        public List<Entity> entities { get; set; }
-
-        public MapTile(Terrain terrain, Resource resource)
-        {
-            this.terrain = terrain;
-            this.resource = resource;
-            this.entities = new List<Entity>();
-        }
+        public Terrain terrain;
+        public Resource resource;
+        public List<Entity> entities;
     }
 }
