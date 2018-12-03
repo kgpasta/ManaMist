@@ -25,7 +25,7 @@ namespace ManaMist.Controllers
         public event EventHandler<TurnEventArgs> OnTurnStart;
         public event EventHandler<TurnEventArgs> OnTurnEnd;
 
-        public TurnController()
+        private void Awake()
         {
             playerQueue = new Queue<int>();
 
