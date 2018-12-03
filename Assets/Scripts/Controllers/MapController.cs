@@ -88,12 +88,12 @@ namespace ManaMist.Controllers
                 {
                     Coordinate coordinate = new Coordinate(i, j);
 
-                    coordinateToMapTile[coordinate] = StringToMapTile(lineMapText[j]);
+                    coordinateToMapTile[coordinate] = StringToMapTile(lineMapText[j], coordinate);
                 }
             }
         }
 
-        private MapTile StringToMapTile(string str)
+        private MapTile StringToMapTile(string str, Coordinate coordinate)
         {
             Models.Terrain terrain = Models.Terrain.NONE;
             Resource resource = Resource.NONE;
@@ -108,6 +108,7 @@ namespace ManaMist.Controllers
             }
 
             GameObject newMapTileWidgetInstance = Instantiate(MapTilePrefabReference, MapGridParentTransform);
+            newMapTileWidgetInstance.name = "Tile (" + coordinate.x.ToString() + "," + coordinate.y.ToString() + ")";
 
             MapTile mapTile = ScriptableObject.CreateInstance<MapTile>();
             mapTile.terrain = terrain;
