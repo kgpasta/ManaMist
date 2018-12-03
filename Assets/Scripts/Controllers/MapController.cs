@@ -104,7 +104,7 @@ namespace ManaMist.Controllers
 
             if (charArr.Length > 1)
             {
-                resource = StringToResource(charArr.Length > 2 ? (charArr[1] + charArr[2]).ToString() : charArr[1].ToString());
+                resource = StringToResource(str.Substring(1));
             }
 
             MapTile mapTile = ScriptableObject.CreateInstance<MapTile>();
