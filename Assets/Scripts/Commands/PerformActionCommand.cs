@@ -6,24 +6,22 @@ using ManaMist.Utility;
 
 namespace ManaMist.Commands
 {
-    public class PerformActionCommand : Command
+    public class PerformActionCommand<T> : Command where T : Action
     {
         private Coordinate coordinate;
         private Entity target;
-        private ActionType actionType;
 
-        public PerformActionCommand(int playerId, Coordinate coordinate, Entity target, ActionType actionType) : base(playerId, CommandType.PERFORMACTION)
+        public PerformActionCommand(int playerId, Coordinate coordinate, Entity target) : base(playerId, CommandType.PERFORMACTION)
         {
             this.coordinate = coordinate;
             this.target = target;
-            this.actionType = actionType;
         }
 
         public bool Execute(MapController mapController, Player player, Entity entity)
         {
             Coordinate currentCoordinate = mapController.GetPositionOfEntity(entity.id);
 
-            Action action = entity.GetAction(actionType);
+            Action action = entity.GetAction<T>();
 
             if (action != null)
             {
@@ -39,7 +37,7 @@ namespace ManaMist.Commands
 
         public override string ToString()
         {
-            return "Performing action " + actionType + " at " + coordinate.ToString() + " with target " + target;
+            return "Performing action " + nameof(T) + " at " + coordinate.ToString() + " with target " + target;
         }
     }
 }

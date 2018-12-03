@@ -9,25 +9,29 @@ namespace ManaMist.Models
 {
     public abstract class Entity : ScriptableObject
     {
-        public string id { get; set; }
+        public string id;
 
-        public Cost cost { get; set; }
+        public Cost cost;
 
-        private List<Action> actions { get; set; } = new List<Action>();
+        public List<Action> actions;
 
-        private void Awake()
+        public virtual void Awake()
         {
             this.id = System.Guid.NewGuid().ToString();
+            this.actions = new List<Action>();
+            Init();
         }
+
+        public abstract void Init();
 
         public void AddAction(Action action)
         {
             actions.Add(action);
         }
 
-        public Action GetAction(ActionType type)
+        public T GetAction<T>() where T : Action
         {
-            return actions.Find(action => action.type == type);
+            return actions.Find(action => action is T) as T;
         }
     }
 }

@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using ManaMist.Actions;
 using ManaMist.Commands;
 using ManaMist.Controllers;
 using ManaMist.Models;
@@ -63,7 +64,7 @@ namespace ManaMist.Managers
                     selectCommand.Execute(mapController, GetPlayerById(selectCommand.playerId));
                     break;
                 case CommandType.PERFORMACTION:
-                    PerformActionCommand performActionCommand = (PerformActionCommand)command;
+                    PerformActionCommand<MoveAction> performActionCommand = (PerformActionCommand<MoveAction>)command;
                     performActionCommand.Execute(mapController, GetPlayerById(performActionCommand.playerId), GetPlayerById(performActionCommand.playerId).selectedEntity);
                     break;
                 case CommandType.ENDTURN:
