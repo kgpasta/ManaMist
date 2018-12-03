@@ -1,9 +1,10 @@
 using System.Collections;
 using Newtonsoft.Json;
+using UnityEngine;
 
 namespace ManaMist.Models
 {
-    public class Cost
+    public class Cost : ScriptableObject
     {
         public int food { get; set; }
 
@@ -23,13 +24,6 @@ namespace ManaMist.Models
             food -= cost.food;
             metal -= cost.metal;
             mana -= cost.mana;
-        }
-
-        public override string ToString()
-        {
-            return JsonConvert.SerializeObject(
-                this, Formatting.Indented,
-                new JsonConverter[] { });
         }
     }
 }

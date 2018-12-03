@@ -3,46 +3,31 @@ using ManaMist.Actions;
 using ManaMist.Utility;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
+using UnityEngine;
 
 namespace ManaMist.Models
 {
-    public abstract class Entity
+    public abstract class Entity : ScriptableObject
     {
         public string id { get; set; }
 
-        public string name { get; set; }
-
         public Cost cost { get; set; }
 
-        private Dictionary<ActionType, Action> actions { get; set; }
+        private List<Action> actions { get; set; } = new List<Action>();
 
-        public Entity(string name, Cost cost)
+        private void Awake()
         {
             this.id = System.Guid.NewGuid().ToString();
-            this.name = name;
-            this.cost = cost;
-            this.actions = new Dictionary<ActionType, Action>();
         }
 
         public void AddAction(Action action)
         {
-            actions[action.type] = action;
+            actions.Add(action);
         }
 
         public Action GetAction(ActionType type)
         {
-            if (actions.ContainsKey(type))
-            {
-                return actions[type];
-            }
-            return null;
-        }
-
-        public override string ToString()
-        {
-            return JsonConvert.SerializeObject(
-           this, Formatting.Indented,
-           new JsonConverter[] { new StringEnumConverter(), new ActionConverter() });
+            return actions.Find(action => action.type == type);
         }
     }
 }
