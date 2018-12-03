@@ -15,11 +15,19 @@ public class MapTileWidget : MonoBehaviour
         set
         {
             m_MapTile = value;
+            SetResourceModel(m_MapTile.resource);
         }
     }
 
     [Header("UI Elements")]
     [SerializeField] private Image m_TileImage;
+
+    [Header("Prefab References")]
+    [SerializeField] private GameObject m_ManaResourcePrefabReference;
+    [SerializeField] private GameObject m_MetalResourcePrefabReference;
+    [SerializeField] private GameObject m_FoodResourcePrefabReference;
+
+    private GameObject m_CurrentMapTileModel = null;
 
     private void OnGUI()
     {
@@ -71,6 +79,35 @@ public class MapTileWidget : MonoBehaviour
 
                 return new Color32(0, 0, 0, 255);
 
+        }
+    }
+
+    private void SetResourceModel(Resource resource)
+    {
+        if (m_CurrentMapTileModel != null)
+        {
+            Destroy(m_CurrentMapTileModel);
+        }
+
+        switch (resource)
+        {
+            case Resource.FOOD:
+
+                m_CurrentMapTileModel = Instantiate(m_FoodResourcePrefabReference, transform);
+                break;
+
+            case Resource.MANA:
+
+                m_CurrentMapTileModel = Instantiate(m_ManaResourcePrefabReference, transform);
+                break;
+
+            case Resource.METAL:
+
+                m_CurrentMapTileModel = Instantiate(m_MetalResourcePrefabReference, transform);
+                break;
+
+            default:
+                break;
         }
     }
 }

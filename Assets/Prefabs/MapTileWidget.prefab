@@ -43,6 +43,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_MapTile: {fileID: 0}
   m_TileImage: {fileID: 114540090053599226}
+  m_ManaResourcePrefabReference: {fileID: 1197480473522480, guid: 3963b31370aaba644bec674592da2228,
+    type: 2}
+  m_MetalResourcePrefabReference: {fileID: 1197480473522480, guid: 3963b31370aaba644bec674592da2228,
+    type: 2}
+  m_FoodResourcePrefabReference: {fileID: 1197480473522480, guid: 3963b31370aaba644bec674592da2228,
+    type: 2}
 --- !u!114 &114212659678046842
 MonoBehaviour:
   m_ObjectHideFlags: 1
