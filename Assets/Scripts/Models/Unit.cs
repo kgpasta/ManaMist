@@ -1,18 +1,18 @@
 using ManaMist.Actions;
 using ManaMist.Utility;
+using UnityEngine;
 
 namespace ManaMist.Models
 {
     public abstract class Unit : Entity
     {
-        public int movementRange { get; set; }
+        public int movementRange;
 
-        public Unit(string name, Cost cost, int movementRange) : base(name, cost)
+        public override void Init()
         {
-            this.movementRange = movementRange;
-
-            MoveAction moveAction = new MoveAction(CanMove);
-            this.AddAction(moveAction);
+            MoveAction moveAction = ScriptableObject.CreateInstance<MoveAction>();
+            moveAction.CanMove = CanMove;
+            AddAction(moveAction);
         }
 
         public bool CanMove(Coordinate start, Coordinate end)

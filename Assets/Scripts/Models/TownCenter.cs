@@ -1,19 +1,24 @@
 using ManaMist.Actions;
 using ManaMist.Utility;
+using UnityEngine;
 
 namespace ManaMist.Models
 {
+    [CreateAssetMenu(menuName = "ManaMist/Buildings/TownCenter")]
     public class TownCenter : Building
     {
-        public TownCenter() : base("TownCenter", new Cost(), 10)
+        public override void Init()
         {
-            BuildAction buildAction = new BuildAction(CanBuild);
-            this.AddAction(buildAction);
+            base.Init();
+
+            BuildAction buildAction = ScriptableObject.CreateInstance<BuildAction>();
+            buildAction.CanBuild = CanBuild;
+            AddAction(buildAction);
         }
 
         public bool CanBuild(Coordinate currentCoordinate, Coordinate coordinate, Entity entity)
         {
-            return currentCoordinate.IsAdjacent(currentCoordinate) && entity.name == "Worker";
+            return currentCoordinate.IsAdjacent(currentCoordinate) && entity is Worker;
         }
     }
 }

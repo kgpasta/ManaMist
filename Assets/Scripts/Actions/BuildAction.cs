@@ -9,11 +9,6 @@ namespace ManaMist.Actions
     {
         public CanBuildFunction CanBuild;
 
-        public BuildAction(CanBuildFunction canBuildFunction) : base(ActionType.BUILD)
-        {
-            this.CanBuild = canBuildFunction;
-        }
-
         public delegate bool CanBuildFunction(Coordinate currentCoordinate, Coordinate buildingCoordinate, Entity target);
 
         public override bool CanExecute(MapController mapController, Player player, Entity entity, Coordinate coordinate, Entity target)

@@ -9,11 +9,6 @@ namespace ManaMist.Actions
     {
         public CanMoveFunction CanMove;
 
-        public MoveAction(CanMoveFunction canMoveFunction) : base(ActionType.MOVE)
-        {
-            this.CanMove = canMoveFunction;
-        }
-
         public delegate bool CanMoveFunction(Coordinate start, Coordinate end);
 
         public override bool CanExecute(MapController mapController, Player player, Entity entity, Coordinate coordinate, Entity target)

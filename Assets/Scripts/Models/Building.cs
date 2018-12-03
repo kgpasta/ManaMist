@@ -6,9 +6,9 @@ namespace ManaMist.Models
     {
         public int buildTurns { get; set; }
 
-        public Building(string name, Cost cost, int buildTurns) : base(name, cost)
+        public override void Init()
         {
-            this.buildTurns = buildTurns;
+
         }
     }
 }

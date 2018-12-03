@@ -45,12 +45,11 @@ namespace ManaMist.Players
         {
             foreach (Entity entity in entities.Values)
             {
-                Actions.Action action = entity.GetAction(ActionType.HARVEST);
+                HarvestAction action = entity.GetAction<HarvestAction>();
 
                 if (action != null)
                 {
-                    HarvestAction harvestAction = (HarvestAction)action;
-                    resources.Increment(harvestAction.GetHarvestAmount());
+                    resources.Increment(action.harvestAmount);
                 }
 
             }

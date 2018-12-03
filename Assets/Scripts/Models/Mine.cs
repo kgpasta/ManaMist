@@ -1,21 +1,20 @@
 using ManaMist.Actions;
+using UnityEngine;
 
 namespace ManaMist.Models
 {
+    [CreateAssetMenu(menuName = "ManaMist/Buildings/Mine")]
+
     public class Mine : Building
     {
-        public Mine() : base("Mine", new Cost(), 3)
+        public Cost harvestAmount;
+        public override void Init()
         {
-            HarvestAction harvestAction = new HarvestAction(Harvest);
-            this.AddAction(harvestAction);
-        }
+            base.Init();
 
-        public Cost Harvest()
-        {
-            return new Cost()
-            {
-                metal = 10
-            };
+            HarvestAction harvestAction = ScriptableObject.CreateInstance<HarvestAction>();
+            harvestAction.harvestAmount = harvestAmount;
+            AddAction(harvestAction);
         }
     }
 }

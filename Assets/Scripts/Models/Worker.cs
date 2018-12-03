@@ -1,14 +1,19 @@
 using ManaMist.Actions;
 using ManaMist.Utility;
+using UnityEngine;
 
 namespace ManaMist.Models
 {
+    [CreateAssetMenu(menuName = "ManaMist/Units/Worker")]
     public class Worker : Unit
     {
-        public Worker() : base("Worker", new Cost(), 3)
+        public override void Init()
         {
-            BuildAction buildAction = new BuildAction(CanBuild);
-            this.AddAction(buildAction);
+            base.Init();
+
+            BuildAction buildAction = ScriptableObject.CreateInstance<BuildAction>();
+            buildAction.CanBuild = CanBuild;
+            AddAction(buildAction);
         }
 
         public bool CanBuild(Coordinate currentCoordinate, Coordinate buildingCoordinate, Entity entity)
