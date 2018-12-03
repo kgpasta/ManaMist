@@ -11,5 +11,12 @@ namespace ManaMist.Models
         public Terrain terrain;
         public Resource resource;
         public List<Entity> entities;
+        public event EventHandler PropertyChanged;
+
+        private void OnValidate()
+        {
+            Debug.Log("On validate");
+            PropertyChanged?.Invoke(this, null);
+        }
     }
 }

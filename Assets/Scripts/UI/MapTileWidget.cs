@@ -1,4 +1,5 @@
 ﻿using ManaMist.Models;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -6,18 +7,26 @@ using UnityEngine.UI;
 
 public class MapTileWidget : MonoBehaviour
 {
+    [SerializeField]
+    private MapTile m_MapTile = null;
 
-    public MapTile mapTile = null;
+    public MapTile mapTile
+    {
+        get
+        {
+            return m_MapTile;
+        }
+        set
+        {
+            m_MapTile = value;
+            m_MapTile.PropertyChanged += UpdateUI;
+        }
+    }
 
     [Header("UI Elements")]
     [SerializeField] private Image m_TileImage;
 
-    private void OnGUI()
-    {
-        UpdateUI();
-    }
-
-    private void UpdateUI()
+    private void UpdateUI(object sender, EventArgs e)
     {
         if (mapTile != null)
         {
