@@ -10,7 +10,7 @@ using UnityEngine;
 
 namespace ManaMist.Managers
 {
-    public class GameManager : ScriptableObject
+    public class GameManager : MonoBehaviour
     {
         public Player playerOne;
 

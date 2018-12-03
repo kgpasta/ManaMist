@@ -16,6 +16,7 @@ namespace ManaMist.Controllers
         public int turnNumber { get; set; }
     }
 
+    [CreateAssetMenu(menuName = "ManaMist/Turn Controller")]
     public class TurnController : ScriptableObject
     {
         private Queue<int> playerQueue;

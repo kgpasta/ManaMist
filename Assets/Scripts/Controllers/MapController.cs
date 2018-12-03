@@ -9,6 +9,7 @@ using UnityEngine;
 
 namespace ManaMist.Controllers
 {
+    [CreateAssetMenu(menuName = "ManaMist/Map Controller")]
     public class MapController : ScriptableObject
     {
         private Dictionary<Coordinate, MapTile> coordinateToMapTile { get; set; } = new Dictionary<Coordinate, MapTile>();
@@ -17,9 +18,9 @@ namespace ManaMist.Controllers
 
         private const int MAP_DIMENSION = 50;
 
-        public MapController()
+        private void Awake()
         {
-            SetupMap("Maps/map1.csv");
+            SetupMap("Maps/map1");
         }
 
         public void AddToMap(Coordinate coordinate, Entity entity)
@@ -70,7 +71,10 @@ namespace ManaMist.Controllers
 
         private void SetupMap(string mapFilePath)
         {
-            string[] allMapText = File.ReadAllLines(mapFilePath);
+            UnityEngine.Object map = Resources.Load(mapFilePath);
+            TextAsset mapText = map as TextAsset;
+
+            string[] allMapText = mapText.text.Split('\n');
 
             for (int i = 0; i < MAP_DIMENSION; i++)
             {
