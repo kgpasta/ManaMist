@@ -107,11 +107,12 @@ namespace ManaMist.Controllers
                 resource = StringToResource(str.Substring(1));
             }
 
+            GameObject newMapTileWidgetInstance = Instantiate(MapTilePrefabReference, MapGridParentTransform);
+
             MapTile mapTile = ScriptableObject.CreateInstance<MapTile>();
             mapTile.terrain = terrain;
             mapTile.resource = resource;
 
-            GameObject newMapTileWidgetInstance = Instantiate(MapTilePrefabReference, MapGridParentTransform);
             newMapTileWidgetInstance.GetComponent<MapTileWidget>().mapTile = mapTile;
 
             return mapTile;

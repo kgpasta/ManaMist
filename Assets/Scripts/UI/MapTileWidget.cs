@@ -9,26 +9,26 @@ public class MapTileWidget : MonoBehaviour
 {
     [SerializeField]
     private MapTile m_MapTile = null;
-
     public MapTile mapTile
     {
-        get
-        {
-            return m_MapTile;
-        }
+        get { return m_MapTile; }
         set
         {
             m_MapTile = value;
-            m_MapTile.PropertyChanged += UpdateUI;
         }
     }
 
     [Header("UI Elements")]
     [SerializeField] private Image m_TileImage;
 
-    private void UpdateUI(object sender, EventArgs e)
+    private void OnGUI()
     {
-        if (mapTile != null)
+        UpdateUI();
+    }
+
+    private void UpdateUI()
+    {
+        if (m_MapTile != null)
         {
             m_TileImage.color = MassiveShittyColorSwitchStatement();
         }
@@ -49,23 +49,23 @@ public class MapTileWidget : MonoBehaviour
 
             case ManaMist.Models.Terrain.GRASS:
 
-                return new Color32(108, 226, 95, 255);
+                return new Color32(67, 147, 65, 255);
 
             case ManaMist.Models.Terrain.HILL:
 
-                return new Color32(21, 214, 0, 255);
+                return new Color32(58, 68, 59, 255);
 
             case ManaMist.Models.Terrain.MOUNTAIN:
 
-                return new Color32(91, 91, 91, 255);
+                return new Color32(112, 112, 112, 255);
 
             case ManaMist.Models.Terrain.SWAMP:
 
-                return new Color32(69, 91, 18, 255);
+                return new Color32(127, 77, 165, 255);
 
             case ManaMist.Models.Terrain.WATER:
 
-                return new Color32(66, 212, 244, 255);
+                return new Color32(7, 106, 193, 255);
 
             default:
 
