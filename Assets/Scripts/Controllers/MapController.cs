@@ -23,11 +23,6 @@ namespace ManaMist.Controllers
 
         private const int MAP_DIMENSION = 50;
 
-        private void Awake()
-        {
-            SetupMap("Maps/map1");
-        }
-
         public void AddToMap(Coordinate coordinate, Entity entity)
         {
             coordinateToMapTile[coordinate].entities.Add(entity);
@@ -74,7 +69,7 @@ namespace ManaMist.Controllers
             }
         }
 
-        private void SetupMap(string mapFilePath)
+        public void SetupMap(string mapFilePath)
         {
             UnityEngine.Object map = Resources.Load(mapFilePath);
             TextAsset mapText = map as TextAsset;

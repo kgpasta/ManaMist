@@ -22,11 +22,19 @@ namespace ManaMist.Managers
         public TurnController turnController;
         public MapController mapController;
 
-        public GameManager(TurnController turnController, MapController mapController)
-        {
-            this.mapController = mapController;
-            this.turnController = turnController;
+        private const string testMapPath = "Maps/map1";
 
+        private void Awake()
+        {
+            // Setup Map
+            mapController.SetupMap(testMapPath);
+
+            // Setup Game
+            InitGame();
+        }
+
+        private void InitGame()
+        {
             turnController.OnTurnStart += setActivePlayer;
 
             playerOne = new Player(0, turnController);
