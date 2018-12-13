@@ -130,6 +130,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fbfbfabc7d3cf9f49a3762857fa29070, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  mapName: map1
   playerOne: {fileID: 11400000, guid: 8b81ba97ccea1f14c8eaf8e1c4c27489, type: 2}
   playerTwo: {fileID: 11400000, guid: c028a2e36acb8f442a1e15810efc9fb0, type: 2}
   activePlayer: {fileID: 0}

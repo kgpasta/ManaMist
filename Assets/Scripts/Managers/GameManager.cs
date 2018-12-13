@@ -13,6 +13,8 @@ namespace ManaMist.Managers
 {
     public class GameManager : MonoBehaviour
     {
+        public string mapName;
+
         [Header("Players")]
         public Player playerOne;
         public Player playerTwo;
@@ -22,18 +24,17 @@ namespace ManaMist.Managers
         public TurnController turnController;
         public MapController mapController;
 
-        private const string testMapPath = "Maps/map1";
+        private const string resourceMapPath = "Maps/";
 
         private void Awake()
         {
             // Setup Map
-            mapController.SetupMap(testMapPath);
+            mapController.SetupMap(resourceMapPath + mapName);
 
-            // Setup Game
-            InitGame();
+            //SetupGame();
         }
 
-        private void InitGame()
+        private void SetupGame()
         {
             turnController.OnTurnStart += setActivePlayer;
 

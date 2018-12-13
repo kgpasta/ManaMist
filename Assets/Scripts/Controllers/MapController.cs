@@ -17,24 +17,23 @@ namespace ManaMist.Controllers
         [Header("Prefab References")]
         public GameObject MapTilePrefabReference = null;
 
-        private Dictionary<Coordinate, MapTile> coordinateToMapTile { get; set; } = new Dictionary<Coordinate, MapTile>();
-
-        private Dictionary<string, Coordinate> entityIdToCoordinate { get; set; } = new Dictionary<string, Coordinate>();
+        private Dictionary<Coordinate, MapTile> m_CoordinateToMapTile = new Dictionary<Coordinate, MapTile>();
+        private Dictionary<string, Coordinate> m_EntityIdToCoordinate = new Dictionary<string, Coordinate>();
 
         private const int MAP_DIMENSION = 50;
 
         public void AddToMap(Coordinate coordinate, Entity entity)
         {
-            coordinateToMapTile[coordinate].entities.Add(entity);
+            m_CoordinateToMapTile[coordinate].entities.Add(entity);
 
-            entityIdToCoordinate[entity.id] = coordinate;
+            m_EntityIdToCoordinate[entity.id] = coordinate;
         }
 
         public Coordinate GetPositionOfEntity(string id)
         {
-            if (entityIdToCoordinate.ContainsKey(id))
+            if (m_EntityIdToCoordinate.ContainsKey(id))
             {
-                return entityIdToCoordinate[id];
+                return m_EntityIdToCoordinate[id];
             }
 
             return null;
@@ -42,21 +41,21 @@ namespace ManaMist.Controllers
 
         public MapTile GetMapTileAtCoordinate(Coordinate coordinate)
         {
-            return coordinateToMapTile[coordinate];
+            return m_CoordinateToMapTile[coordinate];
         }
 
         public void RemoveFromMap(Entity entity)
         {
-            if (entityIdToCoordinate.ContainsKey(entity.id))
+            if (m_EntityIdToCoordinate.ContainsKey(entity.id))
             {
-                Coordinate current = entityIdToCoordinate[entity.id];
+                Coordinate current = m_EntityIdToCoordinate[entity.id];
 
-                if (coordinateToMapTile.ContainsKey(current))
+                if (m_CoordinateToMapTile.ContainsKey(current))
                 {
-                    coordinateToMapTile[current].entities.Remove(entity);
+                    m_CoordinateToMapTile[current].entities.Remove(entity);
                 }
 
-                entityIdToCoordinate.Remove(entity.id);
+                m_EntityIdToCoordinate.Remove(entity.id);
             }
         }
 
@@ -83,7 +82,7 @@ namespace ManaMist.Controllers
                 {
                     Coordinate coordinate = new Coordinate(i, j);
 
-                    coordinateToMapTile[coordinate] = StringToMapTile(lineMapText[j], coordinate);
+                    m_CoordinateToMapTile[coordinate] = StringToMapTile(lineMapText[j], coordinate);
                 }
             }
         }
