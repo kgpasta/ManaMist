@@ -2,6 +2,7 @@ using ManaMist.Actions;
 using ManaMist.Commands;
 using ManaMist.Models;
 using ManaMist.Players;
+using ManaMist.Utility;
 using UnityEngine;
 
 namespace ManaMist.Controllers
@@ -14,6 +15,28 @@ namespace ManaMist.Controllers
         public TurnController turnController;
         public Player playerOne;
         public Player playerTwo;
+        public Player activePlayer;
+
+        private void OnEnable()
+        {
+            turnController.OnTurnStart += SetActivePlayer;
+        }
+
+        private void OnDisable()
+        {
+            turnController.OnTurnStart -= SetActivePlayer;
+        }
+
+        public void MapTileSelected(Coordinate coordinate)
+        {
+            MapTile mapTile = mapController.GetMapTileAtCoordinate(coordinate);
+            if (mapTile.entities.Count > 0)
+            {
+                SelectCommand selectCommand = new SelectCommand(activePlayer.id, mapTile.entities[0].id);
+                DoCommand(selectCommand);
+            }
+        }
+
         public void DoCommand(Command command)
         {
             switch (command.type)
@@ -58,6 +81,18 @@ namespace ManaMist.Controllers
         private Player GetPlayerById(int playerId)
         {
             return playerId == 1 ? playerOne : playerTwo;
+        }
+
+        private void SetActivePlayer(object sender, TurnEventArgs args)
+        {
+            if (args.player == 1)
+            {
+                activePlayer = playerOne;
+            }
+            else
+            {
+                activePlayer = playerTwo;
+            }
         }
     }
 }

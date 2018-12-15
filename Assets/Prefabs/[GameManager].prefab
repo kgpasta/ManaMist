@@ -116,6 +116,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9769aecb8351c5c4c84ed88ae74c915b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  commandController: {fileID: 11400000, guid: cd071937cccd1af4ab3e6bcb33ad78bf, type: 2}
   mapController: {fileID: 11400000, guid: 687951a7835bd5a43b17fca05b9af0d8, type: 2}
   MapTilePrefabReference: {fileID: 1321297760129468, guid: 495612f20c6e56748993579087aabe0a,
     type: 2}

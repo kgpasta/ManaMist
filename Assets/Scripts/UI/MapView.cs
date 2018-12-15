@@ -1,12 +1,15 @@
+using ManaMist.Commands;
 using ManaMist.Controllers;
 using ManaMist.Models;
 using ManaMist.Utility;
 using UnityEngine;
+using UnityEngine.UI;
 
 namespace ManaMist.UI
 {
     public class MapView : MonoBehaviour
     {
+        public CommandController commandController;
         public MapController mapController;
 
         [Header("Prefab References")]
@@ -31,6 +34,10 @@ namespace ManaMist.UI
             newMapTileWidgetInstance.name = "Tile (" + args.coordinate.x.ToString() + "," + args.coordinate.y.ToString() + ")";
 
             newMapTileWidgetInstance.GetComponent<MapTileWidget>().mapTile = args.mapTile;
+            newMapTileWidgetInstance.GetComponent<Button>().onClick.AddListener(() =>
+            {
+                commandController.MapTileSelected(args.coordinate);
+            });
         }
 
     }

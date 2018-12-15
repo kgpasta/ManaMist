@@ -17,7 +17,6 @@ namespace ManaMist.Managers
         [Header("Players")]
         public Player playerOne;
         public Player playerTwo;
-        public Player activePlayer;
 
         [Header("Controllers")]
         public TurnController turnController;
@@ -36,27 +35,12 @@ namespace ManaMist.Managers
 
         private void SetupGame()
         {
-            turnController.OnTurnStart += setActivePlayer;
-
             playerOne = new Player(0, turnController);
             SeedPlayer(playerOne, 0);
             playerTwo = new Player(1, turnController);
             SeedPlayer(playerTwo, 10);
-            activePlayer = playerOne;
 
             turnController.StartTurns();
-        }
-
-        private void setActivePlayer(object sender, TurnEventArgs args)
-        {
-            if (args.player == 1)
-            {
-                activePlayer = playerOne;
-            }
-            else
-            {
-                activePlayer = playerTwo;
-            }
         }
 
         private void SeedPlayer(Player player, int offset)

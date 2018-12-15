@@ -11,6 +11,6 @@ namespace ManaMist.Models
     {
         public Terrain terrain;
         public Resource resource;
-        public List<Entity> entities;
+        public List<Entity> entities = new List<Entity>();
     }
 }
