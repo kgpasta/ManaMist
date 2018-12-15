@@ -12,11 +12,11 @@ namespace ManaMist.Players
     [CreateAssetMenu(menuName = "ManaMist/Player")]
     public class Player : ScriptableObject
     {
-        public int id { get; set; }
+        public int id;
         public Phase currentPhase = Phase.WAITING;
-        public Dictionary<string, Entity> entities = new Dictionary<string, Entity>();
-        public Entity selectedEntity { get; set; } = null;
-        public Cost resources { get; set; } = new Cost();
+        public List<Entity> entities = new List<Entity>();
+        public Entity selectedEntity = null;
+        public Cost resources = new Cost();
 
         private List<Phase> m_Phases = new List<Phase>();
         private int m_PhaseIndex = 0;
@@ -43,7 +43,7 @@ namespace ManaMist.Players
 
         private void IncrementResources()
         {
-            foreach (Entity entity in entities.Values)
+            foreach (Entity entity in entities)
             {
                 HarvestAction action = entity.GetAction<HarvestAction>();
 
@@ -85,24 +85,25 @@ namespace ManaMist.Players
 
         public void AddEntity(Entity entity)
         {
-            entities[entity.id] = entity;
+            entities.Add(entity);
         }
 
         public void RemoveEntity(Entity entity)
         {
-            entities.Remove(entity.id);
+            entities.Remove(entity);
         }
 
         public Entity GetEntity(string id)
         {
-            return entities.ContainsKey(id) ? entities[id] : null;
+            return entities.Find(entity => entity.id == id);
         }
 
         public void SelectEntity(string id)
         {
-            if (entities.ContainsKey(id))
+            Entity entity = entities.Find(e => e.id == id);
+            if (entity != null)
             {
-                selectedEntity = entities[id];
+                selectedEntity = entity;
             }
         }
 
