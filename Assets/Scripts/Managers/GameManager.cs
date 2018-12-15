@@ -5,7 +5,6 @@ using ManaMist.Commands;
 using ManaMist.Controllers;
 using ManaMist.Models;
 using ManaMist.Players;
-using ManaMist.Processors;
 using ManaMist.Utility;
 using UnityEngine;
 
@@ -23,6 +22,7 @@ namespace ManaMist.Managers
         [Header("Controllers")]
         public TurnController turnController;
         public MapController mapController;
+        public CommandController commandController;
 
         private const string resourceMapPath = "Maps/";
 
@@ -59,31 +59,6 @@ namespace ManaMist.Managers
             }
         }
 
-        public void DoCommand(Command command)
-        {
-            switch (command.type)
-            {
-                case CommandType.DESCRIBE:
-                    DescribeCommand describeCommand = (DescribeCommand)command;
-                    describeCommand.Execute(mapController, describeCommand.id != null ? FindEntity(describeCommand.id) : null);
-                    break;
-                case CommandType.SELECT:
-                    SelectCommand selectCommand = (SelectCommand)command;
-                    selectCommand.Execute(mapController, GetPlayerById(selectCommand.playerId));
-                    break;
-                case CommandType.PERFORMACTION:
-                    PerformActionCommand<MoveAction> performActionCommand = (PerformActionCommand<MoveAction>)command;
-                    performActionCommand.Execute(mapController, GetPlayerById(performActionCommand.playerId), GetPlayerById(performActionCommand.playerId).selectedEntity);
-                    break;
-                case CommandType.ENDTURN:
-                    EndTurnCommand endTurnCommand = (EndTurnCommand)command;
-                    endTurnCommand.Execute(turnController);
-                    break;
-                default:
-                    break;
-            }
-        }
-
         private void SeedPlayer(Player player, int offset)
         {
             Coordinate townCenterCoordinate = new Coordinate(offset, offset);
@@ -100,27 +75,6 @@ namespace ManaMist.Managers
             Worker worker = new Worker();
             player.AddEntity(worker);
             mapController.AddToMap(workerCoordinate, worker);
-        }
-
-        private Entity FindEntity(string id)
-        {
-            Entity playerOneEntity = playerOne.GetEntity(id);
-            Entity playerTwoEntity = playerTwo.GetEntity(id);
-
-            if (playerOneEntity != null)
-            {
-                return playerOneEntity;
-            }
-            else if (playerTwoEntity != null)
-            {
-                return playerTwoEntity;
-            }
-            return null;
-        }
-
-        private Player GetPlayerById(int playerId)
-        {
-            return playerId == 1 ? playerOne : playerTwo;
         }
     }
 }

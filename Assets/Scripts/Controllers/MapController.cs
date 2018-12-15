@@ -6,17 +6,20 @@ using ManaMist.Controllers;
 using ManaMist.Models;
 using ManaMist.Utility;
 using UnityEngine;
+using UnityEngine.UI;
 
 namespace ManaMist.Controllers
 {
-    public class MapController : MonoBehaviour
+    public class MapTileAddedArgs
     {
-        [Header("UI Elements")]
-        public Transform MapGridParentTransform = null;
+        public MapTile mapTile;
+        public Coordinate coordinate;
+    }
 
-        [Header("Prefab References")]
-        public GameObject MapTilePrefabReference = null;
-
+    [CreateAssetMenu(menuName = "ManaMist/Map Controller")]
+    public class MapController : ScriptableObject
+    {
+        public event EventHandler<MapTileAddedArgs> MapTileAdded;
         private Dictionary<Coordinate, MapTile> m_CoordinateToMapTile = new Dictionary<Coordinate, MapTile>();
         private Dictionary<string, Coordinate> m_EntityIdToCoordinate = new Dictionary<string, Coordinate>();
 
@@ -83,6 +86,7 @@ namespace ManaMist.Controllers
                     Coordinate coordinate = new Coordinate(i, j);
 
                     m_CoordinateToMapTile[coordinate] = StringToMapTile(lineMapText[j], coordinate);
+                    MapTileAdded?.Invoke(this, new MapTileAddedArgs() { mapTile = m_CoordinateToMapTile[coordinate], coordinate = coordinate });
                 }
             }
         }
@@ -101,14 +105,9 @@ namespace ManaMist.Controllers
                 resource = StringToResource(str.Substring(1));
             }
 
-            GameObject newMapTileWidgetInstance = Instantiate(MapTilePrefabReference, MapGridParentTransform);
-            newMapTileWidgetInstance.name = "Tile (" + coordinate.x.ToString() + "," + coordinate.y.ToString() + ")";
-
             MapTile mapTile = ScriptableObject.CreateInstance<MapTile>();
             mapTile.terrain = terrain;
             mapTile.resource = resource;
-
-            newMapTileWidgetInstance.GetComponent<MapTileWidget>().mapTile = mapTile;
 
             return mapTile;
         }

@@ -1,0 +1,17 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: af7641516d2e639479821870be77c5bc, type: 3}
+  m_Name: CommandController
+  m_EditorClassIdentifier: 
+  mapController: {fileID: 0}
+  turnController: {fileID: 11400000, guid: 78e7dde5c14b28b4d8539bf03c17fe3d, type: 2}
+  playerOne: {fileID: 11400000, guid: 8b81ba97ccea1f14c8eaf8e1c4c27489, type: 2}
+  playerTwo: {fileID: 11400000, guid: c028a2e36acb8f442a1e15810efc9fb0, type: 2}

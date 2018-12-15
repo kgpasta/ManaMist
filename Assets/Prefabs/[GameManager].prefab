@@ -23,7 +23,7 @@ GameObject:
   - component: {fileID: 114007511068634416}
   - component: {fileID: 114886858778770086}
   - component: {fileID: 114117124356058366}
-  - component: {fileID: 114041372366307374}
+  - component: {fileID: 114380090183731888}
   m_Layer: 5
   m_Name: MapControllerCanvas
   m_TagString: Untagged
@@ -82,20 +82,6 @@ MonoBehaviour:
   m_FallbackScreenDPI: 96
   m_DefaultSpriteDPI: 96
   m_DynamicPixelsPerUnit: 1
---- !u!114 &114041372366307374
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1795146532497864}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: baa30562424fc3e4e8bcc1ee8b28f481, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  MapGridParentTransform: {fileID: 224572947987198972}
-  MapTilePrefabReference: {fileID: 1321297760129468, guid: 495612f20c6e56748993579087aabe0a,
-    type: 2}
 --- !u!114 &114117124356058366
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -119,6 +105,21 @@ MonoBehaviour:
   m_Spacing: {x: 0, y: 0}
   m_Constraint: 0
   m_ConstraintCount: 2
+--- !u!114 &114380090183731888
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1795146532497864}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9769aecb8351c5c4c84ed88ae74c915b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mapController: {fileID: 11400000, guid: 687951a7835bd5a43b17fca05b9af0d8, type: 2}
+  MapTilePrefabReference: {fileID: 1321297760129468, guid: 495612f20c6e56748993579087aabe0a,
+    type: 2}
+  MapGridParentTransform: {fileID: 224572947987198972}
 --- !u!114 &114871655128495936
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -135,7 +136,8 @@ MonoBehaviour:
   playerTwo: {fileID: 11400000, guid: c028a2e36acb8f442a1e15810efc9fb0, type: 2}
   activePlayer: {fileID: 0}
   turnController: {fileID: 11400000, guid: 78e7dde5c14b28b4d8539bf03c17fe3d, type: 2}
-  mapController: {fileID: 114041372366307374}
+  mapController: {fileID: 11400000, guid: 687951a7835bd5a43b17fca05b9af0d8, type: 2}
+  commandController: {fileID: 11400000, guid: cd071937cccd1af4ab3e6bcb33ad78bf, type: 2}
 --- !u!114 &114886858778770086
 MonoBehaviour:
   m_ObjectHideFlags: 1
