@@ -10,11 +10,6 @@ namespace ManaMist.Actions
     {
         public CanAttackFunction CanAttack;
 
-        public AttackAction(CanAttackFunction canBuildFunction) : base(ActionType.BUILD)
-        {
-            this.CanAttack = canBuildFunction;
-        }
-
         public delegate bool CanAttackFunction(Coordinate currentCoordinate, Coordinate targetCoordinate, Entity target);
 
         public override bool CanExecute(MapController mapController, Player player, Entity entity, Coordinate coordinate, Entity target)

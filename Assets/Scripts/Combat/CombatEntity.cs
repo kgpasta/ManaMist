@@ -4,13 +4,12 @@ namespace ManaMist.Combat
 {
     public abstract class CombatEntity : Entity
     {
-        public int hp { get; set; }
-        public int attack { get; set; }
-        public int defense { get; set; }
-        public int skill { get; set; }
-        public int speed { get; set; }
-        public CombatEntity(string name, Cost cost) : base(name, cost)
-        {
-        }
+        public int hp;
+        public int attack;
+        public int defense;
+        public int skill;
+        public int accuracy;
+        public int speed;
+        public int range;
     }
 }
