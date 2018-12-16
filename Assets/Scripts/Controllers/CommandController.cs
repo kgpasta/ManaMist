@@ -33,10 +33,12 @@ namespace ManaMist.Controllers
             if (mapTile.entities.Count > 0)
             {
                 SelectCommand selectCommand = new SelectCommand(activePlayer.id, mapTile.entities[0].id);
-                DoCommand(selectCommand);
+                selectCommand.Execute(mapController, activePlayer);
             }
         }
 
+        // Used for command line testing
+        /*         
         public void DoCommand(Command command)
         {
             switch (command.type)
@@ -60,7 +62,8 @@ namespace ManaMist.Controllers
                 default:
                     break;
             }
-        }
+        } 
+        */
 
         private Entity FindEntity(string id)
         {
