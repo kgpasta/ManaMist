@@ -20,8 +20,15 @@ namespace ManaMist.Actions
 
         public override void Execute(MapController mapController, Player player, Entity entity, Coordinate coordinate, Entity target)
         {
-            CombatEngine combatEngine = new CombatEngine();
-            CombatResult result = combatEngine.Battle(entity as CombatEntity, target as CombatEntity);
+            int distance = mapController.GetPositionOfEntity(entity.id).Distance(mapController.GetPositionOfEntity(target.id));
+            CombatEngine combatEngine = new CombatEngine()
+            {
+                attacker = entity as CombatEntity,
+                defender = target as CombatEntity,
+                distance = distance
+            };
+
+            CombatResult result = combatEngine.Battle();
             if (result == CombatResult.LOSS)
             {
                 player.RemoveEntity(entity);

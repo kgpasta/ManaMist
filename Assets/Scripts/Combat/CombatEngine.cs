@@ -6,9 +6,13 @@ namespace ManaMist.Combat
 {
     public class CombatEngine
     {
-        public CombatResult Battle(CombatEntity attacker, CombatEntity defender)
+        public CombatEntity attacker;
+        public CombatEntity defender;
+        public int distance;
+
+        public CombatResult Battle()
         {
-            if (WillHit(attacker, defender))
+            if (WillHit(attacker, defender, distance))
             {
                 int damageModifier = WillCrit(attacker) ? 2 : 1;
                 int damage = CalculateDamage(attacker, defender, damageModifier);
@@ -20,7 +24,7 @@ namespace ManaMist.Combat
                 }
             }
 
-            if (WillHit(defender, attacker))
+            if (WillHit(defender, attacker, distance))
             {
                 int damageModifier = WillCrit(defender) ? 2 : 1;
                 int damage = CalculateDamage(defender, attacker, damageModifier);
@@ -35,10 +39,11 @@ namespace ManaMist.Combat
             return CombatResult.NONE;
         }
 
-        private bool WillHit(CombatEntity attacker, CombatEntity defender)
+        private bool WillHit(CombatEntity attacker, CombatEntity defender, int distance)
         {
+            bool inRange = attacker.range >= distance;
             int hitChance = attacker.accuracy - defender.speed;
-            return new Random().Next(0, 100) > hitChance;
+            return inRange && new Random().Next(0, 100) > hitChance;
         }
 
         private bool WillCrit(CombatEntity attacker)
