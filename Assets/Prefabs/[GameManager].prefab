@@ -120,6 +120,11 @@ MonoBehaviour:
   mapController: {fileID: 11400000, guid: 687951a7835bd5a43b17fca05b9af0d8, type: 2}
   MapTilePrefabReference: {fileID: 1321297760129468, guid: 495612f20c6e56748993579087aabe0a,
     type: 2}
+  WorkerModel: {fileID: 1267403289459928, guid: 23254b32193742445a94e2ee184d9e4a,
+    type: 2}
+  TownCenterModel: {fileID: 1656329852607660, guid: b0b942f393b6cd4418737a5a35fbfd4c,
+    type: 2}
+  MineModel: {fileID: 1656329852607660, guid: bb3f212ae07d50749ae9f0fa743612a6, type: 2}
   MapGridParentTransform: {fileID: 224572947987198972}
 --- !u!114 &114871655128495936
 MonoBehaviour:
@@ -135,7 +140,6 @@ MonoBehaviour:
   mapName: map1
   playerOne: {fileID: 11400000, guid: 8b81ba97ccea1f14c8eaf8e1c4c27489, type: 2}
   playerTwo: {fileID: 11400000, guid: c028a2e36acb8f442a1e15810efc9fb0, type: 2}
-  activePlayer: {fileID: 0}
   turnController: {fileID: 11400000, guid: 78e7dde5c14b28b4d8539bf03c17fe3d, type: 2}
   mapController: {fileID: 11400000, guid: 687951a7835bd5a43b17fca05b9af0d8, type: 2}
   commandController: {fileID: 11400000, guid: cd071937cccd1af4ab3e6bcb33ad78bf, type: 2}

@@ -30,7 +30,7 @@ namespace ManaMist.Managers
             // Setup Map
             mapController.SetupMap(resourceMapPath + mapName);
 
-            //SetupGame();
+            SetupGame();
         }
 
         private void SetupGame()
@@ -46,17 +46,17 @@ namespace ManaMist.Managers
         private void SeedPlayer(Player player, int offset)
         {
             Coordinate townCenterCoordinate = new Coordinate(offset, offset);
-            TownCenter townCenter = new TownCenter();
+            TownCenter townCenter = ScriptableObject.CreateInstance<TownCenter>();
             player.AddEntity(townCenter);
             mapController.AddToMap(townCenterCoordinate, townCenter);
 
             Coordinate mineCoordinate = new Coordinate(offset + 2, offset + 2);
-            Mine mine = new Mine();
+            Mine mine = ScriptableObject.CreateInstance<Mine>();
             player.AddEntity(mine);
             mapController.AddToMap(mineCoordinate, mine);
 
             Coordinate workerCoordinate = new Coordinate(offset + 1, offset + 1);
-            Worker worker = new Worker();
+            Worker worker = ScriptableObject.CreateInstance<Worker>();
             player.AddEntity(worker);
             mapController.AddToMap(workerCoordinate, worker);
         }

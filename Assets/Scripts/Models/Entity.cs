@@ -13,6 +13,8 @@ namespace ManaMist.Models
 
         public Cost cost;
 
+        public GameObject instanceReference;
+
         public List<Action> actions;
 
         public virtual void Awake()
@@ -27,6 +29,8 @@ namespace ManaMist.Models
         public void AddAction(Action action)
         {
             actions.Add(action);
+
+            cost = CreateInstance<Cost>();
         }
 
         public T GetAction<T>() where T : Action

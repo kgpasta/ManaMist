@@ -25,5 +25,12 @@ namespace ManaMist.Models
             metal -= cost.metal;
             mana -= cost.mana;
         }
+
+        public void SetCost(int food, int metal, int mana)
+        {
+            this.food = food;
+            this.metal = metal;
+            this.mana = mana;
+        }
     }
 }

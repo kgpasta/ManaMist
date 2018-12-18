@@ -16,10 +16,17 @@ namespace ManaMist.Controllers
         public Coordinate coordinate;
     }
 
+    public class EntityAddedArgs
+    {
+        public Entity entity;
+        public MapTile mapTile;
+    }
+
     [CreateAssetMenu(menuName = "ManaMist/Map Controller")]
     public class MapController : ScriptableObject
     {
         public event EventHandler<MapTileAddedArgs> MapTileAdded;
+        public event EventHandler<EntityAddedArgs> EntityAdded;
         private Dictionary<Coordinate, MapTile> m_CoordinateToMapTile = new Dictionary<Coordinate, MapTile>();
         private Dictionary<string, Coordinate> m_EntityIdToCoordinate = new Dictionary<string, Coordinate>();
 
@@ -27,9 +34,17 @@ namespace ManaMist.Controllers
 
         public void AddToMap(Coordinate coordinate, Entity entity)
         {
-            m_CoordinateToMapTile[coordinate].entities.Add(entity);
+            MapTile mapTile = m_CoordinateToMapTile[coordinate];
+
+            mapTile.entities.Add(entity);
 
             m_EntityIdToCoordinate[entity.id] = coordinate;
+
+            EntityAdded?.Invoke(this, new EntityAddedArgs()
+            {
+                entity = entity,
+                mapTile = mapTile
+            });
         }
 
         public Coordinate GetPositionOfEntity(string id)
@@ -90,6 +105,8 @@ namespace ManaMist.Controllers
                 }
             }
         }
+
+        #region Map CSV Parsing
 
         private MapTile StringToMapTile(string str, Coordinate coordinate)
         {
@@ -171,6 +188,8 @@ namespace ManaMist.Controllers
 
             return terrain;
         }
+
+        #endregion
 
     }
 }
