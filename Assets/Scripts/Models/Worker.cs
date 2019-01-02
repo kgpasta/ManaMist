@@ -11,7 +11,7 @@ namespace ManaMist.Models
         {
             base.Init();
 
-            cost.SetCost(50, 0, 0);
+            cost = new Cost(50, 0, 0);
 
             BuildAction buildAction = ScriptableObject.CreateInstance<BuildAction>();
             buildAction.CanBuild = CanBuild;

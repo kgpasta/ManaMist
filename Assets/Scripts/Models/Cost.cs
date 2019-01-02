@@ -6,11 +6,16 @@ namespace ManaMist.Models
 {
     public class Cost : ScriptableObject
     {
-        public int food { get; set; }
+        public int food;
+        public int metal;
+        public int mana;
 
-        public int metal { get; set; }
-
-        public int mana { get; set; }
+        public Cost(int food, int metal, int mana)
+        {
+            this.food = food;
+            this.metal = metal;
+            this.mana = mana;
+        }
 
         public void Increment(Cost cost)
         {
@@ -26,11 +31,9 @@ namespace ManaMist.Models
             mana -= cost.mana;
         }
 
-        public void SetCost(int food, int metal, int mana)
+        public override string ToString()
         {
-            this.food = food;
-            this.metal = metal;
-            this.mana = mana;
+            return "FOOD: " + food + ", METAL: " + metal + ", MANA: " + mana;
         }
     }
 }

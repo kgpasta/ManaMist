@@ -14,9 +14,10 @@ namespace ManaMist.Managers
     {
         public string mapName;
 
+        public int numberOfPlayers;
+
         [Header("Players")]
-        public Player playerOne;
-        public Player playerTwo;
+        public List<Player> players = new List<Player>();
 
         [Header("Controllers")]
         public TurnController turnController;
@@ -27,20 +28,25 @@ namespace ManaMist.Managers
 
         private void Awake()
         {
-            // Setup Map
-            mapController.SetupMap(resourceMapPath + mapName);
-
             SetupGame();
         }
 
         private void SetupGame()
         {
-            playerOne = new Player(0, turnController);
-            SeedPlayer(playerOne, 0);
-            playerTwo = new Player(1, turnController);
-            SeedPlayer(playerTwo, 10);
+            // Setup Map
+            mapController.SetupMap(resourceMapPath + mapName);
 
-            turnController.StartTurns();
+            // Initialize Players
+            for (int i=0; i < numberOfPlayers; i++)
+            {
+                Player player = ScriptableObject.CreateInstance<Player>();
+                player = new Player(i, turnController);
+                SeedPlayer(player, i*10); // NOTE: This is a random temporary seeding offset
+                players.Add(player);
+            }
+
+            // Initialize Turn Controller
+            turnController.Init(numberOfPlayers);
         }
 
         private void SeedPlayer(Player player, int offset)

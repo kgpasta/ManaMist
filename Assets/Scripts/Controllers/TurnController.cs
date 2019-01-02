@@ -25,16 +25,16 @@ namespace ManaMist.Controllers
         public event EventHandler<TurnEventArgs> OnTurnStart;
         public event EventHandler<TurnEventArgs> OnTurnEnd;
 
-        private void Awake()
+        public void Init(int numOfPlayers)
         {
+            // Initialize player queue
             playerQueue = new Queue<int>();
 
-            playerQueue.Enqueue(1);
-            playerQueue.Enqueue(2);
-        }
+            for (int i = 0; i < numOfPlayers; i++)
+            {
+                playerQueue.Enqueue(i);
+            }
 
-        public void StartTurns()
-        {
             turnNumber = 0;
             currentPlayer = playerQueue.Dequeue();
             OnTurnStart(this, new TurnEventArgs(0, currentPlayer));
