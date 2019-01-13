@@ -135,7 +135,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   mapName: map1
   numberOfPlayers: 2
-  players: []
+  players:
+  - {fileID: 11400000, guid: 2b006e764554fe545b94dfadae66cdc4, type: 2}
+  - {fileID: 11400000, guid: ca748eb221e6e204384023fdeec7c547, type: 2}
   turnController: {fileID: 11400000, guid: 78e7dde5c14b28b4d8539bf03c17fe3d, type: 2}
   mapController: {fileID: 11400000, guid: 687951a7835bd5a43b17fca05b9af0d8, type: 2}
   commandController: {fileID: 11400000, guid: cd071937cccd1af4ab3e6bcb33ad78bf, type: 2}

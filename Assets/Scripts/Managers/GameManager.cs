@@ -14,8 +14,6 @@ namespace ManaMist.Managers
     {
         public string mapName;
 
-        public int numberOfPlayers;
-
         [Header("Players")]
         public List<Player> players = new List<Player>();
 
@@ -36,24 +34,24 @@ namespace ManaMist.Managers
             // Setup Map
             mapController.SetupMap(resourceMapPath + mapName);
 
+            int i = 0;
             // Initialize Players
-            for (int i = 0; i < numberOfPlayers; i++)
+            foreach (Player player in players)
             {
-                Player player = ScriptableObject.CreateInstance<Player>();
-                player.id = i;
+                i += 10;
                 SeedPlayer(player, i * 10); // NOTE: This is a random temporary seeding offset
                 players.Add(player);
             }
 
             // Initialize Turn Controller
-            turnController.Init(numberOfPlayers);
+            turnController.Init(players);
 
             turnController.OnTurnStart += OnTurnStart;
         }
 
         private void OnTurnStart(object sender, TurnEventArgs args)
         {
-            Player currentPlayer = players.Find(player => player.id == args.player);
+            Player currentPlayer = players.Find(player => player.id == args.player.id);
             currentPlayer?.InitializeTurn();
         }
 

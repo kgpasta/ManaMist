@@ -1,68 +1,60 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using ManaMist.Players;
 using UnityEngine;
 
 namespace ManaMist.Controllers
 {
     public class TurnEventArgs : EventArgs
     {
-        public TurnEventArgs(int turnNumber, int player)
+        public TurnEventArgs(int turnNumber, Player player)
         {
             this.turnNumber = turnNumber;
             this.player = player;
         }
-        public int player { get; set; }
+        public Player player { get; set; }
         public int turnNumber { get; set; }
     }
 
     [CreateAssetMenu(menuName = "ManaMist/Turn Controller")]
     public class TurnController : ScriptableObject
     {
-        private Queue<int> playerQueue;
-        public int currentPlayer;
-        public int turnNumber;
+        private Queue<Player> playerQueue = new Queue<Player>();
+        public Player currentPlayer;
+        private int m_TurnNumber = 0;
+        public int turnNumber
+        {
+            get
+            {
+                return m_TurnNumber / playerQueue.Count;
+            }
+        }
         public event EventHandler<TurnEventArgs> OnTurnStart;
         public event EventHandler<TurnEventArgs> OnTurnEnd;
 
-        public void Init(int numOfPlayers)
+        public void Init(List<Player> players)
         {
-            // Initialize player queue
-            playerQueue = new Queue<int>();
-
-            for (int i = 0; i < numOfPlayers; i++)
-            {
-                playerQueue.Enqueue(i);
-            }
-
-            turnNumber = 0;
+            playerQueue = new Queue<Player>(players);
             currentPlayer = playerQueue.Dequeue();
-            OnTurnStart(this, new TurnEventArgs(0, currentPlayer));
+            OnTurnStart(this, new TurnEventArgs(turnNumber, currentPlayer));
         }
 
         public void EndTurn()
         {
             OnTurnEnd?.Invoke(this, new TurnEventArgs(turnNumber, currentPlayer));
 
-            MoveToNextPlayer(currentPlayer);
+            MoveToNextPlayer();
 
-            if (playerQueue.Count == 0)
-            {
-                turnNumber++;
-                playerQueue.Enqueue(1);
-                playerQueue.Enqueue(2);
-            }
+            m_TurnNumber++;
 
             OnTurnStart?.Invoke(this, new TurnEventArgs(turnNumber, currentPlayer));
         }
 
-        public void MoveToNextPlayer(int lastPlayer)
+        public void MoveToNextPlayer()
         {
-            if (playerQueue.Count > 0)
-            {
-                currentPlayer = playerQueue.Dequeue();
-
-            }
+            playerQueue.Enqueue(currentPlayer);
+            currentPlayer = playerQueue.Dequeue();
         }
     }
 }

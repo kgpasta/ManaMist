@@ -81,21 +81,9 @@ namespace ManaMist.Controllers
             return null;
         }
 
-        private Player GetPlayerById(int playerId)
-        {
-            return playerId == 1 ? playerOne : playerTwo;
-        }
-
         private void SetActivePlayer(object sender, TurnEventArgs args)
         {
-            if (args.player == 1)
-            {
-                activePlayer = playerOne;
-            }
-            else
-            {
-                activePlayer = playerTwo;
-            }
+            activePlayer = args.player;
         }
     }
 }
