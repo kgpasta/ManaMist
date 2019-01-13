@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Name: Worker
   m_EditorClassIdentifier: 
   id: d06d0be6-8283-4d2b-9182-b1e9aece9811
-  cost: {fileID: 0}
+  cost: {fileID: 11400000, guid: 1f91d68878cf78f44b7eba3e972fe7f2, type: 2}
   actions:
   - {fileID: 0}
   movementRange: 0

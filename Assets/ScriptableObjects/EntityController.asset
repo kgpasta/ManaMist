@@ -11,4 +11,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1086bc8159effd14c9891520e16b8105, type: 3}
   m_Name: EntityController
   m_EditorClassIdentifier: 
-  entityViews: []
+  entityViews:
+  - {fileID: 114787838605564294, guid: bb3f212ae07d50749ae9f0fa743612a6, type: 2}
+  - {fileID: 114931579737244802, guid: b0b942f393b6cd4418737a5a35fbfd4c, type: 2}
+  - {fileID: 114613233187935636, guid: 23254b32193742445a94e2ee184d9e4a, type: 2}

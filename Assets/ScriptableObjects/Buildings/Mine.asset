@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Name: Mine
   m_EditorClassIdentifier: 
   id: fcffb137-b9f7-4848-9815-abde8d9d5d36
-  cost: {fileID: 0}
+  cost: {fileID: 11400000, guid: 322ff45c5075feb4c9527063e39997bd, type: 2}
   actions: []

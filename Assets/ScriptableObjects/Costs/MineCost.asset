@@ -8,9 +8,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9a90b0f24ba450a429324c0ef686b74a, type: 3}
-  m_Name: TownCenter
+  m_Script: {fileID: 11500000, guid: 1c8cc23b66d70774ea3119a300186762, type: 3}
+  m_Name: MineCost
   m_EditorClassIdentifier: 
-  id: 8a88b3b3-fd1e-4581-910d-2c916182ce90
-  cost: {fileID: 11400000, guid: 9642d25ca1e0c294f8dc8297cea92c1f, type: 2}
-  actions: []
+  food: 0
+  metal: 100
+  mana: 0

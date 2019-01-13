@@ -4,6 +4,7 @@ using UnityEngine;
 
 namespace ManaMist.Models
 {
+    [CreateAssetMenu(menuName = "ManaMist/Cost")]
     public class Cost : ScriptableObject
     {
         public int food;
