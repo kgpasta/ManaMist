@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using ManaMist.Actions;
 using ManaMist.Controllers;
 using ManaMist.Models;
+using ManaMist.State;
 using ManaMist.Utility;
 using UnityEngine;
 
@@ -13,24 +14,27 @@ namespace ManaMist.Players
     public class Player : ScriptableObject
     {
         public int id;
-        public Phase currentPhase = Phase.WAITING;
+        private IPlayerState m_State;
+        public IPlayerState state
+        {
+            get { return m_State; }
+            set
+            {
+                m_State = value;
+                OnStateChange?.Invoke(this, value);
+            }
+        }
         public List<Entity> entities = new List<Entity>();
         public Entity selectedEntity = null;
         public Cost resources;
 
-        private List<Phase> m_Phases = new List<Phase>() {
-            Phase.ACTIVE, Phase.WAITING
-        };
-        private int m_PhaseIndex = 0;
+        public event EventHandler<IPlayerState> OnStateChange;
 
         public void InitializeTurn()
         {
-            currentPhase = m_Phases[m_PhaseIndex];
-
             IncrementResources();
 
             Debug.Log("Player " + id + " has " + resources.ToString());
-
         }
 
         private void IncrementResources()
@@ -44,34 +48,6 @@ namespace ManaMist.Players
                     resources.Increment(action.harvestAmount);
                 }
 
-            }
-        }
-
-        private void IncrementPhase()
-        {
-            m_PhaseIndex++;
-            if (m_Phases.Count > m_PhaseIndex)
-            {
-                currentPhase = m_Phases[m_PhaseIndex];
-            }
-            else
-            {
-                m_PhaseIndex = 0;
-                currentPhase = Phase.WAITING;
-            }
-        }
-
-        private void DecrementPhase()
-        {
-            m_PhaseIndex--;
-            if (m_PhaseIndex >= 0)
-            {
-                currentPhase = m_Phases[m_PhaseIndex];
-            }
-            else
-            {
-                m_PhaseIndex = 1;
-                currentPhase = Phase.ACTIVE;
             }
         }
 
@@ -96,12 +72,13 @@ namespace ManaMist.Players
             if (entity != null)
             {
                 selectedEntity = entity;
+                state = new SelectedState() { entity = entity };
             }
         }
 
         private void OnDisable()
         {
-            currentPhase = Phase.WAITING;
+            state = new WaitingState();
             entities = new List<Entity>();
             selectedEntity = null;
         }
