@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 
 namespace ManaMist.Utility
 {
@@ -48,6 +49,20 @@ namespace ManaMist.Utility
         public bool IsAdjacent(Coordinate coord)
         {
             return IsNextTo(coord) || IsDiagonal(coord);
+        }
+
+        public List<Coordinate> GetNeighbors()
+        {
+            List<Coordinate> coordinates = new List<Coordinate>();
+            coordinates.Add(new Coordinate(this.x - 1, this.y + 1));
+            coordinates.Add(new Coordinate(this.x, this.y + 1));
+            coordinates.Add(new Coordinate(this.x + 1, this.y + 1));
+            coordinates.Add(new Coordinate(this.x - 1, this.y));
+            coordinates.Add(new Coordinate(this.x + 1, this.y));
+            coordinates.Add(new Coordinate(this.x - 1, this.y - 1));
+            coordinates.Add(new Coordinate(this.x, this.y - 1));
+            coordinates.Add(new Coordinate(this.x + 1, this.y - 1));
+            return coordinates;
         }
     }
 }

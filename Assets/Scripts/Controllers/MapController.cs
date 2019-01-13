@@ -22,11 +22,19 @@ namespace ManaMist.Controllers
         public Coordinate coordinate;
     }
 
+    public class EntitySelectedArgs
+    {
+        public Entity entity;
+        public Coordinate coordinate;
+        public Dictionary<Coordinate, Utility.Path> possiblePaths;
+    }
+
     [CreateAssetMenu(menuName = "ManaMist/Map Controller")]
     public class MapController : ScriptableObject
     {
         public event EventHandler<MapTileAddedArgs> MapTileAdded;
         public event EventHandler<EntityAddedArgs> EntityAdded;
+        public event EventHandler<EntitySelectedArgs> EntitySelected;
         private Dictionary<Coordinate, MapTile> m_CoordinateToMapTile = new Dictionary<Coordinate, MapTile>();
         private Dictionary<string, Coordinate> m_EntityIdToCoordinate = new Dictionary<string, Coordinate>();
 

@@ -7,18 +7,17 @@ namespace ManaMist.Models
     [CreateAssetMenu(menuName = "ManaMist/Unit")]
     public class Unit : Entity
     {
-        public int movementRange;
-
         public override void Init()
         {
             MoveAction moveAction = ScriptableObject.CreateInstance<MoveAction>();
+            moveAction.movementRange = 3;
             moveAction.CanMove = CanMove;
             AddAction(moveAction);
         }
 
-        public bool CanMove(Coordinate start, Coordinate end)
+        public bool CanMove(Coordinate coordinate)
         {
-            return start.Distance(end) <= movementRange;
+            return true;
         }
     }
 }

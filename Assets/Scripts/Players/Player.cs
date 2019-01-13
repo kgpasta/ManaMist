@@ -21,6 +21,7 @@ namespace ManaMist.Players
             set
             {
                 m_State = value;
+                state.Update();
                 OnStateChange?.Invoke(this, value);
             }
         }
@@ -66,13 +67,13 @@ namespace ManaMist.Players
             return entities.Find(entity => entity.id == id);
         }
 
-        public void SelectEntity(string id)
+        public void SelectEntity(string id, Coordinate coordinate)
         {
             Entity entity = entities.Find(e => e.id == id);
             if (entity != null)
             {
                 selectedEntity = entity;
-                state = new SelectedState() { entity = entity };
+                state = new SelectedState() { entity = entity, coordinate = coordinate };
             }
         }
 

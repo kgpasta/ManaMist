@@ -7,14 +7,14 @@ namespace ManaMist.Actions
 {
     public class MoveAction : Action
     {
+        public int movementRange;
         public CanMoveFunction CanMove;
 
-        public delegate bool CanMoveFunction(Coordinate start, Coordinate end);
+        public delegate bool CanMoveFunction(Coordinate coordinate);
 
         public override bool CanExecute(MapController mapController, Player player, Entity entity, Coordinate coordinate, Entity target)
         {
-            Coordinate startCoordinate = mapController.GetPositionOfEntity(entity.id);
-            return CanMove(startCoordinate, coordinate);
+            return CanMove(coordinate);
         }
 
         public override void Execute(MapController mapController, Player player, Entity entity, Coordinate coordinate, Entity target)

@@ -24,6 +24,8 @@ GameObject:
   - component: {fileID: 114886858778770086}
   - component: {fileID: 114117124356058366}
   - component: {fileID: 114380090183731888}
+  - component: {fileID: 114784741572068428}
+  - component: {fileID: 114950304340215248}
   m_Layer: 5
   m_Name: MapControllerCanvas
   m_TagString: Untagged
@@ -122,6 +124,19 @@ MonoBehaviour:
   MapTilePrefabReference: {fileID: 1321297760129468, guid: 495612f20c6e56748993579087aabe0a,
     type: 2}
   MapGridParentTransform: {fileID: 224572947987198972}
+--- !u!114 &114784741572068428
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1795146532497864}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ec68f7222f520d34bb8777230bb0d3af, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mapView: {fileID: 114380090183731888}
+  player: {fileID: 11400000, guid: 2b006e764554fe545b94dfadae66cdc4, type: 2}
 --- !u!114 &114871655128495936
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -134,7 +149,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   mapName: map1
-  numberOfPlayers: 2
   players:
   - {fileID: 11400000, guid: 2b006e764554fe545b94dfadae66cdc4, type: 2}
   - {fileID: 11400000, guid: ca748eb221e6e204384023fdeec7c547, type: 2}
@@ -157,6 +171,19 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
+--- !u!114 &114950304340215248
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1795146532497864}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ec68f7222f520d34bb8777230bb0d3af, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mapView: {fileID: 114380090183731888}
+  player: {fileID: 11400000, guid: ca748eb221e6e204384023fdeec7c547, type: 2}
 --- !u!223 &223098190890051384
 Canvas:
   m_ObjectHideFlags: 1

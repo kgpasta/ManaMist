@@ -1,5 +1,6 @@
 using ManaMist.Controllers;
 using ManaMist.Players;
+using ManaMist.Utility;
 
 namespace ManaMist.Commands
 {
@@ -14,7 +15,8 @@ namespace ManaMist.Commands
 
         public bool Execute(MapController mapController, Player player)
         {
-            player.SelectEntity(id);
+            Coordinate coordinate = mapController.GetPositionOfEntity(id);
+            player.SelectEntity(id, coordinate);
             return true;
         }
 
