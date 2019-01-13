@@ -13,8 +13,6 @@ namespace ManaMist.Models
 
         public Cost cost;
 
-        public GameObject instanceReference;
-
         public List<Action> actions;
 
         public virtual void Awake()

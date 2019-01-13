@@ -10,13 +10,6 @@ namespace ManaMist.Models
         public int metal;
         public int mana;
 
-        public Cost(int food, int metal, int mana)
-        {
-            this.food = food;
-            this.metal = metal;
-            this.mana = mana;
-        }
-
         public void Increment(Cost cost)
         {
             food += cost.food;

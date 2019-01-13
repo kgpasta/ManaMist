@@ -8,11 +8,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 01cafbde8b9062f4084fbfbb0be0a310, type: 3}
-  m_Name: Worker
+  m_Script: {fileID: 11500000, guid: 1086bc8159effd14c9891520e16b8105, type: 3}
+  m_Name: EntityController
   m_EditorClassIdentifier: 
-  id: d06d0be6-8283-4d2b-9182-b1e9aece9811
-  cost: {fileID: 0}
-  actions:
-  - {fileID: 0}
-  movementRange: 0
+  entityViews: []

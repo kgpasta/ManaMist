@@ -4,7 +4,8 @@ using UnityEngine;
 
 namespace ManaMist.Models
 {
-    public abstract class Unit : Entity
+    [CreateAssetMenu(menuName = "ManaMist/Unit")]
+    public class Unit : Entity
     {
         public int movementRange;
 

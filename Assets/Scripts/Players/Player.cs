@@ -18,33 +18,19 @@ namespace ManaMist.Players
         public Entity selectedEntity = null;
         public Cost resources;
 
-        private List<Phase> m_Phases = new List<Phase>();
+        private List<Phase> m_Phases = new List<Phase>() {
+            Phase.ACTIVE, Phase.WAITING
+        };
         private int m_PhaseIndex = 0;
 
-        private const int InitialFood = 100;
-        private const int InitialMetal = 100;
-        private const int InitialMana = 100;
-
-        public Player(int id, TurnController turnController)
+        public void InitializeTurn()
         {
-            this.id = id;
-            turnController.OnTurnStart += InitializeTurn;
+            currentPhase = m_Phases[m_PhaseIndex];
 
-            resources = new Cost(InitialFood, InitialMetal, InitialMana);
+            IncrementResources();
 
-            m_Phases.Add(Phase.ACTIVE);
-        }
+            Debug.Log("Player " + id + " has " + resources.ToString());
 
-        private void InitializeTurn(object sender, TurnEventArgs args)
-        {
-            if (args.player == id)
-            {
-                currentPhase = m_Phases[m_PhaseIndex];
-
-                IncrementResources();
-
-                Debug.Log("Player " + id + " has " + resources.ToString());
-            }
         }
 
         private void IncrementResources()

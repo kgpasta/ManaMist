@@ -1,8 +1,10 @@
 using ManaMist.Utility;
+using UnityEngine;
 
 namespace ManaMist.Models
 {
-    public abstract class Building : Entity
+    [CreateAssetMenu(menuName = "ManaMist/Building")]
+    public class Building : Entity
     {
         public int buildTurns { get; set; }
 

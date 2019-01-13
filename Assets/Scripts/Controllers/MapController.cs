@@ -19,7 +19,7 @@ namespace ManaMist.Controllers
     public class EntityAddedArgs
     {
         public Entity entity;
-        public MapTile mapTile;
+        public Coordinate coordinate;
     }
 
     [CreateAssetMenu(menuName = "ManaMist/Map Controller")]
@@ -43,7 +43,7 @@ namespace ManaMist.Controllers
             EntityAdded?.Invoke(this, new EntityAddedArgs()
             {
                 entity = entity,
-                mapTile = mapTile
+                coordinate = coordinate
             });
         }
 
