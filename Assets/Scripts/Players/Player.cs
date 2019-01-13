@@ -99,5 +99,12 @@ namespace ManaMist.Players
             }
         }
 
+        private void OnDisable()
+        {
+            currentPhase = Phase.WAITING;
+            entities = new List<Entity>();
+            selectedEntity = null;
+        }
+
     }
 }

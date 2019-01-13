@@ -38,9 +38,8 @@ namespace ManaMist.Managers
             // Initialize Players
             foreach (Player player in players)
             {
-                i += 10;
+                i++;
                 SeedPlayer(player, i * 10); // NOTE: This is a random temporary seeding offset
-                players.Add(player);
             }
 
             // Initialize Turn Controller
