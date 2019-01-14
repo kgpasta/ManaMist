@@ -21,6 +21,7 @@ public class MapTileWidget : MonoBehaviour
 
     [Header("UI Elements")]
     [SerializeField] private Image m_TileImage;
+    [SerializeField] private GameObject m_HighlightTile;
 
     [Header("Prefab References")]
     [SerializeField] private GameObject m_ManaResourcePrefabReference;
@@ -39,8 +40,8 @@ public class MapTileWidget : MonoBehaviour
         if (m_MapTile != null)
         {
             m_TileImage.color = MassiveShittyColorSwitchStatement();
+            m_HighlightTile.SetActive(m_MapTile.isHighlighted);
         }
-
     }
 
     private Color MassiveShittyColorSwitchStatement()

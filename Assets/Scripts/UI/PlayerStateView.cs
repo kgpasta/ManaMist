@@ -36,7 +36,7 @@ namespace ManaMist.UI
             foreach (KeyValuePair<Coordinate, Path> path in paths)
             {
                 Debug.Log(path.Key);
-                mapView.HighlightMapTile(path.Key, new UnityEngine.Color(0.2f, 0.2f, 0.2f, 1.0f));
+                mapView.HighlightMapTile(path.Key);
             }
         }
     }

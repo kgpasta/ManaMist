@@ -55,11 +55,10 @@ namespace ManaMist.UI
             Instantiate(entityPrefab, m_CoordinateToTransform[args.coordinate]);
         }
 
-        public void HighlightMapTile(Coordinate coordinate, Color color)
+        public void HighlightMapTile(Coordinate coordinate)
         {
-            TileHighlightWidget tileHighlightWidget = m_CoordinateToTransform[coordinate].gameObject.GetComponentInChildren<TileHighlightWidget>(true);
-            tileHighlightWidget.SetColor(color);
-            tileHighlightWidget.gameObject.SetActive(true);
+            MapTile mapTile = m_CoordinateToTransform[coordinate].gameObject.GetComponent<MapTile>();
+            mapTile.isHighlighted = true;
         }
 
     }

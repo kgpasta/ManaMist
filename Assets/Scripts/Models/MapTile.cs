@@ -11,6 +11,7 @@ namespace ManaMist.Models
     {
         public Terrain terrain;
         public Resource resource;
+        public bool isHighlighted;
         public List<Entity> entities = new List<Entity>();
     }
 }
