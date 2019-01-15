@@ -22,11 +22,11 @@ namespace ManaMist.Controllers
         public Coordinate coordinate;
     }
 
-    public class EntitySelectedArgs
+    public class EntityMovedArgs
     {
         public Entity entity;
         public Coordinate coordinate;
-        public Dictionary<Coordinate, Utility.Path> possiblePaths;
+        public Coordinate previousCoordinate;
     }
 
     [CreateAssetMenu(menuName = "ManaMist/Map Controller")]
@@ -34,7 +34,7 @@ namespace ManaMist.Controllers
     {
         public event EventHandler<MapTileAddedArgs> MapTileAdded;
         public event EventHandler<EntityAddedArgs> EntityAdded;
-        public event EventHandler<EntitySelectedArgs> EntitySelected;
+        public event EventHandler<EntityMovedArgs> EntityMoved;
         private Dictionary<Coordinate, MapTile> m_CoordinateToMapTile = new Dictionary<Coordinate, MapTile>();
         private Dictionary<string, Coordinate> m_EntityIdToCoordinate = new Dictionary<string, Coordinate>();
 
@@ -89,8 +89,20 @@ namespace ManaMist.Controllers
         {
             if (GetPositionOfEntity(entity.id) != null)
             {
-                RemoveFromMap(entity);
-                AddToMap(coordinate, entity);
+                // Remove from old coordinate
+                Coordinate oldCoordinate = m_EntityIdToCoordinate[entity.id];
+                m_CoordinateToMapTile[oldCoordinate].entities.Remove(entity);
+
+                //Add to new coordinate
+                m_EntityIdToCoordinate[entity.id] = coordinate;
+                m_CoordinateToMapTile[coordinate].entities.Add(entity);
+
+                EntityMoved?.Invoke(this, new EntityMovedArgs()
+                {
+                    previousCoordinate = oldCoordinate,
+                    coordinate = coordinate,
+                    entity = entity
+                });
             }
         }
 

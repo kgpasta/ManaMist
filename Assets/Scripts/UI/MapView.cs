@@ -28,12 +28,14 @@ namespace ManaMist.UI
         {
             mapController.MapTileAdded += AddMapTileToMap;
             mapController.EntityAdded += AddEntityModelToMap;
+            mapController.EntityMoved += MoveEntityModel;
         }
 
         private void OnDisable()
         {
             mapController.MapTileAdded -= AddMapTileToMap;
             mapController.EntityAdded -= AddEntityModelToMap;
+            mapController.EntityMoved -= MoveEntityModel;
         }
 
         private void AddMapTileToMap(object sender, MapTileAddedArgs args)
@@ -59,6 +61,12 @@ namespace ManaMist.UI
             GameObject entityInstance = Instantiate(entityPrefab, m_CoordinateToTransform[args.coordinate]);
             entityInstance.name = args.entity.name;
             entityInstance.GetComponent<EntityView>().entity = args.entity;
+        }
+
+        private void MoveEntityModel(object sender, EntityMovedArgs args)
+        {
+            Transform transform = m_CoordinateToTransform[args.previousCoordinate].GetComponentInChildren<EntityView>().transform;
+            transform.SetParent(m_CoordinateToTransform[args.coordinate], false);
         }
 
     }

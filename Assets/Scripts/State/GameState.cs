@@ -9,7 +9,21 @@ namespace ManaMist.State
         public TurnController turnController;
         public MapController mapController;
         public Player player;
-        public GameStateData data;
+
+        [SerializeField]
+        private GameStateData m_Data;
+        public GameStateData data
+        {
+            get { return m_Data; }
+            set
+            {
+                if (m_Data != null)
+                {
+                    Destroy(m_Data);
+                }
+                m_Data = value;
+            }
+        }
 
         public abstract void HandleInput();
 
