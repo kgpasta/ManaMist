@@ -11,11 +11,18 @@ namespace ManaMist.Controllers
     [CreateAssetMenu(menuName = "ManaMist/Entity Controller")]
     public class EntityController : ScriptableObject
     {
+        public List<Entity> entities;
         public List<EntityView> entityViews;
+
+        public Entity CreateEntity(EntityType entityType)
+        {
+            Entity entityOutline = entities.Find(entity => entity.type == entityType);
+            return ScriptableObject.Instantiate(entityOutline);
+        }
 
         public GameObject GetEntityPrefab(Entity entity)
         {
-            return entityViews.Find(entityView => entity.GetType() == entityView.entity.GetType()).gameObject;
+            return entityViews.Find(entityView => entityView.entity.type == entity.type).gameObject;
         }
     }
 }

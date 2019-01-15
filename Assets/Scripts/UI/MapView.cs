@@ -56,7 +56,9 @@ namespace ManaMist.UI
         private void AddEntityModelToMap(object sender, EntityAddedArgs args)
         {
             GameObject entityPrefab = entityController.GetEntityPrefab(args.entity);
-            Instantiate(entityPrefab, m_CoordinateToTransform[args.coordinate]);
+            GameObject entityInstance = Instantiate(entityPrefab, m_CoordinateToTransform[args.coordinate]);
+            entityInstance.name = args.entity.name;
+            entityInstance.GetComponent<EntityView>().entity = args.entity;
         }
 
     }

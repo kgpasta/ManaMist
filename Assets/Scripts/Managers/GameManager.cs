@@ -21,6 +21,7 @@ namespace ManaMist.Managers
         public TurnController turnController;
         public MapController mapController;
         public CommandController commandController;
+        public EntityController entityController;
 
         private const string resourceMapPath = "Maps/";
 
@@ -57,17 +58,17 @@ namespace ManaMist.Managers
         private void SeedPlayer(Player player, int offset)
         {
             Coordinate townCenterCoordinate = new Coordinate(offset, offset);
-            Building townCenter = ScriptableObject.CreateInstance<Building>();
+            Entity townCenter = entityController.CreateEntity(EntityType.TownCenter);
             player.AddEntity(townCenter);
             mapController.AddToMap(townCenterCoordinate, townCenter);
 
             Coordinate mineCoordinate = new Coordinate(offset + 2, offset + 2);
-            Building mine = ScriptableObject.CreateInstance<Building>();
+            Entity mine = entityController.CreateEntity(EntityType.Mine);
             player.AddEntity(mine);
             mapController.AddToMap(mineCoordinate, mine);
 
             Coordinate workerCoordinate = new Coordinate(offset + 1, offset + 1);
-            Unit worker = ScriptableObject.CreateInstance<Unit>();
+            Entity worker = entityController.CreateEntity(EntityType.Worker);
             player.AddEntity(worker);
             mapController.AddToMap(workerCoordinate, worker);
         }

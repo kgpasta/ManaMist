@@ -11,6 +11,8 @@ namespace ManaMist.Models
     {
         public string id;
 
+        public EntityType type;
+
         public Cost cost;
 
         public List<Action> actions;

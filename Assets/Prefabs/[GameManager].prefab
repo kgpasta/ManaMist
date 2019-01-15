@@ -193,3 +193,4 @@ MonoBehaviour:
   turnController: {fileID: 11400000, guid: 78e7dde5c14b28b4d8539bf03c17fe3d, type: 2}
   mapController: {fileID: 11400000, guid: 687951a7835bd5a43b17fca05b9af0d8, type: 2}
   commandController: {fileID: 11400000, guid: cd071937cccd1af4ab3e6bcb33ad78bf, type: 2}
+  entityController: {fileID: 11400000, guid: 593c198e947f0e54db3b61d5592dcf53, type: 2}

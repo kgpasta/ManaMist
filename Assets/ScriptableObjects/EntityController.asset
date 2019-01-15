@@ -4,14 +4,19 @@
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 1086bc8159effd14c9891520e16b8105, type: 3}
   m_Name: EntityController
   m_EditorClassIdentifier: 
+  entities:
+  - {fileID: 11400000, guid: b0dc4209bd3436e49847f37c3253057e, type: 2}
+  - {fileID: 11400000, guid: c51542bb0e526304e80d4da94358d330, type: 2}
+  - {fileID: 11400000, guid: 29af9d5a0a9a9804eae3b95e9b999339, type: 2}
   entityViews:
-  - {fileID: 114787838605564294, guid: bb3f212ae07d50749ae9f0fa743612a6, type: 2}
-  - {fileID: 114931579737244802, guid: b0b942f393b6cd4418737a5a35fbfd4c, type: 2}
-  - {fileID: 114613233187935636, guid: 23254b32193742445a94e2ee184d9e4a, type: 2}
+  - {fileID: 114787838605564294, guid: bb3f212ae07d50749ae9f0fa743612a6, type: 3}
+  - {fileID: 114931579737244802, guid: b0b942f393b6cd4418737a5a35fbfd4c, type: 3}
+  - {fileID: 114613233187935636, guid: 23254b32193742445a94e2ee184d9e4a, type: 3}
