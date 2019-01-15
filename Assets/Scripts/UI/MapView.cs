@@ -43,7 +43,11 @@ namespace ManaMist.UI
 
             newMapTileWidgetInstance.GetComponent<Button>().onClick.AddListener(() =>
             {
-                commandController.MapTileSelected(args.coordinate);
+                SelectCommand selectCommand = new SelectCommand()
+                {
+                    coordinate = args.coordinate
+                };
+                commandController.DoCommand(selectCommand);
             });
 
             m_CoordinateToTransform.Add(args.coordinate, newMapTileWidgetInstance.transform);
@@ -53,12 +57,6 @@ namespace ManaMist.UI
         {
             GameObject entityPrefab = entityController.GetEntityPrefab(args.entity);
             Instantiate(entityPrefab, m_CoordinateToTransform[args.coordinate]);
-        }
-
-        public void HighlightMapTile(Coordinate coordinate)
-        {
-            MapTile mapTile = m_CoordinateToTransform[coordinate].gameObject.GetComponent<MapTile>();
-            mapTile.isHighlighted = true;
         }
 
     }

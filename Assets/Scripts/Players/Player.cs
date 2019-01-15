@@ -4,7 +4,6 @@ using System.Collections.Generic;
 using ManaMist.Actions;
 using ManaMist.Controllers;
 using ManaMist.Models;
-using ManaMist.State;
 using ManaMist.Utility;
 using UnityEngine;
 
@@ -14,22 +13,9 @@ namespace ManaMist.Players
     public class Player : ScriptableObject
     {
         public int id;
-        private IPlayerState m_State;
-        public IPlayerState state
-        {
-            get { return m_State; }
-            set
-            {
-                m_State = value;
-                state.Update();
-                OnStateChange?.Invoke(this, value);
-            }
-        }
         public List<Entity> entities = new List<Entity>();
         public Entity selectedEntity = null;
         public Cost resources;
-
-        public event EventHandler<IPlayerState> OnStateChange;
 
         public void InitializeTurn()
         {
@@ -67,19 +53,8 @@ namespace ManaMist.Players
             return entities.Find(entity => entity.id == id);
         }
 
-        public void SelectEntity(string id, Coordinate coordinate)
-        {
-            Entity entity = entities.Find(e => e.id == id);
-            if (entity != null)
-            {
-                selectedEntity = entity;
-                state = new SelectedState() { entity = entity, coordinate = coordinate };
-            }
-        }
-
         private void OnDisable()
         {
-            state = new WaitingState();
             entities = new List<Entity>();
             selectedEntity = null;
         }

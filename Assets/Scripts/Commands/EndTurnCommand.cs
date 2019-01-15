@@ -1,15 +1,12 @@
 using ManaMist.Controllers;
+using ManaMist.Models;
+using ManaMist.Players;
 
 namespace ManaMist.Commands
 {
     public class EndTurnCommand : Command
     {
-        public EndTurnCommand(int playerId) : base(playerId, CommandType.ENDTURN)
-        {
-
-        }
-
-        public bool Execute(TurnController turnController)
+        public override bool Execute(MapController mapController, TurnController turnController, Player player)
         {
             turnController.EndTurn();
             return true;
@@ -17,7 +14,7 @@ namespace ManaMist.Commands
 
         public override string ToString()
         {
-            return "Ending turn of player " + playerId;
+            return "Ending turn of player ";
         }
     }
 }

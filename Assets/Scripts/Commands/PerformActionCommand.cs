@@ -11,15 +11,10 @@ namespace ManaMist.Commands
         private Coordinate coordinate;
         private Entity target;
 
-        public PerformActionCommand(int playerId, Coordinate coordinate, Entity target) : base(playerId, CommandType.PERFORMACTION)
+        public override bool Execute(MapController mapController, TurnController turnController, Player player)
         {
-            this.coordinate = coordinate;
-            this.target = target;
-        }
-
-        public bool Execute(MapController mapController, Player player, Entity entity)
-        {
-            Coordinate currentCoordinate = mapController.GetPositionOfEntity(entity.id);
+            MapTile mapTile = mapController.GetMapTileAtCoordinate(coordinate);
+            Entity entity = mapTile.entities[0];
 
             Action action = entity.GetAction<T>();
 

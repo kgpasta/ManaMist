@@ -27,58 +27,10 @@ namespace ManaMist.Controllers
             turnController.OnTurnStart -= SetActivePlayer;
         }
 
-        public void MapTileSelected(Coordinate coordinate)
-        {
-            MapTile mapTile = mapController.GetMapTileAtCoordinate(coordinate);
-            if (mapTile.entities.Count > 0)
-            {
-                SelectCommand selectCommand = new SelectCommand(activePlayer.id, mapTile.entities[0].id);
-                selectCommand.Execute(mapController, activePlayer);
-            }
-        }
 
-        // Used for command line testing
-        /*         
         public void DoCommand(Command command)
         {
-            switch (command.type)
-            {
-                case CommandType.DESCRIBE:
-                    DescribeCommand describeCommand = (DescribeCommand)command;
-                    describeCommand.Execute(mapController, describeCommand.id != null ? FindEntity(describeCommand.id) : null);
-                    break;
-                case CommandType.SELECT:
-                    SelectCommand selectCommand = (SelectCommand)command;
-                    selectCommand.Execute(mapController, GetPlayerById(selectCommand.playerId));
-                    break;
-                case CommandType.PERFORMACTION:
-                    PerformActionCommand<MoveAction> performActionCommand = (PerformActionCommand<MoveAction>)command;
-                    performActionCommand.Execute(mapController, GetPlayerById(performActionCommand.playerId), GetPlayerById(performActionCommand.playerId).selectedEntity);
-                    break;
-                case CommandType.ENDTURN:
-                    EndTurnCommand endTurnCommand = (EndTurnCommand)command;
-                    endTurnCommand.Execute(turnController);
-                    break;
-                default:
-                    break;
-            }
-        } 
-        */
-
-        private Entity FindEntity(string id)
-        {
-            Entity playerOneEntity = playerOne.GetEntity(id);
-            Entity playerTwoEntity = playerTwo.GetEntity(id);
-
-            if (playerOneEntity != null)
-            {
-                return playerOneEntity;
-            }
-            else if (playerTwoEntity != null)
-            {
-                return playerTwoEntity;
-            }
-            return null;
+            command.Execute(mapController, turnController, activePlayer);
         }
 
         private void SetActivePlayer(object sender, TurnEventArgs args)
