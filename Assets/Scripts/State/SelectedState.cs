@@ -15,7 +15,8 @@ namespace ManaMist.State
     [CreateAssetMenu(menuName = "ManaMist/States/SelectedState")]
     public class SelectedState : GameState
     {
-        public Dictionary<Coordinate, Path> paths;
+        public Coordinate currentlySelectedCoordinate;
+        public Dictionary<Coordinate, Path> paths = new Dictionary<Coordinate, Path>();
 
         public override void HandleInput()
         {
@@ -24,20 +25,34 @@ namespace ManaMist.State
 
         public override void Update()
         {
+            if (currentlySelectedCoordinate != null)
+            {
+                mapController.GetMapTileAtCoordinate(currentlySelectedCoordinate).isHighlighted = false;
+            }
+
             SelectedStateData selectedStateData = data as SelectedStateData;
-            Coordinate coordinate = selectedStateData.coordinate;
-            MapTile mapTile = mapController.GetMapTileAtCoordinate(coordinate);
+            currentlySelectedCoordinate = selectedStateData.coordinate;
+            MapTile mapTile = mapController.GetMapTileAtCoordinate(currentlySelectedCoordinate);
             mapTile.isHighlighted = true;
             MoveAction moveAction = mapTile.entities.Count > 0 ? mapTile.entities[0].GetAction<MoveAction>() : null;
 
             if (moveAction != null)
             {
-                Dictionary<Coordinate, Path> paths = ShowPaths(coordinate, moveAction);
+                paths = ShowPaths(currentlySelectedCoordinate, moveAction);
 
                 foreach (Coordinate coord in paths.Keys)
                 {
                     mapController.GetMapTileAtCoordinate(coord).isHighlighted = true;
                 }
+            }
+            else
+            {
+                foreach (Coordinate coord in paths.Keys)
+                {
+                    mapController.GetMapTileAtCoordinate(coord).isHighlighted = false;
+                }
+
+                paths.Clear();
             }
         }
 

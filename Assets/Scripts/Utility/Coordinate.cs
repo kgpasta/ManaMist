@@ -54,14 +54,10 @@ namespace ManaMist.Utility
         public List<Coordinate> GetNeighbors()
         {
             List<Coordinate> coordinates = new List<Coordinate>();
-            coordinates.Add(new Coordinate(this.x - 1, this.y + 1));
             coordinates.Add(new Coordinate(this.x, this.y + 1));
-            coordinates.Add(new Coordinate(this.x + 1, this.y + 1));
             coordinates.Add(new Coordinate(this.x - 1, this.y));
             coordinates.Add(new Coordinate(this.x + 1, this.y));
-            coordinates.Add(new Coordinate(this.x - 1, this.y - 1));
             coordinates.Add(new Coordinate(this.x, this.y - 1));
-            coordinates.Add(new Coordinate(this.x + 1, this.y - 1));
             return coordinates;
         }
     }

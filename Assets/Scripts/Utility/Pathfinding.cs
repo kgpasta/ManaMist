@@ -36,7 +36,7 @@ namespace ManaMist.Utility
                 {
                     Path nextPath = new Path(currentPath);
                     nextPath.Add(neighbor);
-                    if (!closedPaths.Contains(nextPath) && nextPath.Count <= maxDistance && canMoveFunction(coordinate))
+                    if (!closedPaths.Contains(nextPath) && nextPath.Count - 1 <= maxDistance && canMoveFunction(coordinate))
                     {
                         queue.Enqueue(nextPath);
                     }
