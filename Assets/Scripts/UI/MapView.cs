@@ -1,7 +1,7 @@
 using System.Collections.Generic;
-using ManaMist.Commands;
 using ManaMist.Controllers;
 using ManaMist.Models;
+using ManaMist.State;
 using ManaMist.Utility;
 using UnityEngine;
 using UnityEngine.UI;
@@ -10,7 +10,9 @@ namespace ManaMist.UI
 {
     public class MapView : MonoBehaviour
     {
-        public CommandController commandController;
+        [Header("Dispatcher")]
+        public Dispatcher dispatcher;
+        [Header("Controllers")]
         public MapController mapController;
         public EntityController entityController;
 
@@ -43,11 +45,9 @@ namespace ManaMist.UI
 
             newMapTileWidgetInstance.GetComponent<Button>().onClick.AddListener(() =>
             {
-                SelectCommand selectCommand = new SelectCommand()
-                {
-                    coordinate = args.coordinate
-                };
-                commandController.DoCommand(selectCommand);
+                SelectedStateData selectedStateData = ScriptableObject.CreateInstance<SelectedStateData>();
+                selectedStateData.coordinate = args.coordinate;
+                dispatcher.Dispatch<SelectedState>(selectedStateData);
             });
 
             m_CoordinateToTransform.Add(args.coordinate, newMapTileWidgetInstance.transform);

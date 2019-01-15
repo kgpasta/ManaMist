@@ -1,19 +1,31 @@
 using System.Collections.Generic;
 using ManaMist.Actions;
-using ManaMist.Controllers;
 using ManaMist.Models;
-using ManaMist.Players;
 using ManaMist.Utility;
 using UnityEngine;
 
-namespace ManaMist.Commands
+namespace ManaMist.State
 {
-    public class SelectCommand : Command
+    public class SelectedStateData : GameStateData
     {
+        public Entity entity;
         public Coordinate coordinate;
+    }
 
-        public override bool Execute(MapController mapController, TurnController turnController, Player player)
+    [CreateAssetMenu(menuName = "ManaMist/States/SelectedState")]
+    public class SelectedState : GameState
+    {
+        public Dictionary<Coordinate, Path> paths;
+
+        public override void HandleInput()
         {
+            return;
+        }
+
+        public override void Update()
+        {
+            SelectedStateData selectedStateData = data as SelectedStateData;
+            Coordinate coordinate = selectedStateData.coordinate;
             MapTile mapTile = mapController.GetMapTileAtCoordinate(coordinate);
             mapTile.isHighlighted = true;
             MoveAction moveAction = mapTile.entities.Count > 0 ? mapTile.entities[0].GetAction<MoveAction>() : null;
@@ -27,7 +39,6 @@ namespace ManaMist.Commands
                     mapController.GetMapTileAtCoordinate(coord).isHighlighted = true;
                 }
             }
-            return true;
         }
 
         private Dictionary<Coordinate, Path> ShowPaths(Coordinate coordinate, MoveAction moveAction)
@@ -44,11 +55,6 @@ namespace ManaMist.Commands
             }
 
             return new Dictionary<Coordinate, Path>();
-        }
-
-        public override string ToString()
-        {
-            return "Selecting " + coordinate;
         }
     }
 }

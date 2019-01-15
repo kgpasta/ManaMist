@@ -374,6 +374,12 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 11400000, guid: 593c198e947f0e54db3b61d5592dcf53,
         type: 2}
+    - target: {fileID: 114871655128495936, guid: 3891595981d0ca84295dd3b530024479,
+        type: 3}
+      propertyPath: state
+      value: 
+      objectReference: {fileID: 11400000, guid: 345119662dd621c47b3ba1959b3c797c,
+        type: 2}
     m_RemovedComponents:
     - {fileID: 114784741572068428, guid: 3891595981d0ca84295dd3b530024479, type: 3}
     - {fileID: 114950304340215248, guid: 3891595981d0ca84295dd3b530024479, type: 3}

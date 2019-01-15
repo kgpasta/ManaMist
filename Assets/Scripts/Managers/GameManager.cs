@@ -1,10 +1,10 @@
 using System;
 using System.Collections.Generic;
 using ManaMist.Actions;
-using ManaMist.Commands;
 using ManaMist.Controllers;
 using ManaMist.Models;
 using ManaMist.Players;
+using ManaMist.State;
 using ManaMist.Utility;
 using UnityEngine;
 
@@ -20,14 +20,33 @@ namespace ManaMist.Managers
         [Header("Controllers")]
         public TurnController turnController;
         public MapController mapController;
-        public CommandController commandController;
         public EntityController entityController;
+
+        [Header("State")]
+        public Dispatcher dispatcher;
+        public GameState state;
 
         private const string resourceMapPath = "Maps/";
 
         private void Awake()
         {
             SetupGame();
+        }
+
+        private void OnEnable()
+        {
+            dispatcher.OnDispatch += SetState;
+        }
+
+        private void OnDisable()
+        {
+            dispatcher.OnDispatch -= SetState;
+        }
+
+        private void SetState(object sender, GameState gameState)
+        {
+            state = gameState;
+            state.Update();
         }
 
         private void SetupGame()

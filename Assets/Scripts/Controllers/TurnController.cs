@@ -37,7 +37,7 @@ namespace ManaMist.Controllers
         {
             playerQueue = new Queue<Player>(players);
             currentPlayer = playerQueue.Dequeue();
-            OnTurnStart(this, new TurnEventArgs(turnNumber, currentPlayer));
+            OnTurnStart?.Invoke(this, new TurnEventArgs(turnNumber, currentPlayer));
         }
 
         public void EndTurn()

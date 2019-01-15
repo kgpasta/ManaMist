@@ -14,7 +14,6 @@ namespace ManaMist.Players
     {
         public int id;
         public List<Entity> entities = new List<Entity>();
-        public Entity selectedEntity = null;
         public Cost resources;
 
         public void InitializeTurn()
@@ -56,7 +55,6 @@ namespace ManaMist.Players
         private void OnDisable()
         {
             entities = new List<Entity>();
-            selectedEntity = null;
         }
 
     }
