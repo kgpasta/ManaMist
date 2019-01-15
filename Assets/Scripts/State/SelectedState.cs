@@ -81,7 +81,11 @@ namespace ManaMist.State
                     maxDistance = moveAction.movementRange
                 };
 
-                return pathfinding.Search((end) => moveAction.CanMove(end));
+                return pathfinding.Search((end) =>
+                {
+                    MapTile mapTile = mapController.GetMapTileAtCoordinate(end);
+                    return moveAction.CanMove(mapTile);
+                });
             }
 
             return new Dictionary<Coordinate, Path>();

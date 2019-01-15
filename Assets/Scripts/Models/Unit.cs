@@ -15,9 +15,9 @@ namespace ManaMist.Models
             AddAction(moveAction);
         }
 
-        public bool CanMove(Coordinate coordinate)
+        public bool CanMove(MapTile mapTile)
         {
-            return true;
+            return mapTile.terrain != Terrain.WATER && mapTile.entities.Count == 0;
         }
     }
 }

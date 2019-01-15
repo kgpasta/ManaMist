@@ -10,11 +10,12 @@ namespace ManaMist.Actions
         public int movementRange;
         public CanMoveFunction CanMove;
 
-        public delegate bool CanMoveFunction(Coordinate coordinate);
+        public delegate bool CanMoveFunction(MapTile mapTile);
 
         public override bool CanExecute(MapController mapController, Player player, Entity entity, Coordinate coordinate, Entity target)
         {
-            return CanMove(coordinate);
+            MapTile mapTile = mapController.GetMapTileAtCoordinate(coordinate);
+            return CanMove(mapTile);
         }
 
         public override void Execute(MapController mapController, Player player, Entity entity, Coordinate coordinate, Entity target)
