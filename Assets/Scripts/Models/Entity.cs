@@ -1,8 +1,6 @@
 using System.Collections.Generic;
 using ManaMist.Actions;
 using ManaMist.Utility;
-using Newtonsoft.Json;
-using Newtonsoft.Json.Converters;
 using UnityEngine;
 
 namespace ManaMist.Models
