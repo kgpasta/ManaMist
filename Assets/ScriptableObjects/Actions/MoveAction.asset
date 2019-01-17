@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 85e9907785a76094a86b6642c3859808, type: 3}
   m_Name: MoveAction
   m_EditorClassIdentifier: 
+  mapController: {fileID: 11400000, guid: 687951a7835bd5a43b17fca05b9af0d8, type: 2}
   actionPoints: 1
   movementRange: 3
   allowedTerrain: 01000000050000000600000007000000
