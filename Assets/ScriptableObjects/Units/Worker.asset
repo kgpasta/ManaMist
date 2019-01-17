@@ -15,7 +15,7 @@ MonoBehaviour:
   id: 7a965d70-cc9d-41bc-887b-81b6c5aaaf47
   type: 2
   cost: {fileID: 11400000, guid: 1f91d68878cf78f44b7eba3e972fe7f2, type: 2}
-  actionPoints: 0
+  actionPoints: 2
   actions:
   - {fileID: 11400000, guid: a642a34f53e894144ab1ebdf4e440f31, type: 2}
   - {fileID: 11400000, guid: 1215169594858f847b092690ba620ca3, type: 2}

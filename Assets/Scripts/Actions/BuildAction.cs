@@ -13,7 +13,6 @@ namespace ManaMist.Actions
         public List<EntityType> canBuildList;
         public override bool CanExecute(MapController mapController, Player player, Entity entity, Coordinate coordinate, Entity target)
         {
-            Coordinate startCoordinate = mapController.GetPositionOfEntity(entity.id);
             return base.CanExecute(mapController, player, entity, coordinate, target) && canBuildList.Contains(target.type);
         }
 
