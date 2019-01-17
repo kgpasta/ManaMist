@@ -19,6 +19,8 @@ namespace ManaMist.Actions
 
         public override void Execute(MapController mapController, Player player, Entity entity, Coordinate coordinate, Entity target)
         {
+            base.Execute(mapController, player, entity, coordinate, target);
+
             mapController.AddToMap(coordinate, target);
             player.AddEntity(target);
         }

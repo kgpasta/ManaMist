@@ -11,6 +11,7 @@ namespace ManaMist.Models
         {
             MoveAction moveAction = ScriptableObject.CreateInstance<MoveAction>();
             moveAction.movementRange = 3;
+            moveAction.actionPoints = 1;
             moveAction.CanMove = CanMove;
             AddAction(moveAction);
         }

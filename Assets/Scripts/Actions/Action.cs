@@ -9,6 +9,7 @@ namespace ManaMist.Actions
 {
     public class Action : ScriptableObject
     {
+        public int actionPoints;
 
         public virtual bool CanExecute(MapController mapController, Player player, Entity entity, Coordinate coordinate, Entity target)
         {
@@ -17,6 +18,7 @@ namespace ManaMist.Actions
 
         public virtual void Execute(MapController mapController, Player player, Entity entity, Coordinate coordinate, Entity target)
         {
+            entity.actionPoints -= actionPoints;
         }
     }
 

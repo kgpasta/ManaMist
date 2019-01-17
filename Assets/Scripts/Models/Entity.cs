@@ -8,11 +8,9 @@ namespace ManaMist.Models
     public abstract class Entity : ScriptableObject
     {
         public string id;
-
         public EntityType type;
-
         public Cost cost;
-
+        public int actionPoints;
         public List<Action> actions;
 
         public virtual void Awake()
