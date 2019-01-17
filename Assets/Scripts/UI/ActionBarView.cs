@@ -2,6 +2,7 @@ using ManaMist.Actions;
 using ManaMist.Controllers;
 using ManaMist.Models;
 using ManaMist.State;
+using ManaMist.Utility;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -30,8 +31,9 @@ namespace ManaMist.UI
             Entity mine = entityController.CreateEntity(EntityType.Mine);
 
             PerformingActionStateData data = ScriptableObject.CreateInstance<PerformingActionStateData>();
+            data.source = selectedState.entity;
             data.action = selectedState.entity.GetAction<BuildAction>();
-            data.coordinate = selectedState.currentlySelectedCoordinate;
+            data.coordinate = new Coordinate(selectedState.currentlySelectedCoordinate.x + 1, selectedState.currentlySelectedCoordinate.y);
             data.target = mine;
 
             m_Dispatcher.Dispatch<PerformingActionState>(data);
