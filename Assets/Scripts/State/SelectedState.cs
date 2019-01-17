@@ -35,9 +35,11 @@ namespace ManaMist.State
             if (paths.ContainsKey(currentlySelectedCoordinate) && entity != null)
             {
                 MoveAction moveAction = entity.GetAction<MoveAction>();
-                moveAction.Execute(mapController, player, entity, currentlySelectedCoordinate, null);
-
-                paths.Clear();
+                if (moveAction.CanExecute(player, entity, currentlySelectedCoordinate, null))
+                {
+                    moveAction.Execute(player, entity, currentlySelectedCoordinate, null);
+                    paths.Clear();
+                }
             }
             // If we haven't selected a unit or clicked outside movement range
             else if (entity == null || !paths.ContainsKey(currentlySelectedCoordinate))
@@ -46,7 +48,7 @@ namespace ManaMist.State
                 entity = mapTile.entities.Count > 0 ? mapTile.entities[0] : null;
                 MoveAction moveAction = entity?.GetAction<MoveAction>();
 
-                if (moveAction != null)
+                if (moveAction != null && moveAction.actionPoints >= entity.actionPoints)
                 {
                     paths = ShowPaths(currentlySelectedCoordinate, moveAction);
 

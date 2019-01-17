@@ -9,14 +9,15 @@ namespace ManaMist.Actions
 {
     public class Action : ScriptableObject
     {
+        [SerializeField] protected MapController mapController;
         public int actionPoints;
 
-        public virtual bool CanExecute(MapController mapController, Player player, Entity entity, Coordinate coordinate, Entity target)
+        public virtual bool CanExecute(Player player, Entity entity, Coordinate coordinate, Entity target)
         {
             return entity.actionPoints >= actionPoints;
         }
 
-        public virtual void Execute(MapController mapController, Player player, Entity entity, Coordinate coordinate, Entity target)
+        public virtual void Execute(Player player, Entity entity, Coordinate coordinate, Entity target)
         {
             entity.ReduceActionPoints(actionPoints);
         }

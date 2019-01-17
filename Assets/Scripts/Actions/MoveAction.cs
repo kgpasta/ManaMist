@@ -13,15 +13,15 @@ namespace ManaMist.Actions
         public int movementRange;
         public List<Models.Terrain> allowedTerrain;
 
-        public override bool CanExecute(MapController mapController, Player player, Entity entity, Coordinate coordinate, Entity target)
+        public override bool CanExecute(Player player, Entity entity, Coordinate coordinate, Entity target)
         {
             MapTile mapTile = mapController.GetMapTileAtCoordinate(coordinate);
-            return base.CanExecute(mapController, player, entity, coordinate, target) && CanMove(mapTile);
+            return base.CanExecute(player, entity, coordinate, target) && CanMove(mapTile);
         }
 
-        public override void Execute(MapController mapController, Player player, Entity entity, Coordinate coordinate, Entity target)
+        public override void Execute(Player player, Entity entity, Coordinate coordinate, Entity target)
         {
-            base.Execute(mapController, player, entity, coordinate, target);
+            base.Execute(player, entity, coordinate, target);
 
             mapController.MoveEntity(coordinate, entity);
         }

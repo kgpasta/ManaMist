@@ -12,15 +12,15 @@ namespace ManaMist.Actions
 
         public delegate bool CanAttackFunction(Coordinate currentCoordinate, Coordinate targetCoordinate, Entity target);
 
-        public override bool CanExecute(MapController mapController, Player player, Entity entity, Coordinate coordinate, Entity target)
+        public override bool CanExecute(Player player, Entity entity, Coordinate coordinate, Entity target)
         {
             Coordinate startCoordinate = mapController.GetPositionOfEntity(entity.id);
-            return base.CanExecute(mapController, player, entity, coordinate, target) && CanAttack(startCoordinate, coordinate, target);
+            return base.CanExecute(player, entity, coordinate, target) && CanAttack(startCoordinate, coordinate, target);
         }
 
-        public override void Execute(MapController mapController, Player player, Entity entity, Coordinate coordinate, Entity target)
+        public override void Execute(Player player, Entity entity, Coordinate coordinate, Entity target)
         {
-            base.Execute(mapController, player, entity, coordinate, target);
+            base.Execute(player, entity, coordinate, target);
 
             int distance = mapController.GetPositionOfEntity(entity.id).Distance(mapController.GetPositionOfEntity(target.id));
             CombatEngine combatEngine = new CombatEngine()

@@ -27,14 +27,14 @@ namespace ManaMist.UI
 
         private void OnBuildClick()
         {
-            //TODO: Hard code mine right now
-            Entity mine = entityController.CreateEntity(EntityType.Mine);
+            //TODO: Hard code right now to first
+            Entity entity = entityController.CreateEntity(selectedState.entity.GetAction<BuildAction>().canBuildList[0]);
 
             PerformingActionStateData data = ScriptableObject.CreateInstance<PerformingActionStateData>();
             data.source = selectedState.entity;
             data.action = selectedState.entity.GetAction<BuildAction>();
             data.coordinate = new Coordinate(selectedState.currentlySelectedCoordinate.x + 1, selectedState.currentlySelectedCoordinate.y);
-            data.target = mine;
+            data.target = entity;
 
             m_Dispatcher.Dispatch<PerformingActionState>(data);
         }

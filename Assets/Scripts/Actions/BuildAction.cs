@@ -11,14 +11,14 @@ namespace ManaMist.Actions
     public class BuildAction : Action
     {
         public List<EntityType> canBuildList;
-        public override bool CanExecute(MapController mapController, Player player, Entity entity, Coordinate coordinate, Entity target)
+        public override bool CanExecute(Player player, Entity entity, Coordinate coordinate, Entity target)
         {
-            return base.CanExecute(mapController, player, entity, coordinate, target) && canBuildList.Contains(target.type);
+            return base.CanExecute(player, entity, coordinate, target) && canBuildList.Contains(target.type);
         }
 
-        public override void Execute(MapController mapController, Player player, Entity entity, Coordinate coordinate, Entity target)
+        public override void Execute(Player player, Entity entity, Coordinate coordinate, Entity target)
         {
-            base.Execute(mapController, player, entity, coordinate, target);
+            base.Execute(player, entity, coordinate, target);
 
             mapController.AddToMap(coordinate, target);
             player.AddEntity(target);

@@ -26,9 +26,9 @@ namespace ManaMist.State
         {
             PerformingActionStateData performingActionStateData = data as PerformingActionStateData;
 
-            if (performingActionStateData.action.CanExecute(mapController, player, performingActionStateData.source, performingActionStateData.coordinate, performingActionStateData.target))
+            if (performingActionStateData.action.CanExecute(player, performingActionStateData.source, performingActionStateData.coordinate, performingActionStateData.target))
             {
-                performingActionStateData.action.Execute(mapController, player, performingActionStateData.source, performingActionStateData.coordinate, performingActionStateData.target);
+                performingActionStateData.action.Execute(player, performingActionStateData.source, performingActionStateData.coordinate, performingActionStateData.target);
             }
 
         }
