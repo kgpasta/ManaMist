@@ -28,7 +28,7 @@ namespace ManaMist.Managers
 
         private const string resourceMapPath = "Maps/";
 
-        private void Awake()
+        private void Start()
         {
             SetupGame();
         }
@@ -36,11 +36,13 @@ namespace ManaMist.Managers
         private void OnEnable()
         {
             dispatcher.OnDispatch += SetState;
+            turnController.OnTurnStart += OnTurnStart;
         }
 
         private void OnDisable()
         {
             dispatcher.OnDispatch -= SetState;
+            turnController.OnTurnStart -= OnTurnStart;
         }
 
         private void SetState(object sender, GameState gameState)
@@ -64,8 +66,6 @@ namespace ManaMist.Managers
 
             // Initialize Turn Controller
             turnController.Init(players);
-
-            turnController.OnTurnStart += OnTurnStart;
         }
 
         private void OnTurnStart(object sender, TurnEventArgs args)

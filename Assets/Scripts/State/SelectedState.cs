@@ -48,7 +48,7 @@ namespace ManaMist.State
                 entity = mapTile.entities.Count > 0 ? mapTile.entities[0] : null;
                 MoveAction moveAction = entity?.GetAction<MoveAction>();
 
-                if (moveAction != null && moveAction.CanExecute(player, entity, new Coordinate(currentlySelectedCoordinate.x + 1, currentlySelectedCoordinate.y), null))
+                if (moveAction != null && moveAction.actionPoints <= entity.actionPoints)
                 {
                     paths = ShowPaths(currentlySelectedCoordinate, moveAction);
 

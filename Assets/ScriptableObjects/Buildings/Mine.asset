@@ -16,5 +16,6 @@ MonoBehaviour:
   type: 0
   cost: {fileID: 11400000, guid: 322ff45c5075feb4c9527063e39997bd, type: 2}
   actionPoints: 1
-  actions: []
+  actions:
+  - {fileID: 11400000, guid: 3c866ccdcb1507747b3f07233ef30ba1, type: 2}
   buildTurns: 0
