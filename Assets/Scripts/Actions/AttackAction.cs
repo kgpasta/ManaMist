@@ -15,7 +15,7 @@ namespace ManaMist.Actions
         public override bool CanExecute(MapController mapController, Player player, Entity entity, Coordinate coordinate, Entity target)
         {
             Coordinate startCoordinate = mapController.GetPositionOfEntity(entity.id);
-            return CanAttack(startCoordinate, coordinate, target);
+            return base.CanExecute(mapController, player, entity, coordinate, target) && CanAttack(startCoordinate, coordinate, target);
         }
 
         public override void Execute(MapController mapController, Player player, Entity entity, Coordinate coordinate, Entity target)

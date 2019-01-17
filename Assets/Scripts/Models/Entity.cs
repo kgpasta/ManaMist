@@ -27,5 +27,10 @@ namespace ManaMist.Models
         {
             return actions.Find(action => action is T) as T;
         }
+
+        public void ReduceActionPoints(int points)
+        {
+            ManaMistMath.Clamp(actionPoints -= points, 0, 100);
+        }
     }
 }

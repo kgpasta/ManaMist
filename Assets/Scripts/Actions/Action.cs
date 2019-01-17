@@ -13,12 +13,12 @@ namespace ManaMist.Actions
 
         public virtual bool CanExecute(MapController mapController, Player player, Entity entity, Coordinate coordinate, Entity target)
         {
-            return true;
+            return entity.actionPoints >= actionPoints;
         }
 
         public virtual void Execute(MapController mapController, Player player, Entity entity, Coordinate coordinate, Entity target)
         {
-            entity.actionPoints -= actionPoints;
+            entity.ReduceActionPoints(actionPoints);
         }
     }
 

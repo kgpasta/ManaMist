@@ -16,7 +16,7 @@ namespace ManaMist.Actions
         public override bool CanExecute(MapController mapController, Player player, Entity entity, Coordinate coordinate, Entity target)
         {
             MapTile mapTile = mapController.GetMapTileAtCoordinate(coordinate);
-            return CanMove(mapTile);
+            return base.CanExecute(mapController, player, entity, coordinate, target) && CanMove(mapTile);
         }
 
         public override void Execute(MapController mapController, Player player, Entity entity, Coordinate coordinate, Entity target)
