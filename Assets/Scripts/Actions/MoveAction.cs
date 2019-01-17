@@ -1,16 +1,17 @@
+using System.Collections.Generic;
 using ManaMist.Controllers;
 using ManaMist.Models;
 using ManaMist.Players;
 using ManaMist.Utility;
+using UnityEngine;
 
 namespace ManaMist.Actions
 {
+    [CreateAssetMenu(menuName = "ManaMist/Actions/MoveAction")]
     public class MoveAction : Action
     {
         public int movementRange;
-        public CanMoveFunction CanMove;
-
-        public delegate bool CanMoveFunction(MapTile mapTile);
+        public List<Models.Terrain> allowedTerrain;
 
         public override bool CanExecute(MapController mapController, Player player, Entity entity, Coordinate coordinate, Entity target)
         {
@@ -23,6 +24,11 @@ namespace ManaMist.Actions
             base.Execute(mapController, player, entity, coordinate, target);
 
             mapController.MoveEntity(coordinate, entity);
+        }
+
+        public bool CanMove(MapTile mapTile)
+        {
+            return allowedTerrain.Contains(mapTile.terrain) && mapTile.entities.Count == 0;
         }
     }
 }

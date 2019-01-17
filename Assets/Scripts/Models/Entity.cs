@@ -13,14 +13,10 @@ namespace ManaMist.Models
         public int actionPoints;
         public List<Action> actions;
 
-        public virtual void Awake()
+        private void Awake()
         {
-            this.id = System.Guid.NewGuid().ToString();
-            this.actions = new List<Action>();
-            Init();
+            id = System.Guid.NewGuid().ToString();
         }
-
-        public abstract void Init();
 
         public void AddAction(Action action)
         {

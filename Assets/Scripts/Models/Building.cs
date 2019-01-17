@@ -7,10 +7,5 @@ namespace ManaMist.Models
     public class Building : Entity
     {
         public int buildTurns;
-
-        public override void Init()
-        {
-
-        }
     }
 }

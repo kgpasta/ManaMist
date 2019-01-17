@@ -14,9 +14,9 @@ namespace ManaMist.State
     [CreateAssetMenu(menuName = "ManaMist/States/SelectedState")]
     public class SelectedState : GameState
     {
-        private Entity entity;
-        private Coordinate currentlySelectedCoordinate;
-        private Dictionary<Coordinate, Path> paths = new Dictionary<Coordinate, Path>();
+        public Entity entity;
+        public Coordinate currentlySelectedCoordinate;
+        public Dictionary<Coordinate, Path> paths = new Dictionary<Coordinate, Path>();
 
         public override void HandleInput()
         {

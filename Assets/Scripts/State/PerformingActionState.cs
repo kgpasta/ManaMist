@@ -11,6 +11,7 @@ namespace ManaMist.State
         public Coordinate coordinate;
         public Entity target;
     }
+
     [CreateAssetMenu(menuName = "ManaMist/States/PerformingActionState")]
     public class PerformingActionState : GameState
     {
