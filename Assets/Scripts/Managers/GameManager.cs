@@ -81,11 +81,6 @@ namespace ManaMist.Managers
             player.AddEntity(townCenter);
             mapController.AddToMap(townCenterCoordinate, townCenter);
 
-            Coordinate mineCoordinate = new Coordinate(offset + 2, offset + 2);
-            Entity mine = entityController.CreateEntity(EntityType.Mine);
-            player.AddEntity(mine);
-            mapController.AddToMap(mineCoordinate, mine);
-
             Coordinate workerCoordinate = new Coordinate(offset + 1, offset + 1);
             Entity worker = entityController.CreateEntity(EntityType.Worker);
             player.AddEntity(worker);

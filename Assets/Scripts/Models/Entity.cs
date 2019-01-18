@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Linq;
 using ManaMist.Actions;
 using ManaMist.Utility;
 using UnityEngine;
@@ -26,6 +27,11 @@ namespace ManaMist.Models
         public T GetAction<T>() where T : Action
         {
             return actions.Find(action => action is T) as T;
+        }
+
+        public List<T> GetActions<T>()
+        {
+            return actions.FindAll(action => action is T).Cast<T>().ToList();
         }
 
         public void ReduceActionPoints(int points)

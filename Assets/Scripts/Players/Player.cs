@@ -55,6 +55,9 @@ namespace ManaMist.Players
         private void OnDisable()
         {
             entities = new List<Entity>();
+            resources.food = 100;
+            resources.mana = 100;
+            resources.metal = 100;
         }
 
     }

@@ -1,4 +1,6 @@
+using System;
 using System.Collections.Generic;
+using System.Linq;
 using ManaMist.Controllers;
 using ManaMist.Models;
 using ManaMist.Players;
@@ -13,7 +15,12 @@ namespace ManaMist.Actions
         public List<EntityType> canBuildList;
         public override bool CanExecute(Player player, Entity entity, Coordinate coordinate, Entity target)
         {
-            return base.CanExecute(player, entity, coordinate, target) && canBuildList.Contains(target.type);
+            MapTile mapTile = mapController.GetMapTileAtCoordinate(coordinate);
+            List<IBuildConstraint> buildConstraints = target.GetActions<IBuildConstraint>();
+
+            return base.CanExecute(player, entity, coordinate, target)
+            && canBuildList.Contains(target.type)
+            && buildConstraints.All(constraint => constraint.CanBuild(mapTile));
         }
 
         public override void Execute(Player player, Entity entity, Coordinate coordinate, Entity target)
@@ -23,5 +30,10 @@ namespace ManaMist.Actions
             mapController.AddToMap(coordinate, target);
             player.AddEntity(target);
         }
+    }
+
+    public interface IBuildConstraint
+    {
+        bool CanBuild(MapTile mapTile);
     }
 }

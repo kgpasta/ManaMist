@@ -14,4 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   mapController: {fileID: 11400000, guid: 687951a7835bd5a43b17fca05b9af0d8, type: 2}
   actionPoints: 0
+  resource: 2
   harvestAmount: {fileID: 11400000, guid: c37c072ddca99ce409e4824b6d6e9bb5, type: 2}
