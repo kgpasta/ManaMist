@@ -1,8 +1,10 @@
 using ManaMist.Models;
+using UnityEngine;
 
 namespace ManaMist.Combat
 {
-    public abstract class CombatEntity : Entity
+    [CreateAssetMenu(menuName = "ManaMist/CombatEntity")]
+    public class CombatEntity : Entity
     {
         public int hp;
         public int attack;
