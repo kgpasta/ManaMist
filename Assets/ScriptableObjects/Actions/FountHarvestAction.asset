@@ -9,9 +9,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7e099a3f873840e469fe5c847738d8e4, type: 3}
-  m_Name: BuildAction
+  m_Script: {fileID: 11500000, guid: 73d5d60c01a2fd244b305ea6ec0ecfc1, type: 3}
+  m_Name: FountHarvestAction
   m_EditorClassIdentifier: 
   mapController: {fileID: 11400000, guid: 687951a7835bd5a43b17fca05b9af0d8, type: 2}
-  actionPoints: 1
-  canBuildList: 00000000010000000200000003000000
+  actionPoints: 0
+  resource: 3
+  harvestAmount: {fileID: 11400000, guid: ce35451d576a8f84fb4e0f40edb3b159, type: 2}

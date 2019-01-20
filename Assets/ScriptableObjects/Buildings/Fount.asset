@@ -10,12 +10,12 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 9a90b0f24ba450a429324c0ef686b74a, type: 3}
-  m_Name: TownCenter
+  m_Name: Fount
   m_EditorClassIdentifier: 
-  id: e2830d8f-ad55-4bbd-a2b7-331398d81715
-  type: 3
-  cost: {fileID: 11400000, guid: 9642d25ca1e0c294f8dc8297cea92c1f, type: 2}
-  actionPoints: 1
+  id: 75da9316-7d58-4467-a4aa-a0fc83c625c6
+  type: 2
+  cost: {fileID: 11400000, guid: 691f4ec12cb70eb4dad25ade3cafa28a, type: 2}
+  actionPoints: 2
   actions:
-  - {fileID: 11400000, guid: 5b2ea600ca8b9e14496a29710bdcef80, type: 2}
+  - {fileID: 11400000, guid: b1944b46e616ba047ad0a743355a43d7, type: 2}
   buildTurns: 0

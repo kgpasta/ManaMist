@@ -10,12 +10,12 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 9a90b0f24ba450a429324c0ef686b74a, type: 3}
-  m_Name: TownCenter
+  m_Name: Farm
   m_EditorClassIdentifier: 
-  id: e2830d8f-ad55-4bbd-a2b7-331398d81715
-  type: 3
-  cost: {fileID: 11400000, guid: 9642d25ca1e0c294f8dc8297cea92c1f, type: 2}
-  actionPoints: 1
+  id: a84736cb-0ec7-4922-b845-569e119b2bd9
+  type: 1
+  cost: {fileID: 11400000, guid: 8d8da896cb297f240ac54f1ba3d6e30a, type: 2}
+  actionPoints: 2
   actions:
-  - {fileID: 11400000, guid: 5b2ea600ca8b9e14496a29710bdcef80, type: 2}
+  - {fileID: 11400000, guid: 763bf3521ab06ac43be6d0f747e68088, type: 2}
   buildTurns: 0
