@@ -24,6 +24,11 @@ namespace ManaMist.Models
             actions.Add(action);
         }
 
+        public Action GetAction(System.Type type)
+        {
+            return actions.Find(action => action.GetType() == type);
+        }
+
         public T GetAction<T>() where T : Action
         {
             return actions.Find(action => action is T) as T;

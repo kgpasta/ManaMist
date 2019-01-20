@@ -12,6 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 74e0c9c802f19f345bc8b96b7010a893, type: 3}
   m_Name: PerformingActionState
   m_EditorClassIdentifier: 
+  dispatcher: {fileID: 11400000, guid: 383ccc1db4476d9489be8ebfffa284dc, type: 2}
   turnController: {fileID: 11400000, guid: 78e7dde5c14b28b4d8539bf03c17fe3d, type: 2}
   mapController: {fileID: 11400000, guid: 687951a7835bd5a43b17fca05b9af0d8, type: 2}
   player: {fileID: 11400000, guid: 2b006e764554fe545b94dfadae66cdc4, type: 2}
+  m_Data: {fileID: 0}

@@ -68,6 +68,16 @@ namespace ManaMist.State
                     dispatcher.Dispatch<PerformingActionState>(stateData);
                 }
             }
+
+            if (inputEvent is ActionButtonClickedInput)
+            {
+                ActionButtonClickedInput actionButtonClickedInput = inputEvent as ActionButtonClickedInput;
+                PerformingActionStateData stateData = ScriptableObject.CreateInstance<PerformingActionStateData>();
+                stateData.action = m_Entity.GetAction(actionButtonClickedInput.actionType);
+                stateData.source = m_Entity;
+
+                dispatcher.Dispatch<PerformingActionState>(stateData);
+            }
         }
 
         private void ClearExistingHighlightedTiles()

@@ -1,5 +1,6 @@
 using ManaMist.Actions;
 using ManaMist.Controllers;
+using ManaMist.Input;
 using ManaMist.Models;
 using ManaMist.State;
 using ManaMist.Utility;
@@ -10,9 +11,8 @@ namespace ManaMist.UI
 {
     public class ActionBarView : MonoBehaviour
     {
-        [SerializeField] private SelectedState selectedState;
         [SerializeField] private EntityController entityController;
-        [SerializeField] private Dispatcher m_Dispatcher;
+        [SerializeField] private InputController inputController;
         [SerializeField] private Button m_Button;
 
         private void OnEnable()
@@ -27,16 +27,13 @@ namespace ManaMist.UI
 
         private void OnBuildClick()
         {
-            //TODO: Hard code right now to first
-            // Entity entity = entityController.CreateEntity(selectedState.m_Entity.GetAction<BuildAction>().canBuildList[0]);
-
-            // PerformingActionStateData data = ScriptableObject.CreateInstance<PerformingActionStateData>();
-            // data.source = selectedState.m_Entity;
-            // data.action = selectedState.m_Entity.GetAction<BuildAction>();
-            // data.coordinate = new Coordinate(selectedState.m_CurrentlySelectedCoordinate.x + 1, selectedState.m_CurrentlySelectedCoordinate.y);
-            // data.target = entity;
-
-            // m_Dispatcher.Dispatch<PerformingActionState>(data);
+            //TODO: Hard code right now to mine
+            ActionButtonClickedInput buildButtonClickedInput = new ActionButtonClickedInput()
+            {
+                actionType = typeof(BuildAction),
+                entityType = EntityType.Mine
+            };
+            inputController.RegisterInputEvent(buildButtonClickedInput);
         }
     }
 }

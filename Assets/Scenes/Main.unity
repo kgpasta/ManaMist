@@ -239,9 +239,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e96b3be353fa75d448be0d7dbd70b1c3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  selectedState: {fileID: 11400000, guid: 6bc900ac900c6364f805acc6a755fcef, type: 2}
   entityController: {fileID: 11400000, guid: 593c198e947f0e54db3b61d5592dcf53, type: 2}
-  m_Dispatcher: {fileID: 11400000, guid: 383ccc1db4476d9489be8ebfffa284dc, type: 2}
+  inputController: {fileID: 11400000, guid: 8a78e43eac7c677448d699f6292adaa7, type: 2}
   m_Button: {fileID: 836959857}
 --- !u!114 &836959857
 MonoBehaviour:
@@ -599,6 +598,18 @@ PrefabInstance:
       propertyPath: state
       value: 
       objectReference: {fileID: 11400000, guid: 345119662dd621c47b3ba1959b3c797c,
+        type: 2}
+    - target: {fileID: 114871655128495936, guid: 3891595981d0ca84295dd3b530024479,
+        type: 3}
+      propertyPath: inputController
+      value: 
+      objectReference: {fileID: 11400000, guid: 8a78e43eac7c677448d699f6292adaa7,
+        type: 2}
+    - target: {fileID: 114380090183731888, guid: 3891595981d0ca84295dd3b530024479,
+        type: 3}
+      propertyPath: inputController
+      value: 
+      objectReference: {fileID: 11400000, guid: 8a78e43eac7c677448d699f6292adaa7,
         type: 2}
     m_RemovedComponents:
     - {fileID: 114784741572068428, guid: 3891595981d0ca84295dd3b530024479, type: 3}

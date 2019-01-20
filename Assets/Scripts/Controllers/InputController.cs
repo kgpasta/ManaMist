@@ -11,7 +11,7 @@ namespace ManaMist.Controllers
         public event EventHandler<InputEvent> OnInputEvent;
         public void RegisterInputEvent(InputEvent inputEvent)
         {
-
+            OnInputEvent?.Invoke(this, inputEvent);
         }
     }
 }
