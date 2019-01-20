@@ -20,5 +20,15 @@ namespace ManaMist.State
                 OnDispatch?.Invoke(this, gameState);
             }
         }
+
+        public void Dispatch<T>() where T : GameState
+        {
+            GameState gameState = gameStates.Find(state => state is T);
+
+            if (gameState != null)
+            {
+                OnDispatch?.Invoke(this, gameState);
+            }
+        }
     }
 }

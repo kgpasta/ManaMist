@@ -62,8 +62,7 @@ namespace ManaMist.State
                 m_Action.Execute(player, m_Source, m_TargetCoordinate, m_Target);
             }
 
-            IdleStateData stateData = ScriptableObject.CreateInstance<IdleStateData>();
-            dispatcher.Dispatch<IdleState>(stateData);
+            dispatcher.Dispatch<IdleState>();
         }
     }
 }

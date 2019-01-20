@@ -19,8 +19,7 @@ namespace ManaMist.State
 
         private void OnTurnStart(object sender, TurnEventArgs args)
         {
-            IdleStateData idleStateData = ScriptableObject.CreateInstance<IdleStateData>();
-            dispatcher.Dispatch<IdleState>(idleStateData);
+            dispatcher.Dispatch<IdleState>();
         }
 
         public override void Enter()

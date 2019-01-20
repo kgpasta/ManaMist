@@ -67,6 +67,10 @@ namespace ManaMist.State
 
                     dispatcher.Dispatch<PerformingActionState>(stateData);
                 }
+                else
+                {
+                    dispatcher.Dispatch<IdleState>();
+                }
             }
 
             if (inputEvent is ActionButtonClickedInput)

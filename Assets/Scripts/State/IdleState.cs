@@ -1,4 +1,5 @@
 using ManaMist.Input;
+using ManaMist.Models;
 using UnityEngine;
 
 namespace ManaMist.State
@@ -21,10 +22,15 @@ namespace ManaMist.State
             {
                 MapTileClickedInput mapTileClickedInput = inputEvent as MapTileClickedInput;
 
-                SelectedStateData selectedStateData = ScriptableObject.CreateInstance<SelectedStateData>();
-                selectedStateData.coordinate = mapTileClickedInput.coordinate;
+                MapTile mapTile = mapController.GetMapTileAtCoordinate(mapTileClickedInput.coordinate);
 
-                dispatcher.Dispatch<SelectedState>(selectedStateData);
+                if (mapTile.entities.Count > 0)
+                {
+                    SelectedStateData selectedStateData = ScriptableObject.CreateInstance<SelectedStateData>();
+                    selectedStateData.coordinate = mapTileClickedInput.coordinate;
+
+                    dispatcher.Dispatch<SelectedState>(selectedStateData);
+                }
             }
         }
     }
