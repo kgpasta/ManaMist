@@ -32,6 +32,10 @@ namespace ManaMist.State
                     dispatcher.Dispatch<SelectedState>(selectedStateData);
                 }
             }
+            else if (inputEvent is EndOfTurnInput)
+            {
+                dispatcher.Dispatch<WaitingState>();
+            }
         }
     }
 

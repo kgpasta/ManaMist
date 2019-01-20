@@ -24,7 +24,7 @@ namespace ManaMist.State
 
         public override void Enter()
         {
-            return;
+            turnController.MoveToNextPlayer();
         }
 
         public override void Exit()
