@@ -22,7 +22,7 @@ namespace ManaMist.Controllers
 
         public GameObject GetEntityPrefab(Entity entity)
         {
-            return entityViews.Find(entityView => entityView.GetComponent<EntityView>().entity.type == entity.type).gameObject;
+            return entityViews.Find(entityView => entityView.GetComponent<EntityView>().entity.type == entity.type);
         }
     }
 }
