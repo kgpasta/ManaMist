@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using ManaMist.Actions;
+using ManaMist.Input;
 using ManaMist.Models;
 using ManaMist.Utility;
 using UnityEngine;
@@ -14,45 +15,27 @@ namespace ManaMist.State
     [CreateAssetMenu(menuName = "ManaMist/States/SelectedState")]
     public class SelectedState : GameState
     {
-        public Entity entity;
-        public Coordinate currentlySelectedCoordinate;
-        public Dictionary<Coordinate, Path> paths = new Dictionary<Coordinate, Path>();
+        public Entity m_Entity;
+        public Coordinate m_CurrentlySelectedCoordinate;
+        private Dictionary<Coordinate, Path> m_Paths = new Dictionary<Coordinate, Path>();
 
-        public override void HandleInput()
+        public override void Enter()
         {
-            return;
-        }
-
-        public override void Update()
-        {
-            ClearExistingHighlightedTiles();
-
             SelectedStateData selectedStateData = data as SelectedStateData;
-            currentlySelectedCoordinate = selectedStateData.coordinate;
-            MapTile mapTile = mapController.GetMapTileAtCoordinate(currentlySelectedCoordinate);
+            m_CurrentlySelectedCoordinate = selectedStateData.coordinate;
+            MapTile mapTile = mapController.GetMapTileAtCoordinate(m_CurrentlySelectedCoordinate);
+            m_Entity = mapTile.entities.Count > 0 ? mapTile.entities[0] : null;
 
-            // Can move unit
-            if (paths.ContainsKey(currentlySelectedCoordinate) && entity != null)
-            {
-                MoveAction moveAction = entity.GetAction<MoveAction>();
-                if (moveAction.CanExecute(player, entity, currentlySelectedCoordinate, null))
-                {
-                    moveAction.Execute(player, entity, currentlySelectedCoordinate, null);
-                    paths.Clear();
-                }
-            }
-            // If we haven't selected a unit or clicked outside movement range
-            else if (entity == null || !paths.ContainsKey(currentlySelectedCoordinate))
+            if (m_Entity != null)
             {
                 mapTile.isHighlighted = true;
-                entity = mapTile.entities.Count > 0 ? mapTile.entities[0] : null;
-                MoveAction moveAction = entity?.GetAction<MoveAction>();
+                MoveAction moveAction = m_Entity.GetAction<MoveAction>();
 
-                if (moveAction != null && moveAction.actionPoints <= entity.actionPoints)
+                if (moveAction != null && moveAction.actionPoints <= m_Entity.actionPoints)
                 {
-                    paths = ShowPaths(currentlySelectedCoordinate, moveAction);
+                    m_Paths = ShowPaths(m_CurrentlySelectedCoordinate, moveAction);
 
-                    foreach (Coordinate coord in paths.Keys)
+                    foreach (Coordinate coord in m_Paths.Keys)
                     {
                         mapController.GetMapTileAtCoordinate(coord).isHighlighted = true;
                     }
@@ -60,14 +43,41 @@ namespace ManaMist.State
             }
         }
 
+        public override void Exit()
+        {
+            ClearExistingHighlightedTiles();
+            m_Entity = null;
+            m_CurrentlySelectedCoordinate = null;
+            m_Paths.Clear();
+        }
+
+        public override void HandleInput(InputEvent inputEvent)
+        {
+            if (inputEvent is MapTileClickedInput)
+            {
+                MapTileClickedInput mapTileClickedInput = inputEvent as MapTileClickedInput;
+                MoveAction moveAction = m_Entity.GetAction<MoveAction>();
+
+                if (m_Paths.ContainsKey(mapTileClickedInput.coordinate) && moveAction.CanExecute(player, m_Entity, mapTileClickedInput.coordinate))
+                {
+                    PerformingActionStateData stateData = ScriptableObject.CreateInstance<PerformingActionStateData>();
+                    stateData.action = moveAction;
+                    stateData.source = m_Entity;
+                    stateData.targetCoordinate = mapTileClickedInput.coordinate;
+
+                    dispatcher.Dispatch<PerformingActionState>(stateData);
+                }
+            }
+        }
+
         private void ClearExistingHighlightedTiles()
         {
-            if (currentlySelectedCoordinate != null)
+            if (m_CurrentlySelectedCoordinate != null)
             {
-                mapController.GetMapTileAtCoordinate(currentlySelectedCoordinate).isHighlighted = false;
+                mapController.GetMapTileAtCoordinate(m_CurrentlySelectedCoordinate).isHighlighted = false;
             }
 
-            foreach (Coordinate coord in paths.Keys)
+            foreach (Coordinate coord in m_Paths.Keys)
             {
                 mapController.GetMapTileAtCoordinate(coord).isHighlighted = false;
             }

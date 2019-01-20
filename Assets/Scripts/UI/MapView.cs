@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using ManaMist.Controllers;
+using ManaMist.Input;
 using ManaMist.Models;
 using ManaMist.State;
 using ManaMist.Utility;
@@ -10,11 +11,10 @@ namespace ManaMist.UI
 {
     public class MapView : MonoBehaviour
     {
-        [Header("Dispatcher")]
-        public Dispatcher dispatcher;
         [Header("Controllers")]
         public MapController mapController;
         public EntityController entityController;
+        public InputController inputController;
 
         [Header("MapTile Prefab Reference")]
         public GameObject MapTilePrefabReference = null;
@@ -47,9 +47,12 @@ namespace ManaMist.UI
 
             newMapTileWidgetInstance.GetComponent<Button>().onClick.AddListener(() =>
             {
-                SelectedStateData selectedStateData = ScriptableObject.CreateInstance<SelectedStateData>();
-                selectedStateData.coordinate = args.coordinate;
-                dispatcher.Dispatch<SelectedState>(selectedStateData);
+                MapTileClickedInput mapTileClickedInput = new MapTileClickedInput()
+                {
+                    coordinate = args.coordinate,
+                    mapTile = args.mapTile
+                };
+                inputController.RegisterInputEvent(mapTileClickedInput);
             });
 
             m_CoordinateToTransform.Add(args.coordinate, newMapTileWidgetInstance.transform);

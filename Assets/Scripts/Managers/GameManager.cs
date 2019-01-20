@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using ManaMist.Actions;
 using ManaMist.Controllers;
+using ManaMist.Input;
 using ManaMist.Models;
 using ManaMist.Players;
 using ManaMist.State;
@@ -20,6 +21,7 @@ namespace ManaMist.Managers
         [Header("Controllers")]
         public TurnController turnController;
         public MapController mapController;
+        public InputController inputController;
         public EntityController entityController;
 
         [Header("State")]
@@ -37,18 +39,26 @@ namespace ManaMist.Managers
         {
             dispatcher.OnDispatch += SetState;
             turnController.OnTurnStart += OnTurnStart;
+            inputController.OnInputEvent += OnInputEvent;
         }
 
         private void OnDisable()
         {
             dispatcher.OnDispatch -= SetState;
             turnController.OnTurnStart -= OnTurnStart;
+            inputController.OnInputEvent -= OnInputEvent;
         }
 
         private void SetState(object sender, GameState gameState)
         {
+            state.Exit();
             state = gameState;
-            state.Update();
+            state.Enter();
+        }
+
+        private void OnInputEvent(object sender, InputEvent inputEvent)
+        {
+            state.HandleInput(inputEvent);
         }
 
         private void SetupGame()

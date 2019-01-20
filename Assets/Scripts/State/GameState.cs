@@ -1,4 +1,5 @@
 using ManaMist.Controllers;
+using ManaMist.Input;
 using ManaMist.Players;
 using UnityEngine;
 
@@ -6,6 +7,7 @@ namespace ManaMist.State
 {
     public abstract class GameState : ScriptableObject
     {
+        public Dispatcher dispatcher;
         public TurnController turnController;
         public MapController mapController;
         public Player player;
@@ -25,9 +27,9 @@ namespace ManaMist.State
             }
         }
 
-        public abstract void HandleInput();
-
-        public abstract void Update();
+        public abstract void HandleInput(InputEvent inputEvent);
+        public abstract void Enter();
+        public abstract void Exit();
     }
 
     public abstract class GameStateData : ScriptableObject { }

@@ -13,21 +13,24 @@ namespace ManaMist.Actions
     public class BuildAction : Action
     {
         public List<EntityType> canBuildList;
-        public override bool CanExecute(Player player, Entity entity, Coordinate coordinate, Entity target)
+        public override bool CanExecute(Player player, Entity entity, Coordinate targetCoordinate)
         {
-            MapTile mapTile = mapController.GetMapTileAtCoordinate(coordinate);
+            MapTile mapTile = mapController.GetMapTileAtCoordinate(targetCoordinate);
+            Entity target = mapTile.entities[0];
             List<IBuildConstraint> buildConstraints = target.GetActions<IBuildConstraint>();
 
-            return base.CanExecute(player, entity, coordinate, target)
+            return base.CanExecute(player, entity, targetCoordinate)
             && canBuildList.Contains(target.type)
             && buildConstraints.All(constraint => constraint.CanBuild(mapTile));
         }
 
-        public override void Execute(Player player, Entity entity, Coordinate coordinate, Entity target)
+        public override void Execute(Player player, Entity entity, Coordinate targetCoordinate)
         {
-            base.Execute(player, entity, coordinate, target);
+            base.Execute(player, entity, targetCoordinate);
+            MapTile mapTile = mapController.GetMapTileAtCoordinate(targetCoordinate);
+            Entity target = mapTile.entities[0];
 
-            mapController.AddToMap(coordinate, target);
+            mapController.AddToMap(targetCoordinate, target);
             player.AddEntity(target);
         }
     }

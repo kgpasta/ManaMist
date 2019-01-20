@@ -1,3 +1,4 @@
+using ManaMist.Input;
 using UnityEngine;
 
 namespace ManaMist.State
@@ -5,12 +6,17 @@ namespace ManaMist.State
     [CreateAssetMenu(menuName = "ManaMist/States/WaitingState")]
     public class WaitingState : GameState
     {
-        public override void HandleInput()
+        public override void Enter()
         {
             return;
         }
 
-        public override void Update()
+        public override void Exit()
+        {
+            return;
+        }
+
+        public override void HandleInput(InputEvent inputEvent)
         {
             return;
         }
