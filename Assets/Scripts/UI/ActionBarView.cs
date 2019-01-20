@@ -28,10 +28,11 @@ namespace ManaMist.UI
         private void OnBuildClick()
         {
             //TODO: Hard code right now to mine
+            Entity entity = entityController.CreateEntity(EntityType.Mine);
             ActionButtonClickedInput buildButtonClickedInput = new ActionButtonClickedInput()
             {
                 actionType = typeof(BuildAction),
-                entityType = EntityType.Mine
+                target = entity
             };
             inputController.RegisterInputEvent(buildButtonClickedInput);
         }

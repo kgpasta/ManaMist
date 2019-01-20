@@ -58,7 +58,7 @@ namespace ManaMist.State
                 MapTileClickedInput mapTileClickedInput = inputEvent as MapTileClickedInput;
                 MoveAction moveAction = m_Entity.GetAction<MoveAction>();
 
-                if (m_Paths.ContainsKey(mapTileClickedInput.coordinate) && moveAction.CanExecute(player, m_Entity, mapTileClickedInput.coordinate))
+                if (m_Paths.ContainsKey(mapTileClickedInput.coordinate) && moveAction.CanExecute(player, m_Entity, mapTileClickedInput.coordinate, null))
                 {
                     PerformingActionStateData stateData = ScriptableObject.CreateInstance<PerformingActionStateData>();
                     stateData.action = moveAction;
@@ -75,6 +75,7 @@ namespace ManaMist.State
                 PerformingActionStateData stateData = ScriptableObject.CreateInstance<PerformingActionStateData>();
                 stateData.action = m_Entity.GetAction(actionButtonClickedInput.actionType);
                 stateData.source = m_Entity;
+                stateData.target = actionButtonClickedInput.target;
 
                 dispatcher.Dispatch<PerformingActionState>(stateData);
             }

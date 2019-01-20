@@ -10,6 +10,7 @@ namespace ManaMist.State
     {
         public Action action;
         public Entity source;
+        public Entity target;
         public Coordinate targetCoordinate;
     }
 
@@ -19,6 +20,7 @@ namespace ManaMist.State
         private Action m_Action;
         private Entity m_Source;
         private Coordinate m_TargetCoordinate;
+        private Entity m_Target;
 
         public override void HandleInput(InputEvent inputEvent)
         {
@@ -37,6 +39,7 @@ namespace ManaMist.State
             m_Action = performingActionStateData.action;
             m_Source = performingActionStateData.source;
             m_TargetCoordinate = performingActionStateData.targetCoordinate;
+            m_Target = performingActionStateData.target;
 
             if (m_TargetCoordinate != null)
             {
@@ -49,13 +52,14 @@ namespace ManaMist.State
             m_Action = null;
             m_Source = null;
             m_TargetCoordinate = null;
+            m_Target = null;
         }
 
         private void PerformAction()
         {
-            if (m_Action.CanExecute(player, m_Source, m_TargetCoordinate))
+            if (m_Action.CanExecute(player, m_Source, m_TargetCoordinate, m_Target))
             {
-                m_Action.Execute(player, m_Source, m_TargetCoordinate);
+                m_Action.Execute(player, m_Source, m_TargetCoordinate, m_Target);
             }
 
             IdleStateData stateData = ScriptableObject.CreateInstance<IdleStateData>();

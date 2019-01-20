@@ -8,21 +8,16 @@ namespace ManaMist.Actions
 {
     public class AttackAction : Action
     {
-        public CanAttackFunction CanAttack;
 
-        public delegate bool CanAttackFunction(Coordinate currentCoordinate, Coordinate targetCoordinate);
-
-        public override bool CanExecute(Player player, Entity entity, Coordinate targetCoordinate)
+        public override bool CanExecute(Player player, Entity entity, Coordinate targetCoordinate, Entity target)
         {
             Coordinate startCoordinate = mapController.GetPositionOfEntity(entity.id);
-            return base.CanExecute(player, entity, targetCoordinate) && CanAttack(startCoordinate, targetCoordinate);
+            return base.CanExecute(player, entity, targetCoordinate, target);
         }
 
-        public override void Execute(Player player, Entity entity, Coordinate targetCoordinate)
+        public override void Execute(Player player, Entity entity, Coordinate targetCoordinate, Entity target)
         {
-            base.Execute(player, entity, targetCoordinate);
-
-            Entity target = mapController.GetMapTileAtCoordinate(targetCoordinate).entities[0];
+            base.Execute(player, entity, targetCoordinate, target);
 
             int distance = mapController.GetPositionOfEntity(entity.id).Distance(mapController.GetPositionOfEntity(target.id));
             CombatEngine combatEngine = new CombatEngine()

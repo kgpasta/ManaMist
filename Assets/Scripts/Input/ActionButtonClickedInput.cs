@@ -6,6 +6,6 @@ namespace ManaMist.Input
     public class ActionButtonClickedInput : InputEvent
     {
         public Type actionType;
-        public EntityType entityType;
+        public Entity target;
     }
 }
