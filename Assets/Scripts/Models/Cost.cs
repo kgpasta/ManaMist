@@ -24,6 +24,11 @@ namespace ManaMist.Models
             mana -= cost.mana;
         }
 
+        public bool CanDecrement(Cost cost)
+        {
+            return (food - cost.food) > 0 && (metal - cost.metal) > 0 && (mana - cost.mana) > 0;
+        }
+
         public override string ToString()
         {
             return "FOOD: " + food + ", METAL: " + metal + ", MANA: " + mana;
