@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace ManaMist.Combat
 {
-    [CreateAssetMenu(menuName = "ManaMist/CombatEntity")]
+    [CreateAssetMenu(menuName = "ManaMist/Combat Entity")]
     public class CombatEntity : Entity
     {
         public int hp;

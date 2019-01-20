@@ -1,0 +1,28 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e0c3765065904fd49bc34cebe0eec454, type: 3}
+  m_Name: Warrior
+  m_EditorClassIdentifier: 
+  id: f7a2708b-6ea2-4be8-bd8e-d1c4291791d1
+  type: 5
+  cost: {fileID: 11400000, guid: 9bb43b81c522f11408903444a45950dc, type: 2}
+  actionPoints: 2
+  actions:
+  - {fileID: 11400000, guid: 1215169594858f847b092690ba620ca3, type: 2}
+  - {fileID: 11400000, guid: 7ad4d5f4ec269744eb330de64c1a5d72, type: 2}
+  hp: 20
+  attack: 10
+  defense: 5
+  skill: 5
+  accuracy: 90
+  speed: 5
+  range: 1

@@ -7,5 +7,6 @@ namespace ManaMist.Models
         Fount,
         TownCenter,
         Worker,
+        Warrior,
     }
 }

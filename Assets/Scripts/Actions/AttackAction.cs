@@ -3,9 +3,11 @@ using ManaMist.Controllers;
 using ManaMist.Models;
 using ManaMist.Players;
 using ManaMist.Utility;
+using UnityEngine;
 
 namespace ManaMist.Actions
 {
+    [CreateAssetMenu(menuName = "ManaMist/Actions/AttackAction")]
     public class AttackAction : Action
     {
 
