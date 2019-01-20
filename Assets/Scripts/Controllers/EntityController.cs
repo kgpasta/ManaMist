@@ -12,7 +12,7 @@ namespace ManaMist.Controllers
     public class EntityController : ScriptableObject
     {
         public List<Entity> entities;
-        public List<EntityView> entityViews;
+        public List<GameObject> entityViews;
 
         public Entity CreateEntity(EntityType entityType)
         {
@@ -22,7 +22,7 @@ namespace ManaMist.Controllers
 
         public GameObject GetEntityPrefab(Entity entity)
         {
-            return entityViews.Find(entityView => entityView.entity.type == entity.type).gameObject;
+            return entityViews.Find(entityView => entityView.GetComponent<EntityView>().entity.type == entity.type).gameObject;
         }
     }
 }
