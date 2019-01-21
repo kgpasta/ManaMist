@@ -2,4 +2,9 @@
 
 ## To-do:
 
-- there are still some constructors laying around; gotta clean em up
+- Combat needs to happen in UI
+- Custom spells, effects, actions
+- UI design for action bar
+- AI for other player
+- Networking
+
