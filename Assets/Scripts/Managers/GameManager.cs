@@ -91,6 +91,11 @@ namespace ManaMist.Managers
             player.AddEntity(townCenter);
             mapController.AddToMap(townCenterCoordinate, townCenter);
 
+            Coordinate warriorCoordinate = new Coordinate(offset, offset + 1);
+            Entity warrior = entityController.CreateEntity(EntityType.Warrior);
+            player.AddEntity(warrior);
+            mapController.AddToMap(warriorCoordinate, warrior);
+
             Coordinate workerCoordinate = new Coordinate(offset + 1, offset + 1);
             Entity worker = entityController.CreateEntity(EntityType.Worker);
             player.AddEntity(worker);
