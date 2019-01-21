@@ -22,9 +22,12 @@ namespace ManaMist.UI
 
         private void Update()
         {
-            m_FoodText.text = cost.food.ToString();
-            m_MetalText.text = cost.metal.ToString();
-            m_ManaText.text = cost.mana.ToString();
+            if (cost != null)
+            {
+                m_FoodText.text = cost.food.ToString();
+                m_MetalText.text = cost.metal.ToString();
+                m_ManaText.text = cost.mana.ToString();
+            }
         }
     }
 }
