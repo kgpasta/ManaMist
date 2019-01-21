@@ -9,8 +9,13 @@ namespace ManaMist.UI
     public class PlayerPanel : MonoBehaviour
     {
         public Cost cost;
+        public string playerName
+        {
+            set { m_PlayerName.text = value; }
+        }
 
         [Header("UI Elements")]
+        [SerializeField] private TextMeshProUGUI m_PlayerName = null;
         [SerializeField] private TextMeshProUGUI m_FoodText = null;
         [SerializeField] private TextMeshProUGUI m_MetalText = null;
         [SerializeField] private TextMeshProUGUI m_ManaText = null;

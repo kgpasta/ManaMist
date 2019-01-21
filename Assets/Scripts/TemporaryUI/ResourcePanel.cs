@@ -26,10 +26,13 @@ namespace ManaMist.UI
             }
         }
 
-        public void AddPlayerPanel(Cost cost)
+        public void AddPlayerPanel(string name, Cost cost)
         {
-            GameObject playerPanel = Instantiate(m_PlayerPanelPrefabReference, transform);
-            playerPanel.GetComponent<PlayerPanel>().cost = cost;
+            GameObject playerPanelInstance = Instantiate(m_PlayerPanelPrefabReference, transform);
+            PlayerPanel playerPanel = playerPanelInstance.GetComponent<PlayerPanel>();
+
+            playerPanel.cost = cost;
+            playerPanel.playerName = name;
         }
 
         public void ToggleVisibilty()
