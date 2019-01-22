@@ -589,7 +589,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   entityController: {fileID: 11400000, guid: 593c198e947f0e54db3b61d5592dcf53, type: 2}
   inputController: {fileID: 11400000, guid: 8a78e43eac7c677448d699f6292adaa7, type: 2}
-  m_Button: {fileID: 0}
+  m_BuildButton: {fileID: 584542487432327576}
+  m_AttackButton: {fileID: 1311302142469276660}
 --- !u!1 &5182871034910076466
 GameObject:
   m_ObjectHideFlags: 0
