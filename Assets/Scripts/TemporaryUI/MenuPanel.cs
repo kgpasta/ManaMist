@@ -16,6 +16,7 @@ namespace ManaMist.UI
         [SerializeField] private PlayerPanel m_PlayerOnePanel = null;
         [SerializeField] private PlayerPanel m_PlayerTwoPanel = null;
         [SerializeField] private BuildActionPanel m_BuildActionPanel = null;
+        [SerializeField] private AttackActionPanel m_AttackActionPanel = null;
 
         private CanvasGroup m_CanvasGroup = null;
         private bool m_IsVisible = false;
@@ -73,16 +74,19 @@ namespace ManaMist.UI
             {
                 if (action is BuildAction)
                 {
-                    m_BuildActionPanel.gameObject.SetActive(true);
-                    m_BuildActionPanel.UpdateDropdownOptions(m_SelectedState.CurrentlySelectedEntity.GetAction<BuildAction>()?.canBuildList);
+                    m_BuildActionPanel.Setup(m_SelectedState.CurrentlySelectedEntity.GetAction<BuildAction>()?.canBuildList);
+                }
+                if (action is AttackAction)
+                {
+                    m_AttackActionPanel.gameObject.SetActive(true);
                 }
             }
         }
 
         private void ResetPanels()
         {
-            m_BuildActionPanel.ClearDropdown();
-            m_BuildActionPanel.gameObject.SetActive(false);
+            m_BuildActionPanel.Teardown();
+            m_AttackActionPanel.gameObject.SetActive(false);
         }
     }
 }

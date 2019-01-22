@@ -31,27 +31,36 @@ namespace ManaMist.UI
             m_BuildButton.onClick.RemoveAllListeners();
         }
 
-        public void UpdateDropdownOptions(List<EntityType> entityTypeList)
+        public void Setup(List<EntityType> entityTypeList)
+        {
+            gameObject.SetActive(true);
+
+            m_CurrentEntityOptionsList = entityTypeList;
+            UpdateDropdownOptions();
+        }
+
+        public void Teardown()
+        {
+            m_EntityDropdown.ClearOptions();
+            m_IsDropdownUpdated = false;
+
+            gameObject.SetActive(false);
+        }
+
+        public void UpdateDropdownOptions()
         {
             if (!m_IsDropdownUpdated)
             {
-                m_CurrentEntityOptionsList = entityTypeList;
-
                 if (m_CurrentEntityOptionsList != null)
                 {
                     foreach (EntityType type in m_CurrentEntityOptionsList)
                     {
                         m_EntityDropdown.options.Add(new OptionData(type.ToString()));
                     }
+
+                    m_IsDropdownUpdated = true;
                 }
             }
-            m_IsDropdownUpdated = true;
-        }
-
-        public void ClearDropdown()
-        {
-            m_EntityDropdown.ClearOptions();
-            m_IsDropdownUpdated = false;
         }
 
         public void BuildButtonOnClick()
