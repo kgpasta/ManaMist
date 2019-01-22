@@ -12,10 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9a90b0f24ba450a429324c0ef686b74a, type: 3}
   m_Name: Farm
   m_EditorClassIdentifier: 
-  id: a84736cb-0ec7-4922-b845-569e119b2bd9
+  id: 3badb1d4-76f6-4b18-bf4d-2bb220996339
   type: 1
   cost: {fileID: 11400000, guid: 8d8da896cb297f240ac54f1ba3d6e30a, type: 2}
   actionPoints: 2
   actions:
   - {fileID: 11400000, guid: 763bf3521ab06ac43be6d0f747e68088, type: 2}
+  hp: 30
   buildTurns: 0
