@@ -1,24 +1,29 @@
 using System;
+using ManaMist.Actions;
 using ManaMist.Combat;
+using ManaMist.Models;
 using ManaMist.Utility;
 
 namespace ManaMist.Combat
 {
     public class CombatEngine
     {
-        public CombatEntity attacker;
-        public CombatEntity defender;
+        public Entity attackingEntity;
+        public Entity defendingEntity;
         public int distance;
 
         public CombatResult Battle()
         {
+            AttackAction attacker = attackingEntity.GetAction<AttackAction>();
+            AttackAction defender = defendingEntity.GetAction<AttackAction>();
+
             if (WillHit(attacker, defender, distance))
             {
                 int damageModifier = WillCrit(attacker) ? 2 : 1;
                 int damage = CalculateDamage(attacker, defender, damageModifier);
-                defender.hp -= ManaMistMath.Clamp(damage, 0, defender.hp);
+                defendingEntity.hp -= ManaMistMath.Clamp(damage, 0, defendingEntity.hp);
 
-                if (defender.hp <= 0)
+                if (defendingEntity.hp <= 0)
                 {
                     return CombatResult.WIN;
                 }
@@ -28,9 +33,9 @@ namespace ManaMist.Combat
             {
                 int damageModifier = WillCrit(defender) ? 2 : 1;
                 int damage = CalculateDamage(defender, attacker, damageModifier);
-                attacker.hp -= ManaMistMath.Clamp(damage, 0, attacker.hp);
+                attackingEntity.hp -= ManaMistMath.Clamp(damage, 0, attackingEntity.hp);
 
-                if (attacker.hp <= 0)
+                if (attackingEntity.hp <= 0)
                 {
                     return CombatResult.LOSS;
                 }
@@ -39,20 +44,22 @@ namespace ManaMist.Combat
             return CombatResult.NONE;
         }
 
-        private bool WillHit(CombatEntity attacker, CombatEntity defender, int distance)
+        private bool WillHit(AttackAction attacker, AttackAction defender, int distance)
         {
             bool inRange = attacker.range >= distance;
-            int hitChance = attacker.accuracy - defender.speed;
+            int defenderSpeed = defender != null ? defender.speed : 0;
+            int hitChance = attacker.accuracy - defenderSpeed;
             return inRange && new Random().Next(0, 100) > hitChance;
         }
 
-        private bool WillCrit(CombatEntity attacker)
+        private bool WillCrit(AttackAction attacker)
         {
             return new Random().Next(0, 100) > attacker.skill;
         }
 
-        private int CalculateDamage(CombatEntity attacker, CombatEntity defender, int damageModifier)
+        private int CalculateDamage(AttackAction attacker, AttackAction defender, int damageModifier)
         {
+            int defenderDefense = defender != null ? defender.defense : 0;
             return (attacker.attack - defender.defense) * damageModifier;
         }
     }

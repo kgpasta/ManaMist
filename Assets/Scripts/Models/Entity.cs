@@ -13,6 +13,7 @@ namespace ManaMist.Models
         public Cost cost;
         public int actionPoints;
         public List<Action> actions;
+        public int hp;
 
         private void Awake()
         {

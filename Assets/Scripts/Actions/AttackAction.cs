@@ -10,13 +10,21 @@ namespace ManaMist.Actions
     [CreateAssetMenu(menuName = "ManaMist/Actions/AttackAction")]
     public class AttackAction : Action
     {
+        public int attack;
+        public int defense;
+        public int skill;
+        public int accuracy;
+        public int speed;
+        public int range;
 
         public override bool CanExecute(Player player, Entity entity, Coordinate targetCoordinate, Entity target)
         {
             Coordinate startCoordinate = mapController.GetPositionOfEntity(entity.id);
             MapTile mapTile = mapController.GetMapTileAtCoordinate(targetCoordinate);
 
-            return base.CanExecute(player, entity, targetCoordinate, target) && mapTile.entities.Count > 0;
+            return base.CanExecute(player, entity, targetCoordinate, target)
+            && mapTile.entities.Count > 0
+            && startCoordinate.Distance(targetCoordinate) <= range;
         }
 
         public override void Execute(Player player, Entity entity, Coordinate targetCoordinate, Entity target)
@@ -26,8 +34,8 @@ namespace ManaMist.Actions
             int distance = mapController.GetPositionOfEntity(entity.id).Distance(mapController.GetPositionOfEntity(target.id));
             CombatEngine combatEngine = new CombatEngine()
             {
-                attacker = entity as CombatEntity,
-                defender = target as CombatEntity,
+                attackingEntity = entity,
+                defendingEntity = target,
                 distance = distance
             };
 
