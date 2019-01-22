@@ -1,6 +1,7 @@
 using ManaMist.Controllers;
 using ManaMist.Input;
 using ManaMist.Players;
+using System;
 using UnityEngine;
 
 namespace ManaMist.State
@@ -28,8 +29,21 @@ namespace ManaMist.State
         }
 
         public abstract void HandleInput(InputEvent inputEvent);
-        public abstract void Enter();
-        public abstract void Exit();
+        protected abstract void Enter();
+        public void EnterBase()
+        {
+            Enter();
+            OnEnter?.Invoke(this, EventArgs.Empty);
+        }
+        protected abstract void Exit();
+        public void ExitBase()
+        {
+            Exit();
+            OnExit?.Invoke(this, EventArgs.Empty);
+        }
+
+        public event EventHandler OnEnter;
+        public event EventHandler OnExit;
     }
 
     public abstract class GameStateData : ScriptableObject { }

@@ -7,14 +7,6 @@ namespace ManaMist.State
     [CreateAssetMenu(menuName = "ManaMist/States/IdleState")]
     public class IdleState : GameState
     {
-        public override void Enter()
-        {
-        }
-
-        public override void Exit()
-        {
-            return;
-        }
 
         public override void HandleInput(InputEvent inputEvent)
         {
@@ -36,6 +28,14 @@ namespace ManaMist.State
             {
                 dispatcher.Dispatch<WaitingState>();
             }
+        }
+
+        protected override void Enter()
+        {
+        }
+
+        protected override void Exit()
+        {
         }
     }
 

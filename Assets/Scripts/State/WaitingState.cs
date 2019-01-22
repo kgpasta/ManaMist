@@ -22,14 +22,13 @@ namespace ManaMist.State
             dispatcher.Dispatch<IdleState>();
         }
 
-        public override void Enter()
+        protected override void Enter()
         {
             turnController.MoveToNextPlayer();
         }
 
-        public override void Exit()
+        protected override void Exit()
         {
-            return;
         }
 
         public override void HandleInput(InputEvent inputEvent)

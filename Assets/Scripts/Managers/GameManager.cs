@@ -51,9 +51,9 @@ namespace ManaMist.Managers
 
         private void SetState(object sender, GameState gameState)
         {
-            state.Exit();
+            state.ExitBase();
             state = gameState;
-            state.Enter();
+            state.EnterBase();
         }
 
         private void OnInputEvent(object sender, InputEvent inputEvent)

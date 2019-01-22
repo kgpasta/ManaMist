@@ -15,23 +15,27 @@ namespace ManaMist.State
     [CreateAssetMenu(menuName = "ManaMist/States/SelectedState")]
     public class SelectedState : GameState
     {
-        public Entity m_Entity;
-        public Coordinate m_CurrentlySelectedCoordinate;
+        [SerializeField] private Entity m_CurrentlySelectedEntity;
+        public Entity CurrentlySelectedEntity { get { return m_CurrentlySelectedEntity; } }
+
+        [SerializeField] private Coordinate m_CurrentlySelectedCoordinate;
+        public Coordinate CurrentlySelectedCoordinate { get { return m_CurrentlySelectedCoordinate; } }
+
         private Dictionary<Coordinate, Path> m_Paths = new Dictionary<Coordinate, Path>();
 
-        public override void Enter()
+        protected override void Enter()
         {
             SelectedStateData selectedStateData = data as SelectedStateData;
             m_CurrentlySelectedCoordinate = selectedStateData.coordinate;
             MapTile mapTile = mapController.GetMapTileAtCoordinate(m_CurrentlySelectedCoordinate);
-            m_Entity = mapTile.entities.Count > 0 ? mapTile.entities[0] : null;
+            m_CurrentlySelectedEntity = mapTile.entities.Count > 0 ? mapTile.entities[0] : null;
 
-            if (m_Entity != null)
+            if (m_CurrentlySelectedEntity != null)
             {
                 mapTile.isHighlighted = true;
-                MoveAction moveAction = m_Entity.GetAction<MoveAction>();
+                MoveAction moveAction = m_CurrentlySelectedEntity.GetAction<MoveAction>();
 
-                if (moveAction != null && moveAction.actionPoints <= m_Entity.actionPoints)
+                if (moveAction != null && moveAction.actionPoints <= m_CurrentlySelectedEntity.actionPoints)
                 {
                     m_Paths = ShowPaths(m_CurrentlySelectedCoordinate, moveAction);
 
@@ -43,10 +47,10 @@ namespace ManaMist.State
             }
         }
 
-        public override void Exit()
+        protected override void Exit()
         {
             ClearExistingHighlightedTiles();
-            m_Entity = null;
+            m_CurrentlySelectedEntity = null;
             m_CurrentlySelectedCoordinate = null;
             m_Paths.Clear();
         }
@@ -56,13 +60,13 @@ namespace ManaMist.State
             if (inputEvent is MapTileClickedInput)
             {
                 MapTileClickedInput mapTileClickedInput = inputEvent as MapTileClickedInput;
-                MoveAction moveAction = m_Entity.GetAction<MoveAction>();
+                MoveAction moveAction = m_CurrentlySelectedEntity.GetAction<MoveAction>();
 
-                if (m_Paths.ContainsKey(mapTileClickedInput.coordinate) && moveAction.CanExecute(player, m_Entity, mapTileClickedInput.coordinate, null))
+                if (m_Paths.ContainsKey(mapTileClickedInput.coordinate) && moveAction.CanExecute(player, m_CurrentlySelectedEntity, mapTileClickedInput.coordinate, null))
                 {
                     PerformingActionStateData stateData = ScriptableObject.CreateInstance<PerformingActionStateData>();
                     stateData.action = moveAction;
-                    stateData.source = m_Entity;
+                    stateData.source = m_CurrentlySelectedEntity;
                     stateData.targetCoordinate = mapTileClickedInput.coordinate;
 
                     dispatcher.Dispatch<PerformingActionState>(stateData);
@@ -77,8 +81,8 @@ namespace ManaMist.State
             {
                 ActionButtonClickedInput actionButtonClickedInput = inputEvent as ActionButtonClickedInput;
                 PerformingActionStateData stateData = ScriptableObject.CreateInstance<PerformingActionStateData>();
-                stateData.action = m_Entity.GetAction(actionButtonClickedInput.actionType);
-                stateData.source = m_Entity;
+                stateData.action = m_CurrentlySelectedEntity.GetAction(actionButtonClickedInput.actionType);
+                stateData.source = m_CurrentlySelectedEntity;
                 stateData.target = actionButtonClickedInput.target;
 
                 dispatcher.Dispatch<PerformingActionState>(stateData);
@@ -98,20 +102,20 @@ namespace ManaMist.State
             }
         }
 
-        private Dictionary<Coordinate, Path> ShowPaths(Coordinate coordinate, ISelectableTargetAction action)
+        private Dictionary<Coordinate, Path> ShowPaths(Coordinate coordinate, MoveAction moveAction)
         {
-            if (action != null)
+            if (moveAction != null)
             {
                 Pathfinding pathfinding = new Pathfinding()
                 {
                     start = coordinate,
-                    maxDistance = action.Range
+                    maxDistance = moveAction.movementRange
                 };
 
                 return pathfinding.Search((end) =>
                 {
                     MapTile mapTile = mapController.GetMapTileAtCoordinate(end);
-                    return action.CanPerform(mapTile);
+                    return moveAction.CanMove(mapTile);
                 });
             }
 
