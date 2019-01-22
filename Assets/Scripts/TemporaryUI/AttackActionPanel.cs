@@ -1,4 +1,6 @@
-﻿using ManaMist.Controllers;
+﻿using ManaMist.Actions;
+using ManaMist.Controllers;
+using ManaMist.Input;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -6,7 +8,6 @@ using UnityEngine.UI;
 
 public class AttackActionPanel : MonoBehaviour
 {
-    [SerializeField] private EntityController m_EntityController = null;
     [SerializeField] private InputController m_InputController = null;
 
     [Header("UI Elements")]
@@ -24,6 +25,10 @@ public class AttackActionPanel : MonoBehaviour
 
     private void AttackButtonOnClick()
     {
-        
+        ActionButtonClickedInput attackButtonClickedInput = new ActionButtonClickedInput()
+        {
+            actionType = typeof(AttackAction),
+        };
+        m_InputController.RegisterInputEvent(attackButtonClickedInput);
     }
 }
