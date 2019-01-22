@@ -8,7 +8,7 @@ using UnityEngine;
 namespace ManaMist.Actions
 {
     [CreateAssetMenu(menuName = "ManaMist/Actions/AttackAction")]
-    public class AttackAction : Action
+    public class AttackAction : Action, ISelectableTargetAction
     {
         public int attack;
         public int defense;
@@ -16,6 +16,8 @@ namespace ManaMist.Actions
         public int accuracy;
         public int speed;
         public int range;
+
+        public int Range => range;
 
         public override bool CanExecute(Player player, Entity entity, Coordinate targetCoordinate, Entity target)
         {
@@ -25,6 +27,11 @@ namespace ManaMist.Actions
             return base.CanExecute(player, entity, targetCoordinate, target)
             && mapTile.entities.Count > 0
             && startCoordinate.Distance(targetCoordinate) <= range;
+        }
+
+        public bool CanPerform(MapTile mapTile)
+        {
+            return mapTile.entities.Count > 0;
         }
 
         public override void Execute(Player player, Entity entity, Coordinate targetCoordinate, Entity target)

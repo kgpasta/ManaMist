@@ -8,15 +8,17 @@ using UnityEngine;
 namespace ManaMist.Actions
 {
     [CreateAssetMenu(menuName = "ManaMist/Actions/MoveAction")]
-    public class MoveAction : Action
+    public class MoveAction : Action, ISelectableTargetAction
     {
         public int movementRange;
         public List<Models.Terrain> allowedTerrain;
 
+        public int Range => movementRange;
+
         public override bool CanExecute(Player player, Entity entity, Coordinate targetCoordinate, Entity target)
         {
             MapTile mapTile = mapController.GetMapTileAtCoordinate(targetCoordinate);
-            return base.CanExecute(player, entity, targetCoordinate, target) && CanMove(mapTile);
+            return base.CanExecute(player, entity, targetCoordinate, target) && CanPerform(mapTile);
         }
 
         public override void Execute(Player player, Entity entity, Coordinate coordinate, Entity target)
@@ -26,7 +28,7 @@ namespace ManaMist.Actions
             mapController.MoveEntity(coordinate, entity);
         }
 
-        public bool CanMove(MapTile mapTile)
+        public bool CanPerform(MapTile mapTile)
         {
             return allowedTerrain.Contains(mapTile.terrain) && mapTile.entities.Count == 0;
         }

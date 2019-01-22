@@ -10,9 +10,12 @@ using UnityEngine;
 namespace ManaMist.Actions
 {
     [CreateAssetMenu(menuName = "ManaMist/Actions/BuildAction")]
-    public class BuildAction : Action
+    public class BuildAction : Action, ISelectableTargetAction
     {
         public List<EntityType> canBuildList;
+
+        public int Range => 1;
+
         public override bool CanExecute(Player player, Entity entity, Coordinate targetCoordinate, Entity target)
         {
             MapTile mapTile = mapController.GetMapTileAtCoordinate(targetCoordinate);
@@ -22,6 +25,11 @@ namespace ManaMist.Actions
             && player.resources.CanDecrement(target.cost)
             && canBuildList.Contains(target.type)
             && buildConstraints.All(constraint => constraint.CanBuild(mapTile));
+        }
+
+        public bool CanPerform(MapTile mapTile)
+        {
+            return mapTile.entities.Count == 0;
         }
 
         public override void Execute(Player player, Entity entity, Coordinate targetCoordinate, Entity target)
