@@ -102,20 +102,20 @@ namespace ManaMist.State
             }
         }
 
-        private Dictionary<Coordinate, Path> ShowPaths(Coordinate coordinate, MoveAction moveAction)
+        private Dictionary<Coordinate, Path> ShowPaths(Coordinate coordinate, ISelectableTargetAction action)
         {
-            if (moveAction != null)
+            if (action != null)
             {
                 Pathfinding pathfinding = new Pathfinding()
                 {
                     start = coordinate,
-                    maxDistance = moveAction.movementRange
+                    maxDistance = action.Range
                 };
 
                 return pathfinding.Search((end) =>
                 {
                     MapTile mapTile = mapController.GetMapTileAtCoordinate(end);
-                    return moveAction.CanPerform(mapTile);
+                    return action.CanPerform(mapTile);
                 });
             }
 
