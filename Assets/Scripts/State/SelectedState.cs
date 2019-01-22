@@ -115,7 +115,7 @@ namespace ManaMist.State
                 return pathfinding.Search((end) =>
                 {
                     MapTile mapTile = mapController.GetMapTileAtCoordinate(end);
-                    return moveAction.CanMove(mapTile);
+                    return moveAction.CanPerform(mapTile);
                 });
             }
 

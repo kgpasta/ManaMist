@@ -1425,7 +1425,6 @@ GameObject:
   - component: {fileID: 177251841967548274}
   - component: {fileID: 5382714060614267390}
   - component: {fileID: 8754746946664630876}
-  - component: {fileID: 8117377276832153466}
   - component: {fileID: 5615601837497470556}
   m_Layer: 5
   m_Name: BuildActionPanel
@@ -1453,7 +1452,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 100, y: 0}
-  m_SizeDelta: {x: 190, y: 0}
+  m_SizeDelta: {x: 190, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &177251841967548274
 CanvasRenderer:
@@ -1512,23 +1511,9 @@ MonoBehaviour:
   m_ChildAlignment: 4
   m_Spacing: 5
   m_ChildForceExpandWidth: 1
-  m_ChildForceExpandHeight: 0
+  m_ChildForceExpandHeight: 1
   m_ChildControlWidth: 1
-  m_ChildControlHeight: 0
---- !u!114 &8117377276832153466
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7818911639548749631}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 1741964061, guid: f70555f144d8491a825f0804e09c671c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_HorizontalFit: 0
-  m_VerticalFit: 2
+  m_ChildControlHeight: 1
 --- !u!114 &5615601837497470556
 MonoBehaviour:
   m_ObjectHideFlags: 0
