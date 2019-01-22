@@ -49,12 +49,13 @@ namespace ManaMist.Combat
             bool inRange = attacker.range >= distance;
             int defenderSpeed = defender != null ? defender.speed : 0;
             int hitChance = attacker.accuracy - defenderSpeed;
-            return inRange && new Random().Next(0, 100) > hitChance;
+            int roll = new Random().Next(0, 100);
+            return inRange && roll < hitChance;
         }
 
         private bool WillCrit(AttackAction attacker)
         {
-            return new Random().Next(0, 100) > attacker.skill;
+            return new Random().Next(0, 100) < attacker.skill;
         }
 
         private int CalculateDamage(AttackAction attacker, AttackAction defender, int damageModifier)

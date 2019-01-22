@@ -30,12 +30,13 @@ namespace ManaMist.Actions
         public override void Execute(Player player, Entity entity, Coordinate targetCoordinate, Entity target)
         {
             base.Execute(player, entity, targetCoordinate, target);
+            Entity defender = mapController.GetMapTileAtCoordinate(targetCoordinate).entities[0];
 
-            int distance = mapController.GetPositionOfEntity(entity.id).Distance(mapController.GetPositionOfEntity(target.id));
+            int distance = mapController.GetPositionOfEntity(entity.id).Distance(mapController.GetPositionOfEntity(defender.id));
             CombatEngine combatEngine = new CombatEngine()
             {
                 attackingEntity = entity,
-                defendingEntity = target,
+                defendingEntity = defender,
                 distance = distance
             };
 
@@ -47,7 +48,7 @@ namespace ManaMist.Actions
             }
             else if (result == CombatResult.WIN)
             {
-                mapController.RemoveFromMap(target);
+                mapController.RemoveFromMap(defender);
             }
         }
     }

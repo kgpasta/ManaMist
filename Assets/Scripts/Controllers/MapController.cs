@@ -29,12 +29,19 @@ namespace ManaMist.Controllers
         public Coordinate previousCoordinate;
     }
 
+    public class EntityRemovedArgs
+    {
+        public Entity entity;
+        public Coordinate coordinate;
+    }
+
     [CreateAssetMenu(menuName = "ManaMist/Map Controller")]
     public class MapController : ScriptableObject
     {
         public event EventHandler<MapTileAddedArgs> MapTileAdded;
         public event EventHandler<EntityAddedArgs> EntityAdded;
         public event EventHandler<EntityMovedArgs> EntityMoved;
+        public event EventHandler<EntityRemovedArgs> EntityRemoved;
         private Dictionary<Coordinate, MapTile> m_CoordinateToMapTile = new Dictionary<Coordinate, MapTile>();
         private Dictionary<string, Coordinate> m_EntityIdToCoordinate = new Dictionary<string, Coordinate>();
 
@@ -82,6 +89,12 @@ namespace ManaMist.Controllers
                 }
 
                 m_EntityIdToCoordinate.Remove(entity.id);
+
+                EntityRemoved?.Invoke(this, new EntityRemovedArgs()
+                {
+                    entity = entity,
+                    coordinate = current
+                });
             }
         }
 

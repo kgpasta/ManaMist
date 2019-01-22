@@ -29,6 +29,7 @@ namespace ManaMist.UI
             mapController.MapTileAdded += AddMapTileToMap;
             mapController.EntityAdded += AddEntityModelToMap;
             mapController.EntityMoved += MoveEntityModel;
+            mapController.EntityRemoved += RemoveEntityModelFromMap;
         }
 
         private void OnDisable()
@@ -36,6 +37,7 @@ namespace ManaMist.UI
             mapController.MapTileAdded -= AddMapTileToMap;
             mapController.EntityAdded -= AddEntityModelToMap;
             mapController.EntityMoved -= MoveEntityModel;
+            mapController.EntityRemoved -= RemoveEntityModelFromMap;
         }
 
         private void AddMapTileToMap(object sender, MapTileAddedArgs args)
@@ -70,6 +72,12 @@ namespace ManaMist.UI
         {
             Transform transform = m_CoordinateToTransform[args.previousCoordinate].GetComponentInChildren<EntityView>().transform;
             transform.SetParent(m_CoordinateToTransform[args.coordinate], false);
+        }
+
+        private void RemoveEntityModelFromMap(object sender, EntityRemovedArgs args)
+        {
+            Transform transform = m_CoordinateToTransform[args.coordinate];
+            Destroy(transform.GetComponentInChildren<EntityView>().gameObject);
         }
 
     }

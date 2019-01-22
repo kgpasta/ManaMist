@@ -14,10 +14,12 @@ namespace ManaMist.UI
         [SerializeField] private EntityController entityController;
         [SerializeField] private InputController inputController;
         [SerializeField] private Button m_Button;
+        [SerializeField] private Button m_AttackButton;
 
         private void OnEnable()
         {
-            m_Button.onClick.AddListener(OnBuildClick);
+            //m_Button.onClick.AddListener(OnBuildClick);
+            m_AttackButton.onClick.AddListener(OnAttackClick);
         }
 
         private void OnDisable()
@@ -35,6 +37,15 @@ namespace ManaMist.UI
                 target = entity
             };
             inputController.RegisterInputEvent(buildButtonClickedInput);
+        }
+
+        private void OnAttackClick()
+        {
+            ActionButtonClickedInput attackButtonClickedInput = new ActionButtonClickedInput()
+            {
+                actionType = typeof(AttackAction),
+            };
+            inputController.RegisterInputEvent(attackButtonClickedInput);
         }
     }
 }
