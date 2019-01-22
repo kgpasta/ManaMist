@@ -1,8 +1,8 @@
-using System;
 using ManaMist.Actions;
 using ManaMist.Combat;
 using ManaMist.Models;
 using ManaMist.Utility;
+using UnityEngine;
 
 namespace ManaMist.Combat
 {
@@ -22,6 +22,7 @@ namespace ManaMist.Combat
                 int damageModifier = WillCrit(attacker) ? 2 : 1;
                 int damage = CalculateDamage(attacker, defender, damageModifier);
                 defendingEntity.hp -= ManaMistMath.Clamp(damage, 0, defendingEntity.hp);
+                Debug.Log(attackingEntity.name + " hit for " + damage);
 
                 if (defendingEntity.hp <= 0)
                 {
@@ -34,6 +35,7 @@ namespace ManaMist.Combat
                 int damageModifier = WillCrit(defender) ? 2 : 1;
                 int damage = CalculateDamage(defender, attacker, damageModifier);
                 attackingEntity.hp -= ManaMistMath.Clamp(damage, 0, attackingEntity.hp);
+                Debug.Log(defendingEntity.name + " hit for " + damage);
 
                 if (attackingEntity.hp <= 0)
                 {
@@ -49,13 +51,15 @@ namespace ManaMist.Combat
             bool inRange = attacker.range >= distance;
             int defenderSpeed = defender != null ? defender.speed : 0;
             int hitChance = attacker.accuracy - defenderSpeed;
-            int roll = new Random().Next(0, 100);
+            int roll = new System.Random().Next(0, 100);
+
+            Debug.Log("Attacker rolled a " + roll + " hit chance is " + hitChance);
             return inRange && roll < hitChance;
         }
 
         private bool WillCrit(AttackAction attacker)
         {
-            return new Random().Next(0, 100) < attacker.skill;
+            return new System.Random().Next(0, 100) < attacker.skill;
         }
 
         private int CalculateDamage(AttackAction attacker, AttackAction defender, int damageModifier)

@@ -13,18 +13,18 @@ namespace ManaMist.UI
     {
         [SerializeField] private EntityController entityController;
         [SerializeField] private InputController inputController;
-        [SerializeField] private Button m_Button;
+        [SerializeField] private Button m_BuildButton;
         [SerializeField] private Button m_AttackButton;
 
         private void OnEnable()
         {
-            //m_Button.onClick.AddListener(OnBuildClick);
+            m_BuildButton.onClick.AddListener(OnBuildClick);
             m_AttackButton.onClick.AddListener(OnAttackClick);
         }
 
         private void OnDisable()
         {
-            m_Button.onClick.RemoveAllListeners();
+            m_BuildButton.onClick.RemoveAllListeners();
         }
 
         private void OnBuildClick()
