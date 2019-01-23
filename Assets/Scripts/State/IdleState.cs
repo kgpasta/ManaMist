@@ -16,7 +16,7 @@ namespace ManaMist.State
 
                 MapTile mapTile = mapController.GetMapTileAtCoordinate(mapTileClickedInput.coordinate);
 
-                if (mapTile.entities.Count > 0)
+                if (mapTile.entities.Count > 0 && player.GetEntity(mapTile.entities[0].id) != null)
                 {
                     SelectedStateData selectedStateData = ScriptableObject.CreateInstance<SelectedStateData>();
                     selectedStateData.coordinate = mapTileClickedInput.coordinate;
