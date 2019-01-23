@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 01cafbde8b9062f4084fbfbb0be0a310, type: 3}
   m_Name: Worker
   m_EditorClassIdentifier: 
-  id: 765e915f-7288-4246-b57f-8703587c5ac9
+  id: 181b1143-2a9a-45c2-994e-1f9ab88acd6e
   type: 4
   cost: {fileID: 11400000, guid: 1f91d68878cf78f44b7eba3e972fe7f2, type: 2}
   actionPoints: 2
@@ -21,3 +21,4 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 1215169594858f847b092690ba620ca3, type: 2}
   - {fileID: 11400000, guid: e57ace4c0d5e0f943b5d58603ef9e98b, type: 2}
   hp: 10
+  maxHp: 10

@@ -31,6 +31,11 @@ namespace ManaMist.State
                 MapTileClickedInput mapTileClickedInput = inputEvent as MapTileClickedInput;
 
                 m_TargetCoordinate = mapTileClickedInput.coordinate;
+                MapTile mapTile = mapController.GetMapTileAtCoordinate(m_TargetCoordinate);
+                if (mapTile.entities.Count > 0)
+                {
+                    m_Target = mapTile.entities[0];
+                }
                 PerformAction();
             }
         }

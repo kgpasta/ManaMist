@@ -12,11 +12,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9a90b0f24ba450a429324c0ef686b74a, type: 3}
   m_Name: Fount
   m_EditorClassIdentifier: 
-  id: ae97c0cf-b182-463a-b0ed-bc5ac6fa10fb
+  id: 1c299b1e-f532-4edf-a091-6339899ef6bd
   type: 2
   cost: {fileID: 11400000, guid: 691f4ec12cb70eb4dad25ade3cafa28a, type: 2}
   actionPoints: 2
   actions:
   - {fileID: 11400000, guid: b1944b46e616ba047ad0a743355a43d7, type: 2}
   hp: 30
+  maxHp: 30
   buildTurns: 0

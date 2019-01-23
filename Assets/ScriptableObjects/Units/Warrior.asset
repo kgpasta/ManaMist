@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 01cafbde8b9062f4084fbfbb0be0a310, type: 3}
   m_Name: Warrior
   m_EditorClassIdentifier: 
-  id: c554cea3-b012-4e6d-9b42-c7b5e4cc52c6
+  id: c3fedfea-0003-449d-896b-dbc9a2b3a64c
   type: 5
   cost: {fileID: 11400000, guid: 9bb43b81c522f11408903444a45950dc, type: 2}
   actionPoints: 2
@@ -20,3 +20,4 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 1215169594858f847b092690ba620ca3, type: 2}
   - {fileID: 11400000, guid: c91509422fa203d409cde6adf1638958, type: 2}
   hp: 20
+  maxHp: 20

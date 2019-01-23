@@ -35,7 +35,6 @@ namespace ManaMist.Actions
         public override void Execute(Player player, Entity entity, Coordinate targetCoordinate, Entity target)
         {
             base.Execute(player, entity, targetCoordinate, target);
-            MapTile mapTile = mapController.GetMapTileAtCoordinate(targetCoordinate);
 
             player.resources.Decrement(target.cost);
             mapController.AddToMap(targetCoordinate, target);

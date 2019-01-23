@@ -14,6 +14,7 @@ namespace ManaMist.Models
         public int actionPoints;
         public List<Action> actions;
         public int hp;
+        public int maxHp;
 
         private void Awake()
         {
