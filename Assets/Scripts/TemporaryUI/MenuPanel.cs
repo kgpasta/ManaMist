@@ -13,13 +13,11 @@ namespace ManaMist.UI
         [SerializeField] private SelectedState m_SelectedState = null;
 
         [Header("UI Elements")]
-        [SerializeField] private PlayerPanel m_PlayerOnePanel = null;
-        [SerializeField] private PlayerPanel m_PlayerTwoPanel = null;
         [SerializeField] private BuildActionPanel m_BuildActionPanel = null;
         [SerializeField] private AttackActionPanel m_AttackActionPanel = null;
 
         private CanvasGroup m_CanvasGroup = null;
-        private bool m_IsVisible = false;
+        private bool m_IsVisible = true;
 
         private List<Action> m_Actions = null;
 
@@ -48,8 +46,6 @@ namespace ManaMist.UI
         private void OnEnter(object sender, System.EventArgs e)
         {
             m_Actions = m_SelectedState.CurrentlySelectedEntity.actions;
-
-            
 
             TogglePanels();
         }
