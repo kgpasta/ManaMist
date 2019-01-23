@@ -120,7 +120,7 @@ MonoBehaviour:
   m_ChildAlignment: 0
   m_StartCorner: 2
   m_StartAxis: 1
-  m_CellSize: {x: 0.15, y: 0.15}
+  m_CellSize: {x: 0.3, y: 0.3}
   m_Spacing: {x: 0, y: 0}
   m_Constraint: 0
   m_ConstraintCount: 2
@@ -187,7 +187,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fbfbfabc7d3cf9f49a3762857fa29070, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mapName: map1
+  mapName: map2
   players:
   - {fileID: 11400000, guid: 2b006e764554fe545b94dfadae66cdc4, type: 2}
   - {fileID: 11400000, guid: ca748eb221e6e204384023fdeec7c547, type: 2}
