@@ -38,6 +38,4 @@ namespace ManaMist.State
         {
         }
     }
-
-    public class IdleStateData : GameStateData { }
 }

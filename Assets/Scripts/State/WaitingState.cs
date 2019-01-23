@@ -19,7 +19,10 @@ namespace ManaMist.State
 
         private void OnTurnStart(object sender, TurnEventArgs args)
         {
-            dispatcher.Dispatch<IdleState>();
+            if (player.id == args.player.id)
+            {
+                dispatcher.Dispatch<IdleState>();
+            }
         }
 
         protected override void Enter()
@@ -36,6 +39,4 @@ namespace ManaMist.State
             return;
         }
     }
-
-    public class WaitingStateData : GameStateData { }
 }
