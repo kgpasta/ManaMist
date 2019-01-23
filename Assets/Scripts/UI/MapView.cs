@@ -60,7 +60,7 @@ namespace ManaMist.UI
             m_CoordinateToTransform.Add(args.coordinate, newMapTileWidgetInstance.transform);
         }
 
-        private void AddEntityModelToMap(object sender, EntityAddedArgs args)
+        private void AddEntityModelToMap(object sender, EntityArgs args)
         {
             GameObject entityPrefab = entityController.GetEntityPrefab(args.entity);
             GameObject entityInstance = Instantiate(entityPrefab, m_CoordinateToTransform[args.coordinate]);
@@ -74,7 +74,7 @@ namespace ManaMist.UI
             transform.SetParent(m_CoordinateToTransform[args.coordinate], false);
         }
 
-        private void RemoveEntityModelFromMap(object sender, EntityRemovedArgs args)
+        private void RemoveEntityModelFromMap(object sender, EntityArgs args)
         {
             Transform transform = m_CoordinateToTransform[args.coordinate];
             Destroy(transform.GetComponentInChildren<EntityView>().gameObject);

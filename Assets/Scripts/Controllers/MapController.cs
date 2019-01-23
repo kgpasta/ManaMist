@@ -16,32 +16,24 @@ namespace ManaMist.Controllers
         public Coordinate coordinate;
     }
 
-    public class EntityAddedArgs
+    public class EntityArgs
     {
         public Entity entity;
         public Coordinate coordinate;
     }
 
-    public class EntityMovedArgs
+    public class EntityMovedArgs : EntityArgs
     {
-        public Entity entity;
-        public Coordinate coordinate;
         public Coordinate previousCoordinate;
-    }
-
-    public class EntityRemovedArgs
-    {
-        public Entity entity;
-        public Coordinate coordinate;
     }
 
     [CreateAssetMenu(menuName = "ManaMist/Map Controller")]
     public class MapController : ScriptableObject
     {
         public event EventHandler<MapTileAddedArgs> MapTileAdded;
-        public event EventHandler<EntityAddedArgs> EntityAdded;
+        public event EventHandler<EntityArgs> EntityAdded;
         public event EventHandler<EntityMovedArgs> EntityMoved;
-        public event EventHandler<EntityRemovedArgs> EntityRemoved;
+        public event EventHandler<EntityArgs> EntityRemoved;
         private Dictionary<Coordinate, MapTile> m_CoordinateToMapTile = new Dictionary<Coordinate, MapTile>();
         private Dictionary<string, Coordinate> m_EntityIdToCoordinate = new Dictionary<string, Coordinate>();
 
@@ -55,7 +47,7 @@ namespace ManaMist.Controllers
 
             m_EntityIdToCoordinate[entity.id] = coordinate;
 
-            EntityAdded?.Invoke(this, new EntityAddedArgs()
+            EntityAdded?.Invoke(this, new EntityArgs()
             {
                 entity = entity,
                 coordinate = coordinate
@@ -90,7 +82,7 @@ namespace ManaMist.Controllers
 
                 m_EntityIdToCoordinate.Remove(entity.id);
 
-                EntityRemoved?.Invoke(this, new EntityRemovedArgs()
+                EntityRemoved?.Invoke(this, new EntityArgs()
                 {
                     entity = entity,
                     coordinate = current
