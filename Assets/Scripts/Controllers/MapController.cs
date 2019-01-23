@@ -121,108 +121,12 @@ namespace ManaMist.Controllers
 
         public void SetupMap(string mapFilePath)
         {
-            UnityEngine.Object map = Resources.Load(mapFilePath);
-            TextAsset mapText = map as TextAsset;
+            m_CoordinateToMapTile = new MapParser().SetupMap(mapFilePath, MAP_DIMENSION);
 
-            string[] allMapText = mapText.text.Split('\n');
-
-            for (int i = 0; i < MAP_DIMENSION; i++)
+            foreach (KeyValuePair<Coordinate, MapTile> pair in m_CoordinateToMapTile)
             {
-                string[] lineMapText = allMapText[i].Split(',');
-                for (int j = 0; j < MAP_DIMENSION; j++)
-                {
-                    Coordinate coordinate = new Coordinate(i, j);
-
-                    m_CoordinateToMapTile[coordinate] = StringToMapTile(lineMapText[j], coordinate);
-                    MapTileAdded?.Invoke(this, new MapTileAddedArgs() { mapTile = m_CoordinateToMapTile[coordinate], coordinate = coordinate });
-                }
+                MapTileAdded?.Invoke(this, new MapTileAddedArgs() { mapTile = pair.Value, coordinate = pair.Key });
             }
         }
-
-        #region Map CSV Parsing
-
-        private MapTile StringToMapTile(string str, Coordinate coordinate)
-        {
-            Models.Terrain terrain = Models.Terrain.NONE;
-            Resource resource = Resource.NONE;
-
-            char[] charArr = str.ToCharArray();
-
-            terrain = CharToTerrain(charArr[0]);
-
-            if (charArr.Length > 1)
-            {
-                resource = StringToResource(str.Substring(1));
-            }
-
-            MapTile mapTile = ScriptableObject.CreateInstance<MapTile>();
-            mapTile.terrain = terrain;
-            mapTile.resource = resource;
-
-            return mapTile;
-        }
-
-        private Resource StringToResource(string str)
-        {
-            Resource resource = Resource.NONE;
-
-            switch (str)
-            {
-                case "F":
-                    resource = Resource.FOOD;
-                    break;
-
-                case "Ma":
-                    resource = Resource.MANA;
-                    break;
-
-                case "Me":
-                    resource = Resource.METAL;
-                    break;
-            }
-
-            return resource;
-        }
-
-        private Models.Terrain CharToTerrain(char character)
-        {
-            Models.Terrain terrain = Models.Terrain.NONE;
-
-            switch (character)
-            {
-                case 'G':
-                    terrain = Models.Terrain.GRASS;
-                    break;
-
-                case 'H':
-                    terrain = Models.Terrain.HILL;
-                    break;
-
-                case 'F':
-                    terrain = Models.Terrain.FOREST;
-                    break;
-
-                case 'M':
-                    terrain = Models.Terrain.MOUNTAIN;
-                    break;
-
-                case 'W':
-                    terrain = Models.Terrain.WATER;
-                    break;
-
-                case 'S':
-                    terrain = Models.Terrain.SWAMP;
-                    break;
-
-                case 'D':
-                    terrain = Models.Terrain.DESERT;
-                    break;
-            }
-
-            return terrain;
-        }
-
-        #endregion
-
     }
 }
