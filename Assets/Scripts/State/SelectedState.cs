@@ -71,6 +71,13 @@ namespace ManaMist.State
 
                     dispatcher.Dispatch<PerformingActionState>(stateData);
                 }
+                else if (mapTileClickedInput.mapTile.entities.Count > 0 && player.GetEntity(mapTileClickedInput.mapTile.entities[0].id) != null)
+                {
+                    SelectedStateData selectedStateData = ScriptableObject.CreateInstance<SelectedStateData>();
+                    selectedStateData.coordinate = mapTileClickedInput.coordinate;
+
+                    dispatcher.Dispatch<SelectedState>(selectedStateData);
+                }
                 else
                 {
                     dispatcher.Dispatch<IdleState>();
