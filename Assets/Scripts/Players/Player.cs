@@ -20,6 +20,10 @@ namespace ManaMist.Players
         public void InitializeTurn()
         {
             IncrementResources();
+            foreach (Entity entity in entities)
+            {
+                entity.ResetActionPoints();
+            }
             behavior?.OnTurnStart();
         }
 
