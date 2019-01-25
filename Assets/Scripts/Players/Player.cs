@@ -15,12 +15,12 @@ namespace ManaMist.Players
         public int id;
         public List<Entity> entities = new List<Entity>();
         public Cost resources;
+        public Behavior behavior;
 
         public void InitializeTurn()
         {
             IncrementResources();
-
-            Debug.Log("Player " + id + " has " + resources.ToString());
+            behavior?.OnTurnStart();
         }
 
         private void IncrementResources()

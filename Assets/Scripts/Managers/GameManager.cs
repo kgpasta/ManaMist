@@ -80,6 +80,7 @@ namespace ManaMist.Managers
 
         private void OnTurnStart(object sender, TurnEventArgs args)
         {
+            Debug.Log(args);
             Player currentPlayer = players.Find(player => player.id == args.player.id);
             currentPlayer?.InitializeTurn();
         }
