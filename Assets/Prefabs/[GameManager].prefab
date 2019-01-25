@@ -187,7 +187,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fbfbfabc7d3cf9f49a3762857fa29070, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mapName: map2
+  mapName: open_map
   players:
   - {fileID: 11400000, guid: 2b006e764554fe545b94dfadae66cdc4, type: 2}
   - {fileID: 11400000, guid: ca748eb221e6e204384023fdeec7c547, type: 2}

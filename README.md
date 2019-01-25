@@ -8,3 +8,6 @@
 - AI for other player
 - Networking
 
+# Bugs:
+
+- Map parsing missing a food resource at tile 2,24
