@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 using ManaMist.Actions;
 using ManaMist.Utility;
 using UnityEngine;
@@ -9,18 +10,18 @@ namespace ManaMist.Models
     public abstract class Entity : ScriptableObject
     {
         [Header("Static Attributes")]
-        [SerializeField] private string m_Id;
+        [SerializeField] protected string m_Id;
         public string id { get { return m_Id; } }
-        [SerializeField] private EntityType m_Type;
+        [SerializeField] protected EntityType m_Type;
         public EntityType type { get { return m_Type; } }
-        [SerializeField] private Cost m_Cost;
+        [SerializeField] protected Cost m_Cost;
         public Cost cost { get { return m_Cost; } }
 
         [Header("Dynamic Attributes")]
-        public List<Action> actions;
-        [SerializeField] private int maxActionPoints;
+        public List<Action> actions = new List<Action>();
+        [SerializeField] protected int maxActionPoints;
         public int actionPoints;
-        [SerializeField] private int maxHp;
+        [SerializeField] protected int maxHp;
         public int hp;
 
         private void Awake()

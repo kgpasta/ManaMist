@@ -9,16 +9,15 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9a90b0f24ba450a429324c0ef686b74a, type: 3}
-  m_Name: Farm
+  m_Script: {fileID: 11500000, guid: 2b1fab0055ef7f449a8b2234452fbf09, type: 3}
+  m_Name: Worker
   m_EditorClassIdentifier: 
-  m_Id: b8598474-bfb4-4d02-bee8-67f59a9b2b12
-  m_Type: 1
-  m_Cost: {fileID: 11400000, guid: 8d8da896cb297f240ac54f1ba3d6e30a, type: 2}
+  m_Id: 84f9f188-2ec2-4fdd-b5ee-9be68471d897
+  m_Type: 4
+  m_Cost: {fileID: 0}
   actions:
-  - {fileID: 11400000, guid: 763bf3521ab06ac43be6d0f747e68088, type: 2}
+  - {fileID: 0}
   maxActionPoints: 2
   actionPoints: 0
-  maxHp: 30
-  hp: 30
-  buildTurns: 0
+  maxHp: 10
+  hp: 10

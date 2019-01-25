@@ -9,16 +9,15 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9a90b0f24ba450a429324c0ef686b74a, type: 3}
-  m_Name: Fount
+  m_Script: {fileID: 11500000, guid: 2b1fab0055ef7f449a8b2234452fbf09, type: 3}
+  m_Name: Warrior
   m_EditorClassIdentifier: 
-  m_Id: dfb49d2a-10f0-4c6d-b859-54514e6c63c4
-  m_Type: 2
-  m_Cost: {fileID: 11400000, guid: 691f4ec12cb70eb4dad25ade3cafa28a, type: 2}
+  m_Id: 5dc94b04-e5bc-4c73-91b1-138945164958
+  m_Type: 5
+  m_Cost: {fileID: 0}
   actions:
-  - {fileID: 11400000, guid: b1944b46e616ba047ad0a743355a43d7, type: 2}
+  - {fileID: 0}
   maxActionPoints: 2
   actionPoints: 0
-  maxHp: 30
-  hp: 30
-  buildTurns: 0
+  maxHp: 20
+  hp: 20

@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: WarriorCost
   m_EditorClassIdentifier: 
   food: 100
-  metal: 20
+  metal: 40
   mana: 0
