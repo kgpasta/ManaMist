@@ -109,20 +109,21 @@ namespace ManaMist.State
             }
         }
 
-        private Dictionary<Coordinate, Path> ShowPaths(Coordinate coordinate, ISelectableTargetAction action)
+        private Dictionary<Coordinate, Path> ShowPaths(Coordinate coordinate, Action action)
         {
             if (action != null)
             {
+                ISelectableTargetAction selectableTargetAction = action as ISelectableTargetAction;
                 Pathfinding pathfinding = new Pathfinding()
                 {
                     start = coordinate,
-                    maxDistance = action.Range
+                    maxDistance = selectableTargetAction.Range
                 };
 
                 return pathfinding.Search((end) =>
                 {
                     MapTile mapTile = mapController.GetMapTileAtCoordinate(end);
-                    return action.CanPerform(mapTile);
+                    return action.CanExecute(player, m_CurrentlySelectedEntity, end);
                 });
             }
 
