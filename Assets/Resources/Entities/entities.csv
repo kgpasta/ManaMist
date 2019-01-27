@@ -1,3 +1,4 @@
 Name,ActionPoints,Food,Metal,Mana,HP,MoveAction.MovementRange,MoveAction.ActionPoints,MoveAction.AllowedTerrain,AttackAction.ActionPoints,AttackAction.Attack,AttackAction.Defense,AttackAction.Skill,AttackAction.Accuracy,AttackAction.Speed,AttackAction.Range
 Worker,2,50,20,0,10,5,1,GRASS:HILL:DESERT:FOREST:SWAMP,2,5,0,0,70,2,1
 Warrior,2,100,40,0,20,5,1,GRASS:HILL:DESERT:FOREST:SWAMP,2,10,5,5,90,5,1
+TownCenter,1,100,100,100,100,,,,1,10,10,10,80,0,2

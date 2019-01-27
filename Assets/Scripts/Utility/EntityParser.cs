@@ -18,6 +18,8 @@ namespace ManaMist.Utility
             string[] allEntitiesText = entitiesText.text.Split('\n');
             string[] fieldText = allEntitiesText[0].Split(',');
 
+            EntityController entityController = AssetDatabase.LoadAssetAtPath<EntityController>("Assets/ScriptableObjects/EntityController.asset");
+            entityController.entities.Clear();
             for (int i = 1; i < allEntitiesText.Length; i++)
             {
                 Dictionary<string, string> entityDict = new Dictionary<string, string>(StringComparer.InvariantCultureIgnoreCase);
@@ -25,11 +27,15 @@ namespace ManaMist.Utility
                 string[] entityText = allEntitiesText[i].Split(',');
                 for (int j = 0; j < entityText.Length; j++)
                 {
-                    entityDict.Add(fieldText[j].Trim(), entityText[j].Trim());
+                    if (!string.IsNullOrEmpty(entityText[j]))
+                    {
+                        entityDict.Add(fieldText[j].Trim(), entityText[j].Trim());
+                    }
                 }
 
                 Entity entity = ParseEntity(entityDict);
                 AssetDatabase.CreateAsset(entity, "Assets/ScriptableObjects/Entities/" + entity.name + ".asset");
+                entityController.entities.Add(entity);
             }
 
             Debug.Log(allEntitiesText.Length - 1 + " entities added");
