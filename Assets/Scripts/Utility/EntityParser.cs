@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using ManaMist.Actions;
+using ManaMist.Controllers;
 using ManaMist.Models;
 using UnityEditor;
 using UnityEngine;
@@ -49,12 +50,14 @@ namespace ManaMist.Utility
             entity.m_Cost.metal = System.Int32.Parse(fields[nameof(entity.m_Cost.metal)]);
             entity.m_Cost.mana = System.Int32.Parse(fields[nameof(entity.m_Cost.mana)]);
 
+            MapController mapController = AssetDatabase.LoadAssetAtPath<MapController>("Assets/ScriptableObjects/MapController.asset");
             if (fields.ContainsKey(nameof(MoveAction) + "." + nameof(MoveAction.movementRange)))
             {
                 MoveAction moveAction = ScriptableObject.CreateInstance<MoveAction>();
                 moveAction.movementRange = System.Int32.Parse(fields[nameof(MoveAction) + "." + nameof(MoveAction.movementRange)]);
                 moveAction.actionPoints = System.Int32.Parse(fields[nameof(MoveAction) + "." + nameof(actionPoints)]);
                 moveAction.allowedTerrain = ParseStringAsList<Models.Terrain>(fields[nameof(MoveAction) + "." + nameof(MoveAction.allowedTerrain)]);
+                moveAction.mapController = mapController;
                 entity.AddAction(moveAction);
             }
 
