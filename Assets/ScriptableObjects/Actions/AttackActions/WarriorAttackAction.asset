@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6ed329018b84c0b4fac29d2607e3b5a8, type: 3}
   m_Name: WarriorAttackAction
   m_EditorClassIdentifier: 
-  mapController: {fileID: 11400000, guid: 687951a7835bd5a43b17fca05b9af0d8, type: 2}
-  actionPoints: 1
+  mapController: {fileID: 0}
+  actionPoints: 2
   attack: 10
   defense: 5
   skill: 5

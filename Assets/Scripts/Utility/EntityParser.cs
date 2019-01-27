@@ -25,15 +25,14 @@ namespace ManaMist.Utility
                 string[] entityText = allEntitiesText[i].Split(',');
                 for (int j = 0; j < entityText.Length; j++)
                 {
-                    entityDict.Add(fieldText[j], entityText[j]);
+                    entityDict.Add(fieldText[j].Trim(), entityText[j].Trim());
                 }
 
                 Entity entity = ParseEntity(entityDict);
                 AssetDatabase.CreateAsset(entity, "Assets/ScriptableObjects/Entities/" + entity.name + ".asset");
-                AssetDatabase.CreateAsset(entity.cost, "Assets/ScriptableObjects/Costs/Entities/" + entity.name + "Cost.asset");
-                AssetDatabase.CreateAsset(entity.actions[0], "Assets/ScriptableObjects/Actions/" + entity.name + "MoveAction.asset");
             }
 
+            Debug.Log(allEntitiesText.Length - 1 + " entities added");
         }
 
         public static Entity ParseEntity(Dictionary<string, string> fields)
@@ -49,16 +48,20 @@ namespace ManaMist.Utility
             entity.m_Cost.food = System.Int32.Parse(fields[nameof(entity.m_Cost.food)]);
             entity.m_Cost.metal = System.Int32.Parse(fields[nameof(entity.m_Cost.metal)]);
             entity.m_Cost.mana = System.Int32.Parse(fields[nameof(entity.m_Cost.mana)]);
+            AssetDatabase.CreateAsset(entity.cost, "Assets/ScriptableObjects/Costs/Entities/" + entity.name + "Cost.asset");
 
             MapController mapController = AssetDatabase.LoadAssetAtPath<MapController>("Assets/ScriptableObjects/MapController.asset");
             if (fields.ContainsKey(nameof(MoveAction) + "." + nameof(MoveAction.movementRange)))
             {
-                MoveAction moveAction = ScriptableObject.CreateInstance<MoveAction>();
-                moveAction.movementRange = System.Int32.Parse(fields[nameof(MoveAction) + "." + nameof(MoveAction.movementRange)]);
-                moveAction.actionPoints = System.Int32.Parse(fields[nameof(MoveAction) + "." + nameof(actionPoints)]);
-                moveAction.allowedTerrain = ParseStringAsList<Models.Terrain>(fields[nameof(MoveAction) + "." + nameof(MoveAction.allowedTerrain)]);
-                moveAction.mapController = mapController;
+                MoveAction moveAction = ParseMoveAction(mapController, fields);
+                AssetDatabase.CreateAsset(moveAction, "Assets/ScriptableObjects/Actions/MoveActions/" + entity.name + "MoveAction.asset");
                 entity.AddAction(moveAction);
+            }
+            if (fields.ContainsKey(nameof(AttackAction) + "." + nameof(AttackAction.attack)))
+            {
+                AttackAction attackAction = ParseAttackAction(mapController, fields);
+                AssetDatabase.CreateAsset(attackAction, "Assets/ScriptableObjects/Actions/AttackActions/" + entity.name + "AttackAction.asset");
+                entity.AddAction(attackAction);
             }
 
             return (Entity)entity;
@@ -73,6 +76,32 @@ namespace ManaMist.Utility
             }
 
             return newList;
+        }
+
+        private static MoveAction ParseMoveAction(MapController mapController, Dictionary<string, string> fields)
+        {
+            MoveAction moveAction = ScriptableObject.CreateInstance<MoveAction>();
+            moveAction.movementRange = System.Int32.Parse(fields[nameof(MoveAction) + "." + nameof(MoveAction.movementRange)]);
+            moveAction.actionPoints = System.Int32.Parse(fields[nameof(MoveAction) + "." + nameof(actionPoints)]);
+            moveAction.allowedTerrain = ParseStringAsList<Models.Terrain>(fields[nameof(MoveAction) + "." + nameof(MoveAction.allowedTerrain)]);
+            moveAction.mapController = mapController;
+
+            return moveAction;
+        }
+
+        private static AttackAction ParseAttackAction(MapController mapController, Dictionary<string, string> fields)
+        {
+            AttackAction attackAction = ScriptableObject.CreateInstance<AttackAction>();
+            attackAction.actionPoints = System.Int32.Parse(fields[nameof(AttackAction) + "." + nameof(actionPoints)]);
+            attackAction.attack = System.Int32.Parse(fields[nameof(AttackAction) + "." + nameof(AttackAction.attack)]);
+            attackAction.defense = System.Int32.Parse(fields[nameof(AttackAction) + "." + nameof(AttackAction.defense)]);
+            attackAction.accuracy = System.Int32.Parse(fields[nameof(AttackAction) + "." + nameof(AttackAction.accuracy)]);
+            attackAction.speed = System.Int32.Parse(fields[nameof(AttackAction) + "." + nameof(AttackAction.speed)]);
+            attackAction.skill = System.Int32.Parse(fields[nameof(AttackAction) + "." + nameof(AttackAction.skill)]);
+            attackAction.range = System.Int32.Parse(fields[nameof(AttackAction) + "." + nameof(AttackAction.range)]);
+            attackAction.mapController = mapController;
+
+            return attackAction;
         }
     }
 }

@@ -12,11 +12,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2b1fab0055ef7f449a8b2234452fbf09, type: 3}
   m_Name: Warrior
   m_EditorClassIdentifier: 
-  m_Id: f6dbfb78-bb93-481e-bc05-d959f08a8f77
+  m_Id: 289cfef8-8d15-4f06-8e18-4025b9361f51
   m_Type: 5
-  m_Cost: {fileID: 0}
+  m_Cost: {fileID: 11400000, guid: 9bb43b81c522f11408903444a45950dc, type: 2}
   actions:
-  - {fileID: 0}
+  - {fileID: 11400000, guid: a4db0dae514c55b44bd9f5d74a2f5653, type: 2}
+  - {fileID: 11400000, guid: c91509422fa203d409cde6adf1638958, type: 2}
   maxActionPoints: 2
   actionPoints: 0
   maxHp: 20
