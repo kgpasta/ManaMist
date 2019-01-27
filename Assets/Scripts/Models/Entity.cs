@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
 using ManaMist.Actions;
+using ManaMist.Players;
 using ManaMist.Utility;
 using UnityEngine;
 
@@ -57,6 +58,27 @@ namespace ManaMist.Models
         public void ResetActionPoints()
         {
             actionPoints = maxActionPoints;
+        }
+
+        public void PerformTurnStartActions(Player player)
+        {
+            foreach (Action action in actions)
+            {
+                if (action is ITurnStartAction)
+                {
+                    if (action.CanExecute(player, this))
+                    {
+                        action.Execute(player, this);
+                    }
+
+                    ITurnStartAction turnStartAction = action as ITurnStartAction;
+                    turnStartAction.TurnsLeft--;
+                    if (turnStartAction.TurnsLeft == 0)
+                    {
+                        actions.Remove(action);
+                    }
+                }
+            }
         }
     }
 }
