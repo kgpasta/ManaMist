@@ -19,26 +19,12 @@ namespace ManaMist.Players
 
         public void InitializeTurn()
         {
-            IncrementResources();
             foreach (Entity entity in entities)
             {
                 entity.ResetActionPoints();
+                entity.PerformTurnStartActions(this);
             }
             behavior?.OnTurnStart();
-        }
-
-        private void IncrementResources()
-        {
-            foreach (Entity entity in entities)
-            {
-                HarvestAction action = entity.GetAction<HarvestAction>();
-
-                if (action != null)
-                {
-                    resources.Increment(action.harvestAmount);
-                }
-
-            }
         }
 
         public void AddEntity(Entity entity)

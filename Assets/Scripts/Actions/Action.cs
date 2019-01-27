@@ -12,12 +12,12 @@ namespace ManaMist.Actions
         [SerializeField] protected MapController mapController;
         public int actionPoints;
 
-        public virtual bool CanExecute(Player player, Entity entity, Coordinate targetCoordinate, Entity target)
+        public virtual bool CanExecute(Player player, Entity entity, Coordinate targetCoordinate = null, Entity target = null)
         {
             return entity.actionPoints >= actionPoints;
         }
 
-        public virtual void Execute(Player player, Entity entity, Coordinate targetCoordinate, Entity target)
+        public virtual void Execute(Player player, Entity entity, Coordinate targetCoordinate = null, Entity target = null)
         {
             entity.ReduceActionPoints(actionPoints);
         }
