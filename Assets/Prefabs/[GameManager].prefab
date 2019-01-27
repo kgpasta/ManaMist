@@ -141,7 +141,8 @@ MonoBehaviour:
   inputController: {fileID: 11400000, guid: 8a78e43eac7c677448d699f6292adaa7, type: 2}
   MapTilePrefabReference: {fileID: 1321297760129468, guid: 495612f20c6e56748993579087aabe0a,
     type: 3}
-  MapGridParentTransform: {fileID: 224572947987198972}
+  m_EntityInspectorCanvasPrefabReference: {fileID: 4996954780654245608, guid: af5412abbe6586d47be9ba111ac5b1a8,
+    type: 3}
 --- !u!1 &1839112214776396
 GameObject:
   m_ObjectHideFlags: 0

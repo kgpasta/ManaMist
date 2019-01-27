@@ -19,9 +19,10 @@ namespace ManaMist.UI
         [Header("MapTile Prefab Reference")]
         public GameObject MapTilePrefabReference = null;
 
-        [Header("UI Elements")]
-        public Transform MapGridParentTransform = null;
+        [Header("Prefba References")]
+        [SerializeField] private GameObject m_EntityInspectorCanvasPrefabReference = null;
 
+        private EntityInspectorCanvas m_EntityInspectorCanvasInstance = null;
         private Dictionary<Coordinate, Transform> m_CoordinateToTransform = new Dictionary<Coordinate, Transform>();
 
         private void OnEnable()
@@ -42,7 +43,7 @@ namespace ManaMist.UI
 
         private void AddMapTileToMap(object sender, MapTileAddedArgs args)
         {
-            GameObject newMapTileWidgetInstance = Instantiate(MapTilePrefabReference, MapGridParentTransform);
+            GameObject newMapTileWidgetInstance = Instantiate(MapTilePrefabReference, transform);
             newMapTileWidgetInstance.name = "Tile (" + args.coordinate.x.ToString() + "," + args.coordinate.y.ToString() + ")";
 
             MapTileWidget mapTileWidget = newMapTileWidgetInstance.GetComponent<MapTileWidget>();
@@ -66,7 +67,7 @@ namespace ManaMist.UI
 
                     case UnityEngine.EventSystems.PointerEventData.InputButton.Right:
 
-                        InjectEntityInspectorCanvas(mapTileWidget.mapTile);
+                        InjectEntityInspectorCanvas(mapTileWidget);
 
                         break;
 
@@ -99,9 +100,17 @@ namespace ManaMist.UI
             Destroy(transform.GetComponentInChildren<EntityView>().gameObject);
         }
 
-        private void InjectEntityInspectorCanvas(MapTile mapTile)
+        private void InjectEntityInspectorCanvas(MapTileWidget mapTileWidget)
         {
-            
+            if (m_EntityInspectorCanvasInstance == null)
+            {
+                GameObject instance = Instantiate(m_EntityInspectorCanvasPrefabReference);
+                m_EntityInspectorCanvasInstance = instance.GetComponent<EntityInspectorCanvas>();
+            }
+
+            m_EntityInspectorCanvasInstance.transform.position = mapTileWidget.transform.position;
+            m_EntityInspectorCanvasInstance.entity = mapTileWidget.mapTile.entities[0];
+            m_EntityInspectorCanvasInstance.gameObject.SetActive(true);
         }
 
     }
