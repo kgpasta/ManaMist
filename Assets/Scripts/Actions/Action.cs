@@ -9,7 +9,7 @@ namespace ManaMist.Actions
 {
     public class Action : ScriptableObject
     {
-        [SerializeField] protected MapController mapController;
+        public MapController mapController;
         public int actionPoints;
 
         public virtual bool CanExecute(Player player, Entity entity, Coordinate targetCoordinate = null, Entity target = null)

@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2b1fab0055ef7f449a8b2234452fbf09, type: 3}
+  m_Name: Fount
+  m_EditorClassIdentifier: 
+  m_Id: edbb032c-af56-465a-9897-cf1bee8e944e
+  m_Type: 2
+  m_Cost: {fileID: 11400000, guid: 691f4ec12cb70eb4dad25ade3cafa28a, type: 2}
+  actions:
+  - {fileID: 11400000, guid: 6ea42f43b248c5547ab7871df9a9dea4, type: 2}
+  maxActionPoints: 0
+  actionPoints: 0
+  maxHp: 40
+  hp: 40

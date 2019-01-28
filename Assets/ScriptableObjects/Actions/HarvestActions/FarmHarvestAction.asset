@@ -9,14 +9,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6ed329018b84c0b4fac29d2607e3b5a8, type: 3}
-  m_Name: TownCenterAttackAction
+  m_Script: {fileID: 11500000, guid: 73d5d60c01a2fd244b305ea6ec0ecfc1, type: 3}
+  m_Name: FarmHarvestAction
   m_EditorClassIdentifier: 
   mapController: {fileID: 11400000, guid: 687951a7835bd5a43b17fca05b9af0d8, type: 2}
-  actionPoints: 1
-  attack: 10
-  defense: 10
-  skill: 10
-  accuracy: 80
-  speed: 0
-  range: 2
+  actionPoints: 0
+  resource: 1
+  harvestAmount: {fileID: 11400000, guid: ec77c39ef8ed46d4cbca7c41e79c4b7e, type: 2}
+  m_TurnLeft: 100000

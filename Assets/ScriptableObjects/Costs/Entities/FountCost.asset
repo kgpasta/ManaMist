@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1c8cc23b66d70774ea3119a300186762, type: 3}
   m_Name: FountCost
   m_EditorClassIdentifier: 
-  food: 0
-  metal: 0
+  food: 30
+  metal: 30
   mana: 0

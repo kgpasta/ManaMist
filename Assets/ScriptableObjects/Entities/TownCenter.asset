@@ -1,0 +1,24 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2b1fab0055ef7f449a8b2234452fbf09, type: 3}
+  m_Name: TownCenter
+  m_EditorClassIdentifier:
+  m_Id: fee10067-ad09-46da-a05b-d3c9b4c94a66
+  m_Type: 3
+  m_Cost: {fileID: 11400000, guid: 9642d25ca1e0c294f8dc8297cea92c1f, type: 2}
+  actions:
+  - {fileID: 11400000, guid: 1d8568cfeb159794a96ceb996b902e67, type: 2}
+  - {fileID: 11400000, guid: 6ec257cb6b6493241852c9b064e743c1, type: 2}
+  maxActionPoints: 1
+  actionPoints: 0
+  maxHp: 100
+  hp: 100

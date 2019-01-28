@@ -1,0 +1,7 @@
+Name,ActionPoints,Food,Metal,Mana,HP,MoveAction.MovementRange,MoveAction.ActionPoints,MoveAction.AllowedTerrain,AttackAction.ActionPoints,AttackAction.Attack,AttackAction.Defense,AttackAction.Skill,AttackAction.Accuracy,AttackAction.Speed,AttackAction.Range,BuildAction.ActionPoints,BuildAction.CanBuildList,HarvestAction.ActionPoints,HarvestAction.Resource,HarvestAction.Food,HarvestAction.Metal,HarvestAction.Mana
+Worker,2,50,20,0,10,5,1,Grass:Hill:Desert:Forest:Swamp,2,5,0,0,70,2,1,1,TownCenter:Farm:Mine:Fount,,,,,
+Warrior,2,100,40,0,20,5,1,Grass:Hill:Desert:Forest:Swamp,2,10,5,5,90,5,1,,,,,,,
+TownCenter,1,100,100,100,100,,,,1,10,10,10,80,0,2,1,Worker,,,,,
+Farm,0,0,30,30,40,,,,,,,,,,,,,0,Food,30,0,0
+Mine,0,30,0,30,40,,,,,,,,,,,,,0,Metal,0,30,0
+Fount,0,30,30,0,40,,,,,,,,,,,,,0,Mana,0,0,30
