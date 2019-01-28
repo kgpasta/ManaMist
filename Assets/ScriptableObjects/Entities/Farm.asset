@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2b1fab0055ef7f449a8b2234452fbf09, type: 3}
   m_Name: Farm
   m_EditorClassIdentifier: 
-  m_Id: afe49be6-be80-48fd-943b-8125a11efef9
+  m_Id: 32764e84-0f54-4365-b113-b62dbb67307f
   m_Type: 1
   m_Cost: {fileID: 11400000, guid: 8d8da896cb297f240ac54f1ba3d6e30a, type: 2}
   actions:
