@@ -5,7 +5,7 @@ using UnityEngine;
 
 namespace ManaMist.Controllers
 {
-    [CreateAssetMenu(menuName = "ManaMist/InputController")]
+    [CreateAssetMenu(menuName = "ManaMist/Input Controller")]
     public class InputController : ScriptableObject
     {
         public event EventHandler<InputEvent> OnInputEvent;
