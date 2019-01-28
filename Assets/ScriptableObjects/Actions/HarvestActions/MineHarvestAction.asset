@@ -10,9 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 73d5d60c01a2fd244b305ea6ec0ecfc1, type: 3}
-  m_Name: FarmHarvestAction
+  m_Name: MineHarvestAction
   m_EditorClassIdentifier: 
   mapController: {fileID: 11400000, guid: 687951a7835bd5a43b17fca05b9af0d8, type: 2}
   actionPoints: 0
-  resource: 1
-  harvestAmount: {fileID: 11400000, guid: 85b26de8fb9161c41ad9ccdebad6c2ca, type: 2}
+  resource: 2
+  harvestAmount: {fileID: 11400000, guid: 21f01b374706e2f44b6e47aa2e47f710, type: 2}
+  m_TurnLeft: 100000

@@ -15,4 +15,5 @@ MonoBehaviour:
   mapController: {fileID: 11400000, guid: 687951a7835bd5a43b17fca05b9af0d8, type: 2}
   actionPoints: 0
   resource: 3
-  harvestAmount: {fileID: 11400000, guid: ce35451d576a8f84fb4e0f40edb3b159, type: 2}
+  harvestAmount: {fileID: 11400000, guid: f10b6ffab7e84b34f8b50c62ff08054c, type: 2}
+  m_TurnLeft: 100000

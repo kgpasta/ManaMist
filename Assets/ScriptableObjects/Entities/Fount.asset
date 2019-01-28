@@ -10,15 +10,14 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 2b1fab0055ef7f449a8b2234452fbf09, type: 3}
-  m_Name: Warrior
+  m_Name: Fount
   m_EditorClassIdentifier: 
-  m_Id: f222ddd6-3010-4c78-85c6-0f8fb4bf3641
-  m_Type: 5
-  m_Cost: {fileID: 11400000, guid: 9bb43b81c522f11408903444a45950dc, type: 2}
+  m_Id: edbb032c-af56-465a-9897-cf1bee8e944e
+  m_Type: 2
+  m_Cost: {fileID: 11400000, guid: 691f4ec12cb70eb4dad25ade3cafa28a, type: 2}
   actions:
-  - {fileID: 11400000, guid: a4db0dae514c55b44bd9f5d74a2f5653, type: 2}
-  - {fileID: 11400000, guid: c91509422fa203d409cde6adf1638958, type: 2}
-  maxActionPoints: 2
+  - {fileID: 11400000, guid: 6ea42f43b248c5547ab7871df9a9dea4, type: 2}
+  maxActionPoints: 0
   actionPoints: 0
-  maxHp: 20
-  hp: 20
+  maxHp: 40
+  hp: 40

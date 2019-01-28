@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using ManaMist.Actions;
 using ManaMist.Controllers;
 using ManaMist.Models;
@@ -27,7 +28,7 @@ namespace ManaMist.Utility
                 string[] entityText = allEntitiesText[i].Split(',');
                 for (int j = 0; j < entityText.Length; j++)
                 {
-                    if (!string.IsNullOrEmpty(entityText[j]))
+                    if (!string.IsNullOrWhiteSpace(entityText[j]))
                     {
                         entityDict.Add(fieldText[j].Trim(), entityText[j].Trim());
                     }
@@ -45,29 +46,38 @@ namespace ManaMist.Utility
         {
             EntityParser entity = ScriptableObject.CreateInstance<EntityParser>();
             entity.name = fields[nameof(name)];
-            entity.m_Type = (EntityType)System.Enum.Parse(typeof(EntityType), fields[nameof(name)]);
-            entity.maxActionPoints = System.Int32.Parse(fields[nameof(actionPoints)]);
-            entity.maxHp = System.Int32.Parse(fields[nameof(hp)]);
+            entity.m_Type = (EntityType)Enum.Parse(typeof(EntityType), fields[nameof(name)], true);
+            entity.maxActionPoints = Int32.Parse(fields[nameof(actionPoints)]);
+            entity.maxHp = Int32.Parse(fields[nameof(hp)]);
             entity.hp = entity.maxHp;
 
-            entity.m_Cost = ScriptableObject.CreateInstance<Cost>();
-            entity.m_Cost.food = System.Int32.Parse(fields[nameof(entity.m_Cost.food)]);
-            entity.m_Cost.metal = System.Int32.Parse(fields[nameof(entity.m_Cost.metal)]);
-            entity.m_Cost.mana = System.Int32.Parse(fields[nameof(entity.m_Cost.mana)]);
+            entity.m_Cost = ParseCost(fields);
             AssetDatabase.CreateAsset(entity.cost, "Assets/ScriptableObjects/Costs/Entities/" + entity.name + "Cost.asset");
 
             MapController mapController = AssetDatabase.LoadAssetAtPath<MapController>("Assets/ScriptableObjects/MapController.asset");
-            if (fields.ContainsKey(nameof(MoveAction) + "." + nameof(MoveAction.movementRange)))
+            if (fields.Keys.Any(field => field.Contains(nameof(MoveAction))))
             {
                 MoveAction moveAction = ParseMoveAction(mapController, fields);
                 AssetDatabase.CreateAsset(moveAction, "Assets/ScriptableObjects/Actions/MoveActions/" + entity.name + "MoveAction.asset");
                 entity.AddAction(moveAction);
             }
-            if (fields.ContainsKey(nameof(AttackAction) + "." + nameof(AttackAction.attack)))
+            if (fields.Keys.Any(field => field.Contains(nameof(AttackAction))))
             {
                 AttackAction attackAction = ParseAttackAction(mapController, fields);
                 AssetDatabase.CreateAsset(attackAction, "Assets/ScriptableObjects/Actions/AttackActions/" + entity.name + "AttackAction.asset");
                 entity.AddAction(attackAction);
+            }
+            if (fields.Keys.Any(field => field.Contains(nameof(BuildAction))))
+            {
+                BuildAction buildAction = ParseBuildAction(mapController, fields);
+                AssetDatabase.CreateAsset(buildAction, "Assets/ScriptableObjects/Actions/BuildActions/" + entity.name + "BuildAction.asset");
+                entity.AddAction(buildAction);
+            }
+            if (fields.Keys.Any(field => field.Contains(nameof(HarvestAction))))
+            {
+                HarvestAction harvestAction = ParseHarvestAction(entity, mapController, fields);
+                AssetDatabase.CreateAsset(harvestAction, "Assets/ScriptableObjects/Actions/HarvestActions/" + entity.name + "HarvestAction.asset");
+                entity.AddAction(harvestAction);
             }
 
             return (Entity)entity;
@@ -78,36 +88,68 @@ namespace ManaMist.Utility
             List<T> newList = new List<T>();
             foreach (string splitString in input.Split(':'))
             {
-                newList.Add((T)Enum.Parse(typeof(T), splitString));
+                newList.Add((T)Enum.Parse(typeof(T), splitString, true));
             }
 
             return newList;
         }
 
+        private static Cost ParseCost(Dictionary<string, string> fields, string prefix = "")
+        {
+            Cost cost = ScriptableObject.CreateInstance<Cost>();
+            cost.food = Int32.Parse(fields[prefix + nameof(Cost.food)]);
+            cost.metal = Int32.Parse(fields[prefix + nameof(Cost.metal)]);
+            cost.mana = Int32.Parse(fields[prefix + nameof(Cost.mana)]);
+            return cost;
+        }
+
+        private static T ParseAction<T>(MapController mapController, Dictionary<string, string> fields) where T : Actions.Action
+        {
+            T action = ScriptableObject.CreateInstance<T>();
+            action.mapController = mapController;
+            action.actionPoints = Int32.Parse(fields[typeof(T).Name + "." + nameof(actionPoints)]);
+
+            return action;
+        }
+
         private static MoveAction ParseMoveAction(MapController mapController, Dictionary<string, string> fields)
         {
-            MoveAction moveAction = ScriptableObject.CreateInstance<MoveAction>();
-            moveAction.movementRange = System.Int32.Parse(fields[nameof(MoveAction) + "." + nameof(MoveAction.movementRange)]);
-            moveAction.actionPoints = System.Int32.Parse(fields[nameof(MoveAction) + "." + nameof(actionPoints)]);
+            MoveAction moveAction = ParseAction<MoveAction>(mapController, fields);
+            moveAction.movementRange = Int32.Parse(fields[nameof(MoveAction) + "." + nameof(MoveAction.movementRange)]);
             moveAction.allowedTerrain = ParseStringAsList<Models.Terrain>(fields[nameof(MoveAction) + "." + nameof(MoveAction.allowedTerrain)]);
-            moveAction.mapController = mapController;
 
             return moveAction;
         }
 
         private static AttackAction ParseAttackAction(MapController mapController, Dictionary<string, string> fields)
         {
-            AttackAction attackAction = ScriptableObject.CreateInstance<AttackAction>();
-            attackAction.actionPoints = System.Int32.Parse(fields[nameof(AttackAction) + "." + nameof(actionPoints)]);
-            attackAction.attack = System.Int32.Parse(fields[nameof(AttackAction) + "." + nameof(AttackAction.attack)]);
-            attackAction.defense = System.Int32.Parse(fields[nameof(AttackAction) + "." + nameof(AttackAction.defense)]);
-            attackAction.accuracy = System.Int32.Parse(fields[nameof(AttackAction) + "." + nameof(AttackAction.accuracy)]);
-            attackAction.speed = System.Int32.Parse(fields[nameof(AttackAction) + "." + nameof(AttackAction.speed)]);
-            attackAction.skill = System.Int32.Parse(fields[nameof(AttackAction) + "." + nameof(AttackAction.skill)]);
-            attackAction.range = System.Int32.Parse(fields[nameof(AttackAction) + "." + nameof(AttackAction.range)]);
-            attackAction.mapController = mapController;
+            AttackAction attackAction = ParseAction<AttackAction>(mapController, fields);
+
+            attackAction.attack = Int32.Parse(fields[nameof(AttackAction) + "." + nameof(AttackAction.attack)]);
+            attackAction.defense = Int32.Parse(fields[nameof(AttackAction) + "." + nameof(AttackAction.defense)]);
+            attackAction.accuracy = Int32.Parse(fields[nameof(AttackAction) + "." + nameof(AttackAction.accuracy)]);
+            attackAction.speed = Int32.Parse(fields[nameof(AttackAction) + "." + nameof(AttackAction.speed)]);
+            attackAction.skill = Int32.Parse(fields[nameof(AttackAction) + "." + nameof(AttackAction.skill)]);
+            attackAction.range = Int32.Parse(fields[nameof(AttackAction) + "." + nameof(AttackAction.range)]);
 
             return attackAction;
+        }
+
+        private static BuildAction ParseBuildAction(MapController mapController, Dictionary<string, string> fields)
+        {
+            BuildAction buildAction = ParseAction<BuildAction>(mapController, fields);
+            buildAction.canBuildList = ParseStringAsList<EntityType>(fields[nameof(BuildAction) + "." + nameof(BuildAction.canBuildList)]);
+
+            return buildAction;
+        }
+
+        private static HarvestAction ParseHarvestAction(Entity entity, MapController mapController, Dictionary<string, string> fields)
+        {
+            HarvestAction harvestAction = ParseAction<HarvestAction>(mapController, fields);
+            harvestAction.resource = (Resource)Enum.Parse(typeof(Resource), fields[nameof(HarvestAction) + "." + nameof(HarvestAction.resource)], true);
+            harvestAction.harvestAmount = ParseCost(fields, nameof(HarvestAction) + ".");
+            AssetDatabase.CreateAsset(harvestAction.harvestAmount, "Assets/ScriptableObjects/Costs/Harvests/" + entity.name + "HarvestCost.asset");
+            return harvestAction;
         }
     }
 }
