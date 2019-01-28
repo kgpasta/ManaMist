@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9a90b0f24ba450a429324c0ef686b74a, type: 3}
   m_Name: TownCenter
   m_EditorClassIdentifier: 
-  m_Id: 90e205a6-228f-466f-9fca-fe1a815eeb3d
+  m_Id: 43fdb4f7-8c4f-491a-860d-452df492e0a5
   m_Type: 3
   m_Cost: {fileID: 11400000, guid: 9642d25ca1e0c294f8dc8297cea92c1f, type: 2}
   actions:
@@ -21,5 +21,5 @@ MonoBehaviour:
   maxActionPoints: 1
   actionPoints: 0
   maxHp: 100
-  hp: 100
+  hp: 129
   buildTurns: 0

@@ -19,10 +19,9 @@ namespace ManaMist.UI
         [Header("MapTile Prefab Reference")]
         public GameObject MapTilePrefabReference = null;
 
-        [Header("Prefba References")]
-        [SerializeField] private GameObject m_EntityInspectorCanvasPrefabReference = null;
+        [Header("Entity Inspector Reference")]
+        [SerializeField] private EntityInspectorPanel m_EntityInspector = null;
 
-        private EntityInspectorCanvas m_EntityInspectorCanvasInstance = null;
         private Dictionary<Coordinate, Transform> m_CoordinateToTransform = new Dictionary<Coordinate, Transform>();
 
         private void OnEnable()
@@ -67,7 +66,7 @@ namespace ManaMist.UI
 
                     case UnityEngine.EventSystems.PointerEventData.InputButton.Right:
 
-                        InjectEntityInspectorCanvas(mapTileWidget);
+                        ShowEntityInspectorCanvas(mapTileWidget);
 
                         break;
 
@@ -100,17 +99,17 @@ namespace ManaMist.UI
             Destroy(transform.GetComponentInChildren<EntityView>().gameObject);
         }
 
-        private void InjectEntityInspectorCanvas(MapTileWidget mapTileWidget)
+        private void ShowEntityInspectorCanvas(MapTileWidget mapTileWidget)
         {
-            if (m_EntityInspectorCanvasInstance == null)
+            if (mapTileWidget.mapTile.entities.Count > 0)
             {
-                GameObject instance = Instantiate(m_EntityInspectorCanvasPrefabReference);
-                m_EntityInspectorCanvasInstance = instance.GetComponent<EntityInspectorCanvas>();
+                m_EntityInspector.entity = mapTileWidget.mapTile.entities[0];
+                m_EntityInspector.gameObject.SetActive(true);
             }
-
-            m_EntityInspectorCanvasInstance.transform.position = mapTileWidget.transform.position;
-            m_EntityInspectorCanvasInstance.entity = mapTileWidget.mapTile.entities[0];
-            m_EntityInspectorCanvasInstance.gameObject.SetActive(true);
+            else
+            {
+                m_EntityInspector.gameObject.SetActive(false);
+            }
         }
 
     }
