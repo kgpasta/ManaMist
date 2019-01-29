@@ -22,7 +22,6 @@ namespace ManaMist.Actions
         public override void Execute(Player player, Entity entity, Coordinate targetCoordinate, Entity target)
         {
             base.Execute(player, entity, targetCoordinate, target);
-            MapTile mapTile = mapController.GetMapTileAtCoordinate(targetCoordinate);
 
             target.hp = ManaMistMath.Clamp(target.hp + healAmount, 0, target.MaxHp);
         }
