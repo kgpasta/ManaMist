@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: FarmCost
   m_EditorClassIdentifier: 
   food: 0
-  metal: 0
-  mana: 0
+  metal: 30
+  mana: 30

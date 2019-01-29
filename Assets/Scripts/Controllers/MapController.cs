@@ -37,7 +37,7 @@ namespace ManaMist.Controllers
         private Dictionary<Coordinate, MapTile> m_CoordinateToMapTile = new Dictionary<Coordinate, MapTile>();
         private Dictionary<string, Coordinate> m_EntityIdToCoordinate = new Dictionary<string, Coordinate>();
 
-        private const int MAP_DIMENSION = 50;
+        public const int MAP_DIMENSION = 25;
 
         public void AddToMap(Coordinate coordinate, Entity entity)
         {

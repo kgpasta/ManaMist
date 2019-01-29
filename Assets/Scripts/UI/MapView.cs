@@ -19,8 +19,8 @@ namespace ManaMist.UI
         [Header("MapTile Prefab Reference")]
         public GameObject MapTilePrefabReference = null;
 
-        [Header("UI Elements")]
-        public Transform MapGridParentTransform = null;
+        [Header("Entity Inspector Reference")]
+        [SerializeField] private EntityInspectorPanel m_EntityInspector = null;
 
         private Dictionary<Coordinate, Transform> m_CoordinateToTransform = new Dictionary<Coordinate, Transform>();
 
@@ -42,20 +42,39 @@ namespace ManaMist.UI
 
         private void AddMapTileToMap(object sender, MapTileAddedArgs args)
         {
-            GameObject newMapTileWidgetInstance = Instantiate(MapTilePrefabReference, MapGridParentTransform);
+            GameObject newMapTileWidgetInstance = Instantiate(MapTilePrefabReference, transform);
             newMapTileWidgetInstance.name = "Tile (" + args.coordinate.x.ToString() + "," + args.coordinate.y.ToString() + ")";
 
-            newMapTileWidgetInstance.GetComponent<MapTileWidget>().mapTile = args.mapTile;
+            MapTileWidget mapTileWidget = newMapTileWidgetInstance.GetComponent<MapTileWidget>();
 
-            newMapTileWidgetInstance.GetComponent<Button>().onClick.AddListener(() =>
+            mapTileWidget.mapTile = args.mapTile;
+
+            mapTileWidget.MapTileClicked += delegate (object sentBy, MapTileWidget.MapTileClickedEventArgs e)
             {
-                MapTileClickedInput mapTileClickedInput = new MapTileClickedInput()
+                switch (e.pointerEventData.button)
                 {
-                    coordinate = args.coordinate,
-                    mapTile = args.mapTile
-                };
-                inputController.RegisterInputEvent(mapTileClickedInput);
-            });
+                    case UnityEngine.EventSystems.PointerEventData.InputButton.Left:
+
+                        MapTileClickedInput mapTileClickedInput = new MapTileClickedInput()
+                        {
+                            coordinate = args.coordinate,
+                            mapTile = args.mapTile
+                        };
+                        inputController.RegisterInputEvent(mapTileClickedInput);
+
+                        break;
+
+                    case UnityEngine.EventSystems.PointerEventData.InputButton.Right:
+
+                        ShowEntityInspectorCanvas(mapTileWidget);
+
+                        break;
+
+                    default:
+
+                        break;
+                }
+            };
 
             m_CoordinateToTransform.Add(args.coordinate, newMapTileWidgetInstance.transform);
         }
@@ -78,6 +97,19 @@ namespace ManaMist.UI
         {
             Transform transform = m_CoordinateToTransform[args.coordinate];
             Destroy(transform.GetComponentInChildren<EntityView>().gameObject);
+        }
+
+        private void ShowEntityInspectorCanvas(MapTileWidget mapTileWidget)
+        {
+            if (mapTileWidget.mapTile.entities.Count > 0)
+            {
+                m_EntityInspector.entity = mapTileWidget.mapTile.entities[0];
+                m_EntityInspector.gameObject.SetActive(true);
+            }
+            else
+            {
+                m_EntityInspector.gameObject.SetActive(false);
+            }
         }
 
     }

@@ -15,26 +15,16 @@ namespace ManaMist.Players
         public int id;
         public List<Entity> entities = new List<Entity>();
         public Cost resources;
+        public Behavior behavior;
 
         public void InitializeTurn()
         {
-            IncrementResources();
-
-            Debug.Log("Player " + id + " has " + resources.ToString());
-        }
-
-        private void IncrementResources()
-        {
             foreach (Entity entity in entities)
             {
-                HarvestAction action = entity.GetAction<HarvestAction>();
-
-                if (action != null)
-                {
-                    resources.Increment(action.harvestAmount);
-                }
-
+                entity.ResetActionPoints();
+                entity.PerformTurnStartActions(this);
             }
+            behavior?.OnTurnStart();
         }
 
         public void AddEntity(Entity entity)

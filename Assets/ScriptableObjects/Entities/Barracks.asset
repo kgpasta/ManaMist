@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2b1fab0055ef7f449a8b2234452fbf09, type: 3}
+  m_Name: Barracks
+  m_EditorClassIdentifier: 
+  m_Id: 2e75bb24-3987-403b-bb0c-6f24cc76204b
+  m_Type: 6
+  m_Cost: {fileID: 11400000, guid: c9ba0a0977231a34592f161a0e33c280, type: 2}
+  actions:
+  - {fileID: 11400000, guid: c4fe1e3f59753cc4ebd170b78d882dac, type: 2}
+  maxActionPoints: 0
+  actionPoints: 0
+  maxHp: 60
+  hp: 60

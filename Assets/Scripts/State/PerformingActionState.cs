@@ -1,4 +1,5 @@
 using ManaMist.Actions;
+using ManaMist.Controllers;
 using ManaMist.Input;
 using ManaMist.Models;
 using ManaMist.Utility;
@@ -47,16 +48,15 @@ namespace ManaMist.State
             m_Source = performingActionStateData.source;
             m_TargetCoordinate = performingActionStateData.targetCoordinate;
             m_Target = performingActionStateData.target;
-            ISelectableTargetAction selectableTargetAction = m_Action as ISelectableTargetAction;
 
             if (m_TargetCoordinate != null)
             {
                 PerformAction();
             }
-            else if (selectableTargetAction != null)
+            else if (m_Action is ISelectableTargetAction)
             {
                 Coordinate currentCoordinate = mapController.GetPositionOfEntity(m_Source.id);
-                m_Paths = ShowPaths(currentCoordinate, selectableTargetAction);
+                m_Paths = ShowPaths(currentCoordinate, m_Action);
 
                 foreach (Coordinate coord in m_Paths.Keys)
                 {
@@ -85,20 +85,21 @@ namespace ManaMist.State
             dispatcher.Dispatch<IdleState>();
         }
 
-        private Dictionary<Coordinate, Path> ShowPaths(Coordinate coordinate, ISelectableTargetAction action)
+        private Dictionary<Coordinate, Path> ShowPaths(Coordinate coordinate, Action action)
         {
             if (action != null)
             {
+                ISelectableTargetAction selectableTargetAction = action as ISelectableTargetAction;
                 Pathfinding pathfinding = new Pathfinding()
                 {
                     start = coordinate,
-                    maxDistance = action.Range
+                    maxDistance = selectableTargetAction.Range,
+                    mapDimension = MapController.MAP_DIMENSION
                 };
 
                 return pathfinding.Search((end) =>
                 {
-                    MapTile mapTile = mapController.GetMapTileAtCoordinate(end);
-                    return action.CanPerform(mapTile);
+                    return action.CanExecute(player, m_Source, end, m_Target);
                 });
             }
 

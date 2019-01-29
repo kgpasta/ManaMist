@@ -51,7 +51,7 @@ namespace ManaMist.Controllers
             OnTurnStart?.Invoke(this, new TurnEventArgs(turnNumber, currentPlayer));
         }
 
-        public void MoveToNextPlayer()
+        private void MoveToNextPlayer()
         {
             playerQueue.Enqueue(currentPlayer);
             currentPlayer = playerQueue.Dequeue();

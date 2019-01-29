@@ -18,7 +18,9 @@ namespace ManaMist.Actions
         public override bool CanExecute(Player player, Entity entity, Coordinate targetCoordinate, Entity target)
         {
             MapTile mapTile = mapController.GetMapTileAtCoordinate(targetCoordinate);
-            return base.CanExecute(player, entity, targetCoordinate, target) && CanPerform(mapTile);
+            return base.CanExecute(player, entity, targetCoordinate, target)
+            && allowedTerrain.Contains(mapTile.terrain)
+            && mapTile.entities.Count == 0;
         }
 
         public override void Execute(Player player, Entity entity, Coordinate coordinate, Entity target)
@@ -26,11 +28,6 @@ namespace ManaMist.Actions
             base.Execute(player, entity, coordinate, target);
 
             mapController.MoveEntity(coordinate, entity);
-        }
-
-        public bool CanPerform(MapTile mapTile)
-        {
-            return allowedTerrain.Contains(mapTile.terrain) && mapTile.entities.Count == 0;
         }
     }
 }

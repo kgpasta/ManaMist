@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using ManaMist.Actions;
+using ManaMist.Controllers;
 using ManaMist.Input;
 using ManaMist.Models;
 using ManaMist.Utility;
@@ -71,6 +72,13 @@ namespace ManaMist.State
 
                     dispatcher.Dispatch<PerformingActionState>(stateData);
                 }
+                else if (mapTileClickedInput.mapTile.entities.Count > 0 && player.GetEntity(mapTileClickedInput.mapTile.entities[0].id) != null)
+                {
+                    SelectedStateData selectedStateData = ScriptableObject.CreateInstance<SelectedStateData>();
+                    selectedStateData.coordinate = mapTileClickedInput.coordinate;
+
+                    dispatcher.Dispatch<SelectedState>(selectedStateData);
+                }
                 else
                 {
                     dispatcher.Dispatch<IdleState>();
@@ -102,20 +110,21 @@ namespace ManaMist.State
             }
         }
 
-        private Dictionary<Coordinate, Path> ShowPaths(Coordinate coordinate, ISelectableTargetAction action)
+        private Dictionary<Coordinate, Path> ShowPaths(Coordinate coordinate, Action action)
         {
             if (action != null)
             {
+                ISelectableTargetAction selectableTargetAction = action as ISelectableTargetAction;
                 Pathfinding pathfinding = new Pathfinding()
                 {
                     start = coordinate,
-                    maxDistance = action.Range
+                    maxDistance = selectableTargetAction.Range,
+                    mapDimension = MapController.MAP_DIMENSION
                 };
 
                 return pathfinding.Search((end) =>
                 {
-                    MapTile mapTile = mapController.GetMapTileAtCoordinate(end);
-                    return action.CanPerform(mapTile);
+                    return action.CanExecute(player, m_CurrentlySelectedEntity, end);
                 });
             }
 

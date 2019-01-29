@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: WorkerCost
   m_EditorClassIdentifier: 
   food: 50
-  metal: 0
+  metal: 20
   mana: 0

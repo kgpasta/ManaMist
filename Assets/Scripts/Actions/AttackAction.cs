@@ -29,11 +29,6 @@ namespace ManaMist.Actions
             && startCoordinate.Distance(targetCoordinate) <= range;
         }
 
-        public bool CanPerform(MapTile mapTile)
-        {
-            return mapTile.entities.Count > 0;
-        }
-
         public override void Execute(Player player, Entity entity, Coordinate targetCoordinate, Entity target)
         {
             base.Execute(player, entity, targetCoordinate, target);

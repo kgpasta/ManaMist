@@ -13,12 +13,12 @@ MonoBehaviour:
   m_Name: EntityController
   m_EditorClassIdentifier: 
   entities:
-  - {fileID: 11400000, guid: b0dc4209bd3436e49847f37c3253057e, type: 2}
-  - {fileID: 11400000, guid: c51542bb0e526304e80d4da94358d330, type: 2}
-  - {fileID: 11400000, guid: 29af9d5a0a9a9804eae3b95e9b999339, type: 2}
-  - {fileID: 11400000, guid: 342454c91bcc9b04a8ad6b978aca0500, type: 2}
-  - {fileID: 11400000, guid: 131eb25a2fd42a34bb7cc94729f562ce, type: 2}
-  - {fileID: 11400000, guid: 4212a432c647f6f47b7f64e97e360860, type: 2}
+  - {fileID: 11400000, guid: c815b59b334a4284eaefb1e0847afd4e, type: 2}
+  - {fileID: 11400000, guid: d758ffaced030064d9598ec2858373eb, type: 2}
+  - {fileID: 11400000, guid: a2b01c40f63b15742bd5e55551b7b216, type: 2}
+  - {fileID: 11400000, guid: ab563ac383c05d24fadc10a22818e6d2, type: 2}
+  - {fileID: 11400000, guid: a57843bcc4da72f4ab6d5ee3bc2760a3, type: 2}
+  - {fileID: 11400000, guid: 6060c77f57e5baf44a0402435ffc015c, type: 2}
   entityViews:
   - {fileID: 1656329852607660, guid: b7346d606a9e7df4db2352920501a4d5, type: 3}
   - {fileID: 1656329852607660, guid: 38e668a2ea585a748b5f4876a772d944, type: 3}

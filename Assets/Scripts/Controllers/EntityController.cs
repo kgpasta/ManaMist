@@ -11,8 +11,8 @@ namespace ManaMist.Controllers
     [CreateAssetMenu(menuName = "ManaMist/Entity Controller")]
     public class EntityController : ScriptableObject
     {
-        public List<Entity> entities;
-        public List<GameObject> entityViews;
+        public List<Entity> entities = new List<Entity>();
+        public List<GameObject> entityViews = new List<GameObject>();
 
         public Entity CreateEntity(EntityType entityType)
         {
@@ -22,7 +22,7 @@ namespace ManaMist.Controllers
 
         public GameObject GetEntityPrefab(Entity entity)
         {
-            return entityViews.Find(entityView => entityView.GetComponent<EntityView>().entity.type == entity.type);
+            return entityViews.Find(entityView => entityView.name.Equals(entity.type.ToString(), StringComparison.InvariantCultureIgnoreCase));
         }
     }
 }

@@ -1,3 +1,5 @@
+using System.Collections.Generic;
+using System.Linq;
 using ManaMist.Actions;
 using ManaMist.Combat;
 using ManaMist.Models;
@@ -11,6 +13,7 @@ namespace ManaMist.Combat
         public Entity attackingEntity;
         public Entity defendingEntity;
         public int distance;
+        public List<IAttackModifier> modifiers = new List<IAttackModifier>();
 
         public CombatResult Battle()
         {
@@ -51,6 +54,10 @@ namespace ManaMist.Combat
             bool inRange = attacker.range >= distance;
             int defenderSpeed = defender != null ? defender.speed : 0;
             int hitChance = attacker.accuracy - defenderSpeed;
+            foreach (IAttackModifier modifier in modifiers)
+            {
+                hitChance = modifier.WillHitModifier(attacker, defender, hitChance);
+            }
             int roll = new System.Random().Next(0, 100);
 
             Debug.Log("Attacker rolled a " + roll + " hit chance is " + hitChance);
@@ -65,7 +72,12 @@ namespace ManaMist.Combat
         private int CalculateDamage(AttackAction attacker, AttackAction defender, int damageModifier)
         {
             int defenderDefense = defender != null ? defender.defense : 0;
-            return (attacker.attack - defender.defense) * damageModifier;
+            int baseDamage = (attacker.attack - defender.defense) * damageModifier;
+            foreach (IAttackModifier modifier in modifiers)
+            {
+                baseDamage = modifier.CalculateDamageModifier(attacker, defender, baseDamage);
+            }
+            return baseDamage;
         }
     }
 

@@ -8,6 +8,7 @@ namespace ManaMist.Utility
     {
         public Coordinate start;
         public int maxDistance;
+        public int mapDimension;
 
         public Dictionary<Coordinate, Path> Search(Func<Coordinate, bool> canMoveFunction)
         {
@@ -36,7 +37,11 @@ namespace ManaMist.Utility
                 {
                     Path nextPath = new Path(currentPath);
                     nextPath.Add(neighbor);
-                    if (!closedPaths.Contains(nextPath) && nextPath.Count - 1 <= maxDistance && canMoveFunction(neighbor))
+                    if (!closedPaths.Contains(nextPath)
+                    && nextPath.Count - 1 <= maxDistance
+                    && neighbor.x < mapDimension
+                    && neighbor.y < mapDimension
+                    && canMoveFunction(neighbor))
                     {
                         queue.Enqueue(nextPath);
                     }

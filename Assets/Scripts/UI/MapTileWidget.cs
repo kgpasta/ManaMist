@@ -3,9 +3,10 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-public class MapTileWidget : MonoBehaviour
+public class MapTileWidget : MonoBehaviour, IPointerClickHandler
 {
     [SerializeField]
     private MapTile m_MapTile = null;
@@ -30,6 +31,22 @@ public class MapTileWidget : MonoBehaviour
 
     private GameObject m_CurrentMapTileModel = null;
 
+    #region Events
+
+    public class MapTileClickedEventArgs : EventArgs
+    {
+        public PointerEventData pointerEventData { get; }
+
+        public MapTileClickedEventArgs(PointerEventData pointerEventData)
+        {
+            this.pointerEventData = pointerEventData;
+        }
+    }
+
+    public event EventHandler<MapTileClickedEventArgs> MapTileClicked;
+
+    #endregion
+
     private void OnGUI()
     {
         UpdateUI();
@@ -42,6 +59,11 @@ public class MapTileWidget : MonoBehaviour
             m_TileImage.color = MassiveShittyColorSwitchStatement();
             m_HighlightTile.SetActive(m_MapTile.isHighlighted);
         }
+    }
+
+    public void OnPointerClick(PointerEventData eventData)
+    {
+        MapTileClicked.Invoke(this, new MapTileClickedEventArgs(eventData));
     }
 
     private Color MassiveShittyColorSwitchStatement()
