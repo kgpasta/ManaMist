@@ -12,6 +12,7 @@ public class EntityInspectorPanel : MonoBehaviour
     [Header("UI Elements")]
     [SerializeField] private TextMeshProUGUI m_NameText = null;
     [SerializeField] private TextMeshProUGUI m_TypeText = null;
+    [SerializeField] private TextMeshProUGUI m_ActionPointsText = null;
     [SerializeField] private HpBarContainer m_HpBarContainer = null;
     [SerializeField] private Button m_CloseButton = null;
 
@@ -31,6 +32,7 @@ public class EntityInspectorPanel : MonoBehaviour
         {
             m_NameText.text = entity.name;
             m_TypeText.text = entity.type.ToString();
+            m_ActionPointsText.text = entity.actionPoints.ToString();
             m_HpBarContainer.currentHp = entity.hp;
             m_HpBarContainer.maxHp = entity.MaxHp;
         }

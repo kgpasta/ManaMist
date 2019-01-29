@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using ManaMist.Actions;
+using ManaMist.Controllers;
 using ManaMist.Input;
 using ManaMist.Models;
 using ManaMist.Utility;
@@ -117,12 +118,12 @@ namespace ManaMist.State
                 Pathfinding pathfinding = new Pathfinding()
                 {
                     start = coordinate,
-                    maxDistance = selectableTargetAction.Range
+                    maxDistance = selectableTargetAction.Range,
+                    mapDimension = MapController.MAP_DIMENSION
                 };
 
                 return pathfinding.Search((end) =>
                 {
-                    MapTile mapTile = mapController.GetMapTileAtCoordinate(end);
                     return action.CanExecute(player, m_CurrentlySelectedEntity, end);
                 });
             }
