@@ -79,6 +79,12 @@ namespace ManaMist.Utility
                 AssetDatabase.CreateAsset(harvestAction, "Assets/ScriptableObjects/Actions/HarvestActions/" + entity.name + "HarvestAction.asset");
                 entity.AddAction(harvestAction);
             }
+            if (fields.Keys.Any(field => field.Contains(nameof(HealAction))))
+            {
+                HealAction healAction = ParseHealAction(mapController, fields);
+                AssetDatabase.CreateAsset(healAction, "Assets/ScriptableObjects/Actions/HealActions/" + entity.name + "HealAction.asset");
+                entity.AddAction(healAction);
+            }
 
             return (Entity)entity;
         }
@@ -150,6 +156,14 @@ namespace ManaMist.Utility
             harvestAction.harvestAmount = ParseCost(fields, nameof(HarvestAction) + ".");
             AssetDatabase.CreateAsset(harvestAction.harvestAmount, "Assets/ScriptableObjects/Costs/Harvests/" + entity.name + "HarvestCost.asset");
             return harvestAction;
+        }
+
+        private static HealAction ParseHealAction(MapController mapController, Dictionary<string, string> fields)
+        {
+            HealAction healAction = ParseAction<HealAction>(mapController, fields);
+            healAction.healAmount = Int32.Parse(fields[nameof(HealAction) + "." + nameof(HealAction.healAmount)]);
+            healAction.range = Int32.Parse(fields[nameof(HealAction) + "." + nameof(HealAction.range)]);
+            return healAction;
         }
     }
 }

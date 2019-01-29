@@ -10,14 +10,15 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 2b1fab0055ef7f449a8b2234452fbf09, type: 3}
-  m_Name: Farm
+  m_Name: Guru
   m_EditorClassIdentifier: 
-  m_Id: 08f261a3-d58d-4acb-89ca-71bb3261e653
-  m_Type: 1
-  m_Cost: {fileID: 11400000, guid: 8d8da896cb297f240ac54f1ba3d6e30a, type: 2}
+  m_Id: 56223d9a-e56a-48df-b975-47d07415c3fd
+  m_Type: 7
+  m_Cost: {fileID: 11400000, guid: 5f493e8a9080c3e47a993bc599fc2d6e, type: 2}
   actions:
-  - {fileID: 11400000, guid: e9a08525141d3a6468373c70fc2e374a, type: 2}
-  maxActionPoints: 0
+  - {fileID: 11400000, guid: 7b54a693cc47d724b810dd2c905a822a, type: 2}
+  - {fileID: 11400000, guid: 28aae93db26f61b44a5b0b2f5bc9c3db, type: 2}
+  maxActionPoints: 2
   actionPoints: 0
-  maxHp: 40
-  hp: 40
+  maxHp: 10
+  hp: 10

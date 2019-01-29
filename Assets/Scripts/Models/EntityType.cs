@@ -8,6 +8,7 @@ namespace ManaMist.Models
         TownCenter,
         Worker,
         Warrior,
-        Barracks
+        Barracks,
+        Guru
     }
 }

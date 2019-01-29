@@ -1,0 +1,18 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 85e9907785a76094a86b6642c3859808, type: 3}
+  m_Name: GuruMoveAction
+  m_EditorClassIdentifier: 
+  mapController: {fileID: 11400000, guid: 687951a7835bd5a43b17fca05b9af0d8, type: 2}
+  actionPoints: 1
+  movementRange: 4
+  allowedTerrain: 010000000200000005000000060000000700000003000000
