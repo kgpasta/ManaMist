@@ -23,7 +23,7 @@ public class SelectableActionPanel : MonoBehaviour
 
     private void Awake()
     {
-        m_Button.onClick.AddListener(AttackButtonOnClick);
+        m_Button.onClick.AddListener(ActionButtonOnClick);
     }
 
     private void OnDestroy()
@@ -31,7 +31,7 @@ public class SelectableActionPanel : MonoBehaviour
         m_Button.onClick.RemoveAllListeners();
     }
 
-    private void AttackButtonOnClick()
+    private void ActionButtonOnClick()
     {
         ActionButtonClickedInput actionClickedInput = new ActionButtonClickedInput()
         {
