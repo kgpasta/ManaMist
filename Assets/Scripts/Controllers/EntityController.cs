@@ -11,6 +11,8 @@ namespace ManaMist.Controllers
     [CreateAssetMenu(menuName = "ManaMist/Entity Controller")]
     public class EntityController : ScriptableObject
     {
+        [Header("Default Prefab")]
+        [SerializeField] private GameObject m_DefaultEntityPrefab;
         public List<Entity> entities = new List<Entity>();
         public List<GameObject> entityViews = new List<GameObject>();
 
@@ -22,7 +24,8 @@ namespace ManaMist.Controllers
 
         public GameObject GetEntityPrefab(Entity entity)
         {
-            return entityViews.Find(entityView => entityView.name.Equals(entity.type.ToString(), StringComparison.InvariantCultureIgnoreCase));
+            GameObject entityPrefab = entityViews.Find(entityView => entityView.name.Equals(entity.type.ToString(), StringComparison.InvariantCultureIgnoreCase));
+            return entityPrefab != null ? entityPrefab : m_DefaultEntityPrefab;
         }
     }
 }

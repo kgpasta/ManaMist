@@ -12,6 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1086bc8159effd14c9891520e16b8105, type: 3}
   m_Name: EntityController
   m_EditorClassIdentifier: 
+  m_DefaultEntityPrefab: {fileID: 1267403289459928, guid: 510abc980c3f0614a8a17c0432691587,
+    type: 3}
   entities:
   - {fileID: 11400000, guid: c815b59b334a4284eaefb1e0847afd4e, type: 2}
   - {fileID: 11400000, guid: d758ffaced030064d9598ec2858373eb, type: 2}
@@ -19,6 +21,8 @@ MonoBehaviour:
   - {fileID: 11400000, guid: ab563ac383c05d24fadc10a22818e6d2, type: 2}
   - {fileID: 11400000, guid: a57843bcc4da72f4ab6d5ee3bc2760a3, type: 2}
   - {fileID: 11400000, guid: 6060c77f57e5baf44a0402435ffc015c, type: 2}
+  - {fileID: 11400000, guid: 5883ed66d83e25a48868e2da1c633c9d, type: 2}
+  - {fileID: 11400000, guid: 5210d89638279094d8a488b8c4ec5121, type: 2}
   entityViews:
   - {fileID: 1656329852607660, guid: b7346d606a9e7df4db2352920501a4d5, type: 3}
   - {fileID: 1656329852607660, guid: 38e668a2ea585a748b5f4876a772d944, type: 3}
@@ -26,3 +30,4 @@ MonoBehaviour:
   - {fileID: 1267403289459928, guid: 23254b32193742445a94e2ee184d9e4a, type: 3}
   - {fileID: 1656329852607660, guid: b0b942f393b6cd4418737a5a35fbfd4c, type: 3}
   - {fileID: 1267403289459928, guid: 4f70c8f91eddf7042b26f64e99b943b2, type: 3}
+  - {fileID: 1656329852607660, guid: 79cc3ebc50a1bd6408f31ff92d21aec4, type: 3}
