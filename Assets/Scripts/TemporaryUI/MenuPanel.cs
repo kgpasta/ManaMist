@@ -12,9 +12,13 @@ namespace ManaMist.UI
     {
         [SerializeField] private SelectedState m_SelectedState = null;
 
+        [Header("Prefab References")]
+        [SerializeField] private GameObject m_SelectableActionPanelPrefab = null;
+
         [Header("UI Elements")]
         [SerializeField] private BuildActionPanel m_BuildActionPanel = null;
-        [SerializeField] private AttackActionPanel m_AttackActionPanel = null;
+        [SerializeField] private GameObject m_ActionPanelContainer = null;
+        [SerializeField] private List<GameObject> m_Panels = new List<GameObject>();
 
         private CanvasGroup m_CanvasGroup = null;
         private bool m_IsVisible = true;
@@ -72,9 +76,13 @@ namespace ManaMist.UI
                 {
                     m_BuildActionPanel.Setup(m_SelectedState.CurrentlySelectedEntity.GetAction<BuildAction>()?.canBuildList);
                 }
-                if (action is AttackAction)
+                else if (action is ISelectableTargetAction && !(action is MoveAction))
                 {
-                    m_AttackActionPanel.gameObject.SetActive(true);
+                    GameObject selectableActionPanel = Instantiate(m_SelectableActionPanelPrefab, m_ActionPanelContainer.transform);
+                    selectableActionPanel.transform.SetAsFirstSibling();
+                    selectableActionPanel.GetComponent<SelectableActionPanel>().Init(action.GetType());
+                    m_Panels.Add(selectableActionPanel);
+                    selectableActionPanel.SetActive(true);
                 }
             }
         }
@@ -82,7 +90,11 @@ namespace ManaMist.UI
         private void ResetPanels()
         {
             m_BuildActionPanel.Teardown();
-            m_AttackActionPanel.gameObject.SetActive(false);
+            foreach (GameObject panel in m_Panels)
+            {
+                Destroy(panel);
+            }
+            m_Panels.Clear();
         }
     }
 }

@@ -25,7 +25,6 @@ namespace ManaMist.Models
         [SerializeField] protected int maxHp;
         public int MaxHp { get { return maxHp; } }
         public int hp;
-        public int maxHp;
 
         private void Awake()
         {
