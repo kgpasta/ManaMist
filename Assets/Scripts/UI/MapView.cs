@@ -19,8 +19,8 @@ namespace ManaMist.UI
         [Header("MapTile Prefab Reference")]
         public GameObject MapTilePrefabReference = null;
 
-        [Header("UI Elements")]
-        public Transform MapGridParentTransform = null;
+        [Header("Entity Inspector Reference")]
+        [SerializeField] private EntityInspectorPanel m_EntityInspector = null;
 
         private Dictionary<Coordinate, Transform> m_CoordinateToTransform = new Dictionary<Coordinate, Transform>();
 
@@ -42,7 +42,7 @@ namespace ManaMist.UI
 
         private void AddMapTileToMap(object sender, MapTileAddedArgs args)
         {
-            GameObject newMapTileWidgetInstance = Instantiate(MapTilePrefabReference, MapGridParentTransform);
+            GameObject newMapTileWidgetInstance = Instantiate(MapTilePrefabReference, transform);
             newMapTileWidgetInstance.name = "Tile (" + args.coordinate.x.ToString() + "," + args.coordinate.y.ToString() + ")";
 
             MapTileWidget mapTileWidget = newMapTileWidgetInstance.GetComponent<MapTileWidget>();
@@ -66,7 +66,7 @@ namespace ManaMist.UI
 
                     case UnityEngine.EventSystems.PointerEventData.InputButton.Right:
 
-                        InjectEntityInspectorCanvas(mapTileWidget.mapTile);
+                        ShowEntityInspectorCanvas(mapTileWidget);
 
                         break;
 
@@ -99,9 +99,17 @@ namespace ManaMist.UI
             Destroy(transform.GetComponentInChildren<EntityView>().gameObject);
         }
 
-        private void InjectEntityInspectorCanvas(MapTile mapTile)
+        private void ShowEntityInspectorCanvas(MapTileWidget mapTileWidget)
         {
-            
+            if (mapTileWidget.mapTile.entities.Count > 0)
+            {
+                m_EntityInspector.entity = mapTileWidget.mapTile.entities[0];
+                m_EntityInspector.gameObject.SetActive(true);
+            }
+            else
+            {
+                m_EntityInspector.gameObject.SetActive(false);
+            }
         }
 
     }

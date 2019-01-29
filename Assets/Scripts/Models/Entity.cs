@@ -23,6 +23,7 @@ namespace ManaMist.Models
         [SerializeField] protected int maxActionPoints;
         public int actionPoints;
         [SerializeField] protected int maxHp;
+        public int MaxHp { get { return maxHp; } }
         public int hp;
 
         private void Awake()
