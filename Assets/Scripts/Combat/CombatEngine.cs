@@ -13,7 +13,7 @@ namespace ManaMist.Combat
         public Entity attackingEntity;
         public Entity defendingEntity;
         public int distance;
-        public List<IAttackModifier> modifiers = new List<IAttackModifier>();
+        public List<AttackModifier> modifiers = new List<AttackModifier>();
 
         public CombatResult Battle()
         {
@@ -54,7 +54,7 @@ namespace ManaMist.Combat
             bool inRange = attacker.range >= distance;
             int defenderSpeed = defender != null ? defender.speed : 0;
             int hitChance = attacker.accuracy - defenderSpeed;
-            foreach (IAttackModifier modifier in modifiers)
+            foreach (AttackModifier modifier in modifiers)
             {
                 hitChance = modifier.WillHitModifier(attackingEntity, defendingEntity, hitChance);
             }
@@ -73,7 +73,7 @@ namespace ManaMist.Combat
         {
             int defenderDefense = defender != null ? defender.defense : 0;
             int baseDamage = (attacker.attack - defender.defense) * damageModifier;
-            foreach (IAttackModifier modifier in modifiers)
+            foreach (AttackModifier modifier in modifiers)
             {
                 baseDamage = modifier.CalculateDamageModifier(attackingEntity, defendingEntity, baseDamage);
             }

@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using ManaMist.Combat;
 using ManaMist.Controllers;
 using ManaMist.Models;
@@ -16,6 +17,7 @@ namespace ManaMist.Actions
         public int accuracy;
         public int speed;
         public int range;
+        public List<AttackModifier> attackModifiers = new List<AttackModifier>();
 
         public int Range => range;
 
@@ -38,7 +40,8 @@ namespace ManaMist.Actions
             {
                 attackingEntity = entity,
                 defendingEntity = target,
-                distance = distance
+                distance = distance,
+                modifiers = attackModifiers
             };
 
             CombatResult result = combatEngine.Battle();
