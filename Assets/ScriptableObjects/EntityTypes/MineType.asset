@@ -13,3 +13,4 @@ MonoBehaviour:
   m_Name: MineType
   m_EditorClassIdentifier: 
   Name: Mine
+  EntityClass: 6

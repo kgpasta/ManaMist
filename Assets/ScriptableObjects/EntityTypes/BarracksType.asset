@@ -13,3 +13,4 @@ MonoBehaviour:
   m_Name: BarracksType
   m_EditorClassIdentifier: 
   Name: Barracks
+  EntityClass: 6

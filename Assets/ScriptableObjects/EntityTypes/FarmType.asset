@@ -13,3 +13,4 @@ MonoBehaviour:
   m_Name: FarmType
   m_EditorClassIdentifier: 
   Name: Farm
+  EntityClass: 6

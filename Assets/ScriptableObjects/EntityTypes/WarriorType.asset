@@ -13,3 +13,4 @@ MonoBehaviour:
   m_Name: WarriorType
   m_EditorClassIdentifier: 
   Name: Warrior
+  EntityClass: 0

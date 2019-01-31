@@ -13,3 +13,4 @@ MonoBehaviour:
   m_Name: TownCenterType
   m_EditorClassIdentifier: 
   Name: TownCenter
+  EntityClass: 6

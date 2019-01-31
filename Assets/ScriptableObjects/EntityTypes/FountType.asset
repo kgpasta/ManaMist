@@ -13,3 +13,4 @@ MonoBehaviour:
   m_Name: FountType
   m_EditorClassIdentifier: 
   Name: Fount
+  EntityClass: 6

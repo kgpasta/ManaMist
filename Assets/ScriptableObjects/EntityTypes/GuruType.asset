@@ -13,3 +13,4 @@ MonoBehaviour:
   m_Name: GuruType
   m_EditorClassIdentifier: 
   Name: Guru
+  EntityClass: 4

@@ -46,7 +46,7 @@ namespace ManaMist.Utility
         {
             EntityParser entity = ScriptableObject.CreateInstance<EntityParser>();
             entity.name = fields[nameof(name)];
-            entity.m_Type = GetOrCreateEntityType(fields[nameof(name)]);
+            entity.m_Type = GetOrCreateEntityType(fields[nameof(name)], fields[nameof(entity.type.EntityClass)]);
 
             entity.maxActionPoints = Int32.Parse(fields[nameof(actionPoints)]);
             entity.maxHp = Int32.Parse(fields[nameof(hp)]);
@@ -110,7 +110,7 @@ namespace ManaMist.Utility
             return cost;
         }
 
-        private static EntityType GetOrCreateEntityType(string type)
+        private static EntityType GetOrCreateEntityType(string type, string entityClass = null)
         {
             EntityType entityType = AssetDatabase.LoadAssetAtPath<EntityType>("Assets/ScriptableObjects/EntityTypes/" + type + "Type.asset");
             if (entityType == null)
@@ -119,6 +119,14 @@ namespace ManaMist.Utility
                 entityType.Name = type;
                 AssetDatabase.CreateAsset(entityType, "Assets/ScriptableObjects/EntityTypes/" + type + "Type.asset");
             }
+
+            if (entityClass != null)
+            {
+                entityType.EntityClass = (EntityClass)Enum.Parse(typeof(EntityClass), entityClass, true);
+            }
+            EditorUtility.SetDirty(entityType);
+            AssetDatabase.SaveAssets();
+            AssetDatabase.Refresh();
             return entityType;
         }
 
