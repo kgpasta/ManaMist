@@ -18,7 +18,7 @@ namespace ManaMist.Controllers
 
         public Entity CreateEntity(EntityType entityType)
         {
-            Entity entityOutline = entities.Find(entity => entity.type == entityType);
+            Entity entityOutline = entities.Find(entity => entity.type.Equals(entityType));
             return ScriptableObject.Instantiate(entityOutline);
         }
 

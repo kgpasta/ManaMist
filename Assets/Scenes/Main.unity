@@ -1792,24 +1792,6 @@ PrefabInstance:
       propertyPath: m_RootOrder
       value: 2
       objectReference: {fileID: 0}
-    - target: {fileID: 114871655128495936, guid: 3891595981d0ca84295dd3b530024479,
-        type: 3}
-      propertyPath: entityController
-      value: 
-      objectReference: {fileID: 11400000, guid: 593c198e947f0e54db3b61d5592dcf53,
-        type: 2}
-    - target: {fileID: 114871655128495936, guid: 3891595981d0ca84295dd3b530024479,
-        type: 3}
-      propertyPath: state
-      value: 
-      objectReference: {fileID: 11400000, guid: 345119662dd621c47b3ba1959b3c797c,
-        type: 2}
-    - target: {fileID: 114871655128495936, guid: 3891595981d0ca84295dd3b530024479,
-        type: 3}
-      propertyPath: inputController
-      value: 
-      objectReference: {fileID: 11400000, guid: 8a78e43eac7c677448d699f6292adaa7,
-        type: 2}
     - target: {fileID: 114380090183731888, guid: 3891595981d0ca84295dd3b530024479,
         type: 3}
       propertyPath: inputController

@@ -20,3 +20,4 @@ MonoBehaviour:
   accuracy: 70
   speed: 2
   range: 1
+  attackModifiers: []
