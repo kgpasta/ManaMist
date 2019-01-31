@@ -1,14 +1,9 @@
+using UnityEngine;
+
 namespace ManaMist.Models
 {
-    public enum EntityType
+    public class EntityType : ScriptableObject
     {
-        Mine,
-        Farm,
-        Fount,
-        TownCenter,
-        Worker,
-        Warrior,
-        Barracks,
-        Guru
+        public string Name;
     }
 }

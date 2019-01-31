@@ -14,4 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   mapController: {fileID: 11400000, guid: 687951a7835bd5a43b17fca05b9af0d8, type: 2}
   actionPoints: 1
-  canBuildList: 0400000007000000
+  canBuildList:
+  - {fileID: 11400000, guid: 2ede1ec4856cbb24cb28fc7aafe188d0, type: 2}
+  - {fileID: 11400000, guid: 06bbcd9887935fe459429e4229cc74be, type: 2}

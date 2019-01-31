@@ -1,10 +1,11 @@
 using ManaMist.Actions;
+using ManaMist.Models;
 
 namespace ManaMist.Combat
 {
     public interface IAttackModifier
     {
-        int WillHitModifier(AttackAction attacker, AttackAction defender, int baseWillHit);
-        int CalculateDamageModifier(AttackAction attacker, AttackAction defender, int baseDamage);
+        int WillHitModifier(Entity attacker, Entity defender, int baseWillHit);
+        int CalculateDamageModifier(Entity attacker, Entity defender, int baseDamage);
     }
 }

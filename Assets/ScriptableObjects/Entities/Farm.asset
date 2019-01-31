@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2b1fab0055ef7f449a8b2234452fbf09, type: 3}
   m_Name: Farm
   m_EditorClassIdentifier: 
-  m_Id: 0db5da43-679e-4940-8898-81516178999a
-  m_Type: 1
+  m_Id: 34bfd7ce-0e41-4353-8c0c-e13a70105311
+  m_Type: {fileID: 11400000, guid: b436b7b94d08f684dbdf56fac2b314ec, type: 2}
   m_Cost: {fileID: 11400000, guid: 8d8da896cb297f240ac54f1ba3d6e30a, type: 2}
   actions:
   - {fileID: 11400000, guid: e9a08525141d3a6468373c70fc2e374a, type: 2}

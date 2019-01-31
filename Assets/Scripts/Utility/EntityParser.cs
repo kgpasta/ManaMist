@@ -46,7 +46,8 @@ namespace ManaMist.Utility
         {
             EntityParser entity = ScriptableObject.CreateInstance<EntityParser>();
             entity.name = fields[nameof(name)];
-            entity.m_Type = (EntityType)Enum.Parse(typeof(EntityType), fields[nameof(name)], true);
+            entity.m_Type = GetOrCreateEntityType(fields[nameof(name)]);
+
             entity.maxActionPoints = Int32.Parse(fields[nameof(actionPoints)]);
             entity.maxHp = Int32.Parse(fields[nameof(hp)]);
             entity.hp = entity.maxHp;
@@ -89,12 +90,12 @@ namespace ManaMist.Utility
             return (Entity)entity;
         }
 
-        private static List<T> ParseStringAsList<T>(string input) where T : IConvertible
+        private static List<T> ParseStringAsList<T>(string input, System.Func<string, object> conversion)
         {
             List<T> newList = new List<T>();
             foreach (string splitString in input.Split(':'))
             {
-                newList.Add((T)Enum.Parse(typeof(T), splitString, true));
+                newList.Add((T)conversion(splitString));
             }
 
             return newList;
@@ -107,6 +108,18 @@ namespace ManaMist.Utility
             cost.metal = Int32.Parse(fields[prefix + nameof(Cost.metal)]);
             cost.mana = Int32.Parse(fields[prefix + nameof(Cost.mana)]);
             return cost;
+        }
+
+        private static EntityType GetOrCreateEntityType(string type)
+        {
+            EntityType entityType = AssetDatabase.LoadAssetAtPath<EntityType>("Assets/ScriptableObjects/EntityTypes/" + type + "Type.asset");
+            if (entityType == null)
+            {
+                entityType = ScriptableObject.CreateInstance<EntityType>();
+                entityType.Name = type;
+                AssetDatabase.CreateAsset(entityType, "Assets/ScriptableObjects/EntityTypes/" + type + "Type.asset");
+            }
+            return entityType;
         }
 
         private static T ParseAction<T>(MapController mapController, Dictionary<string, string> fields) where T : Actions.Action
@@ -122,7 +135,10 @@ namespace ManaMist.Utility
         {
             MoveAction moveAction = ParseAction<MoveAction>(mapController, fields);
             moveAction.movementRange = Int32.Parse(fields[nameof(MoveAction) + "." + nameof(MoveAction.movementRange)]);
-            moveAction.allowedTerrain = ParseStringAsList<Models.Terrain>(fields[nameof(MoveAction) + "." + nameof(MoveAction.allowedTerrain)]);
+            moveAction.allowedTerrain = ParseStringAsList<Models.Terrain>(fields[nameof(MoveAction) + "." + nameof(MoveAction.allowedTerrain)], (inputString) =>
+            {
+                return Enum.Parse(typeof(Models.Terrain), inputString, true);
+            });
 
             return moveAction;
         }
@@ -144,7 +160,10 @@ namespace ManaMist.Utility
         private static BuildAction ParseBuildAction(MapController mapController, Dictionary<string, string> fields)
         {
             BuildAction buildAction = ParseAction<BuildAction>(mapController, fields);
-            buildAction.canBuildList = ParseStringAsList<EntityType>(fields[nameof(BuildAction) + "." + nameof(BuildAction.canBuildList)]);
+            buildAction.canBuildList = ParseStringAsList<EntityType>(fields[nameof(BuildAction) + "." + nameof(BuildAction.canBuildList)], (inputString) =>
+            {
+                return GetOrCreateEntityType(inputString);
+            });
 
             return buildAction;
         }

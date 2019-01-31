@@ -56,7 +56,7 @@ namespace ManaMist.Combat
             int hitChance = attacker.accuracy - defenderSpeed;
             foreach (IAttackModifier modifier in modifiers)
             {
-                hitChance = modifier.WillHitModifier(attacker, defender, hitChance);
+                hitChance = modifier.WillHitModifier(attackingEntity, defendingEntity, hitChance);
             }
             int roll = new System.Random().Next(0, 100);
 
@@ -75,7 +75,7 @@ namespace ManaMist.Combat
             int baseDamage = (attacker.attack - defender.defense) * damageModifier;
             foreach (IAttackModifier modifier in modifiers)
             {
-                baseDamage = modifier.CalculateDamageModifier(attacker, defender, baseDamage);
+                baseDamage = modifier.CalculateDamageModifier(attackingEntity, defendingEntity, baseDamage);
             }
             return baseDamage;
         }

@@ -23,6 +23,7 @@ namespace ManaMist.Managers
         public MapController mapController;
         public InputController inputController;
         public EntityController entityController;
+        public SeedController seedController;
 
         [Header("State")]
         public Dispatcher dispatcher;
@@ -71,7 +72,7 @@ namespace ManaMist.Managers
             foreach (Player player in players)
             {
                 i++;
-                SeedPlayer(player, i * 10); // NOTE: This is a random temporary seeding offset
+                seedController.SeedPlayer(player, i * 10); // NOTE: This is a random temporary seeding offset
             }
 
             // Initialize Turn Controller
@@ -82,24 +83,6 @@ namespace ManaMist.Managers
         {
             Player currentPlayer = players.Find(player => player.id == args.player.id);
             currentPlayer?.InitializeTurn();
-        }
-
-        private void SeedPlayer(Player player, int offset)
-        {
-            Coordinate townCenterCoordinate = new Coordinate(offset, offset);
-            Entity townCenter = entityController.CreateEntity(EntityType.TownCenter);
-            player.AddEntity(townCenter);
-            mapController.AddToMap(townCenterCoordinate, townCenter);
-
-            Coordinate warriorCoordinate = new Coordinate(offset, offset + 1);
-            Entity warrior = entityController.CreateEntity(EntityType.Warrior);
-            player.AddEntity(warrior);
-            mapController.AddToMap(warriorCoordinate, warrior);
-
-            Coordinate workerCoordinate = new Coordinate(offset + 1, offset + 1);
-            Entity worker = entityController.CreateEntity(EntityType.Worker);
-            player.AddEntity(worker);
-            mapController.AddToMap(workerCoordinate, worker);
         }
     }
 }
