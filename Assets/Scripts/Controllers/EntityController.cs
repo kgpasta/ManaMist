@@ -24,7 +24,7 @@ namespace ManaMist.Controllers
 
         public GameObject GetEntityPrefab(Entity entity)
         {
-            GameObject entityPrefab = entityViews.Find(entityView => entityView.name.Equals(entity.type.ToString(), StringComparison.InvariantCultureIgnoreCase));
+            GameObject entityPrefab = entityViews.Find(entityView => entityView.name.Equals(entity.type.Name, StringComparison.InvariantCultureIgnoreCase));
             return entityPrefab != null ? entityPrefab : m_DefaultEntityPrefab;
         }
     }

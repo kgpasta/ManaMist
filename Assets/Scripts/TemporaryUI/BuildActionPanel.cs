@@ -55,7 +55,7 @@ namespace ManaMist.UI
                 {
                     foreach (EntityType type in m_CurrentEntityOptionsList)
                     {
-                        m_EntityDropdown.options.Add(new OptionData(type.ToString()));
+                        m_EntityDropdown.options.Add(new OptionData(type.Name));
                     }
 
                     m_IsDropdownUpdated = true;
