@@ -1,0 +1,19 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3d9f9dfd42c03f04b80edb1d641022cb, type: 3}
+  m_Name: SeedController
+  m_EditorClassIdentifier: 
+  mapController: {fileID: 11400000, guid: 687951a7835bd5a43b17fca05b9af0d8, type: 2}
+  entityController: {fileID: 11400000, guid: 593c198e947f0e54db3b61d5592dcf53, type: 2}
+  townCenterType: {fileID: 11400000, guid: b72520978ed831f48bcea4a40ac10f02, type: 2}
+  workerType: {fileID: 11400000, guid: 2ede1ec4856cbb24cb28fc7aafe188d0, type: 2}
+  warriorType: {fileID: 11400000, guid: be16e642e7c5bfc4fb0a43f6d3d20d92, type: 2}

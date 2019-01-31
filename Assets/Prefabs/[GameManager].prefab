@@ -141,8 +141,7 @@ MonoBehaviour:
   inputController: {fileID: 11400000, guid: 8a78e43eac7c677448d699f6292adaa7, type: 2}
   MapTilePrefabReference: {fileID: 1321297760129468, guid: 495612f20c6e56748993579087aabe0a,
     type: 3}
-  m_EntityInspectorCanvasPrefabReference: {fileID: 4996954780654245608, guid: af5412abbe6586d47be9ba111ac5b1a8,
-    type: 3}
+  m_EntityInspector: {fileID: 0}
 --- !u!1 &1839112214776396
 GameObject:
   m_ObjectHideFlags: 0
@@ -195,5 +194,6 @@ MonoBehaviour:
   mapController: {fileID: 11400000, guid: 687951a7835bd5a43b17fca05b9af0d8, type: 2}
   inputController: {fileID: 11400000, guid: 8a78e43eac7c677448d699f6292adaa7, type: 2}
   entityController: {fileID: 11400000, guid: 593c198e947f0e54db3b61d5592dcf53, type: 2}
+  seedController: {fileID: 11400000, guid: ed65bf083b89a7040a90c946d35cac34, type: 2}
   dispatcher: {fileID: 11400000, guid: 383ccc1db4476d9489be8ebfffa284dc, type: 2}
   state: {fileID: 11400000, guid: 345119662dd621c47b3ba1959b3c797c, type: 2}

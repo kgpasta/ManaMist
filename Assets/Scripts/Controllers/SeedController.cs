@@ -5,6 +5,7 @@ using UnityEngine;
 
 namespace ManaMist.Controllers
 {
+    [CreateAssetMenu(menuName = "ManaMist/SeedController")]
     public class SeedController : ScriptableObject
     {
         [SerializeField] private MapController mapController;
