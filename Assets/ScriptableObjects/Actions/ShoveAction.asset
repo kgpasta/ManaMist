@@ -9,10 +9,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 543348f0cfd669244b28205c375580b2, type: 3}
-  m_Name: HealAction
+  m_Script: {fileID: 11500000, guid: e7d85c725b991c34cac1908ba152a412, type: 3}
+  m_Name: ShoveAction
   m_EditorClassIdentifier: 
-  mapController: {fileID: 0}
-  actionPoints: 0
-  healAmount: 0
-  range: 0
+  mapController: {fileID: 11400000, guid: 687951a7835bd5a43b17fca05b9af0d8, type: 2}
+  actionPoints: 1
