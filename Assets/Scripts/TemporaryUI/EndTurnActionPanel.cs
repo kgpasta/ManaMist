@@ -22,7 +22,7 @@ namespace ManaMist.UI
 
         private void OnGUI()
         {
-            if (m_TurnController != null)
+            if (m_TurnController?.currentPlayer != null)
             {
                 m_CurrentPlayerText.text = m_TurnController.currentPlayer.name;
             }

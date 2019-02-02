@@ -72,7 +72,7 @@ namespace ManaMist.Managers
             foreach (Player player in players)
             {
                 i++;
-                seedController.SeedPlayer(player, i * 10); // NOTE: This is a random temporary seeding offset
+                seedController.SeedPlayer(player);
             }
 
             // Initialize Turn Controller

@@ -1,6 +1,7 @@
 using ManaMist.Models;
 using ManaMist.Players;
 using ManaMist.Utility;
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace ManaMist.Controllers
@@ -8,32 +9,62 @@ namespace ManaMist.Controllers
     [CreateAssetMenu(menuName = "ManaMist/SeedController")]
     public class SeedController : ScriptableObject
     {
-        [SerializeField] private MapController mapController;
-        [SerializeField] private EntityController entityController;
+        [SerializeField] private MapController m_MapController;
+        [SerializeField] private EntityController m_EntityController;
 
-        public void SeedPlayer(Player player, int offset)
+        [SerializeField] private List<Color> m_PlayerColors;
+
+        [Header("Player 1 Seeding Options")]
+        [SerializeField] private Coordinate m_PlayerOneTownCenterCoordinate;
+        [SerializeField] private Coordinate m_PlayerOneWorkerCoordinate;
+        [SerializeField] private Coordinate m_PlayerOneWarriorCoordinate;
+
+        [Header("Player 2 Seeding Options")]
+        [SerializeField] private Coordinate m_PlayerTwoTownCenterCoordinate;
+        [SerializeField] private Coordinate m_PlayerTwoWorkerCoordinate;
+        [SerializeField] private Coordinate m_PlayerTwoWarriorCoordinate;
+
+        public void SeedPlayer(Player player)
         {
-            player.color = new Color(Random.value, Random.value, Random.value);
-            Coordinate townCenterCoordinate = new Coordinate(offset, offset);
+            Coordinate townCenterCoordinate = new Coordinate();
+            Coordinate warriorCoordinate = new Coordinate();
+            Coordinate workerCoordinate = new Coordinate();
+
+            // NOTE: Temporarily hard-coded for 2 players
+            switch (player.name)
+            {
+                case "PlayerOne":
+                    player.color = m_PlayerColors[0];
+                    townCenterCoordinate = m_PlayerOneTownCenterCoordinate;
+                    workerCoordinate = m_PlayerOneWorkerCoordinate;
+                    warriorCoordinate = m_PlayerOneWarriorCoordinate;
+                    break;
+
+                case "PlayerTwo":
+                    player.color = m_PlayerColors[1];
+                    townCenterCoordinate = m_PlayerTwoTownCenterCoordinate;
+                    workerCoordinate = m_PlayerTwoWorkerCoordinate;
+                    warriorCoordinate = m_PlayerTwoWarriorCoordinate;
+                    break;
+            }
+            
             EntityType townCenterType = ScriptableObject.CreateInstance<EntityType>();
             townCenterType.Name = "TownCenter";
-            Entity townCenter = entityController.CreateEntity(townCenterType);
+            Entity townCenter = m_EntityController.CreateEntity(townCenterType);
             player.AddEntity(townCenter);
-            mapController.AddToMap(townCenterCoordinate, townCenter);
+            m_MapController.AddToMap(townCenterCoordinate, townCenter);
 
-            Coordinate warriorCoordinate = new Coordinate(offset, offset + 1);
             EntityType warriorType = ScriptableObject.CreateInstance<EntityType>();
             warriorType.Name = "Warrior";
-            Entity warrior = entityController.CreateEntity(warriorType);
+            Entity warrior = m_EntityController.CreateEntity(warriorType);
             player.AddEntity(warrior);
-            mapController.AddToMap(warriorCoordinate, warrior);
+            m_MapController.AddToMap(warriorCoordinate, warrior);
 
-            Coordinate workerCoordinate = new Coordinate(offset + 1, offset + 1);
             EntityType workerType = ScriptableObject.CreateInstance<EntityType>();
             workerType.Name = "Worker";
-            Entity worker = entityController.CreateEntity(workerType);
+            Entity worker = m_EntityController.CreateEntity(workerType);
             player.AddEntity(worker);
-            mapController.AddToMap(workerCoordinate, worker);
+            m_MapController.AddToMap(workerCoordinate, worker);
         }
     }
 }
