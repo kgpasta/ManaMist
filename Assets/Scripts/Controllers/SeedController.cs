@@ -13,6 +13,7 @@ namespace ManaMist.Controllers
 
         public void SeedPlayer(Player player, int offset)
         {
+            player.color = new Color(Random.value, Random.value, Random.value);
             Coordinate townCenterCoordinate = new Coordinate(offset, offset);
             EntityType townCenterType = ScriptableObject.CreateInstance<EntityType>();
             townCenterType.Name = "TownCenter";

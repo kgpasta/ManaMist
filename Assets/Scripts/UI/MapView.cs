@@ -83,8 +83,7 @@ namespace ManaMist.UI
         {
             GameObject entityPrefab = entityController.GetEntityPrefab(args.entity);
             GameObject entityInstance = Instantiate(entityPrefab, m_CoordinateToTransform[args.coordinate]);
-            entityInstance.name = args.entity.name;
-            entityInstance.GetComponent<EntityView>().entity = args.entity;
+            entityInstance.GetComponent<EntityView>().Initialize(args.entity);
         }
 
         private void MoveEntityModel(object sender, EntityMovedArgs args)

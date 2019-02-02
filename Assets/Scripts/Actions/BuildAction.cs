@@ -32,8 +32,8 @@ namespace ManaMist.Actions
             base.Execute(player, entity, targetCoordinate, target);
 
             player.resources.Decrement(target.cost);
-            mapController.AddToMap(targetCoordinate, target);
             player.AddEntity(target);
+            mapController.AddToMap(targetCoordinate, target);
         }
     }
 

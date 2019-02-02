@@ -16,6 +16,7 @@ namespace ManaMist.Players
         public List<Entity> entities = new List<Entity>();
         public Cost resources;
         public Behavior behavior;
+        public Color color;
 
         public void InitializeTurn()
         {
@@ -29,6 +30,7 @@ namespace ManaMist.Players
 
         public void AddEntity(Entity entity)
         {
+            entity.color = this.color;
             entities.Add(entity);
         }
 
