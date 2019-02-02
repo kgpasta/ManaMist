@@ -28,6 +28,8 @@ namespace ManaMist.Managers
         [Header("State")]
         public Dispatcher dispatcher;
         public GameState state;
+        public Dispatcher player2Dispatcher;
+        public GameState player2State;
 
         private const string resourceMapPath = "Maps/";
 
@@ -39,6 +41,7 @@ namespace ManaMist.Managers
         private void OnEnable()
         {
             dispatcher.OnDispatch += SetState;
+            player2Dispatcher.OnDispatch += SetState;
             turnController.OnTurnStart += OnTurnStart;
             inputController.OnInputEvent += OnInputEvent;
         }
@@ -46,20 +49,31 @@ namespace ManaMist.Managers
         private void OnDisable()
         {
             dispatcher.OnDispatch -= SetState;
+            player2Dispatcher.OnDispatch -= SetState;
             turnController.OnTurnStart -= OnTurnStart;
             inputController.OnInputEvent -= OnInputEvent;
         }
 
-        private void SetState(object sender, GameState gameState)
+        private void SetState(object sender, GameState newState)
         {
-            state.ExitBase();
-            state = gameState;
-            state.EnterBase();
+            if (turnController.currentPlayer.id == 0)
+            {
+                state.ExitBase();
+                state = newState;
+                state.EnterBase();
+            }
+            else
+            {
+                player2State.ExitBase();
+                player2State = newState;
+                player2State.EnterBase();
+            }
         }
 
         private void OnInputEvent(object sender, InputEvent inputEvent)
         {
-            state.HandleInput(inputEvent);
+            GameState gameState = turnController.currentPlayer.id == 0 ? this.state : this.player2State;
+            gameState.HandleInput(inputEvent);
         }
 
         private void SetupGame()

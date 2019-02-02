@@ -6,12 +6,18 @@ namespace ManaMist.UI
     public class EntityView : MonoBehaviour
     {
         public Entity entity;
+        private Color m_BaseColor;
 
         public void Initialize(Entity entity)
         {
             this.entity = entity;
             this.gameObject.name = entity.name;
-            this.GetComponent<MeshRenderer>().material.color = entity.color;
+            this.m_BaseColor = entity.color;
+        }
+
+        private void OnGUI()
+        {
+            this.GetComponent<MeshRenderer>().material.color = entity.actionPoints > 0 ? m_BaseColor : Color.gray;
         }
     }
 }

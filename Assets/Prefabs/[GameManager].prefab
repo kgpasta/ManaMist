@@ -197,3 +197,5 @@ MonoBehaviour:
   seedController: {fileID: 11400000, guid: ed65bf083b89a7040a90c946d35cac34, type: 2}
   dispatcher: {fileID: 11400000, guid: 383ccc1db4476d9489be8ebfffa284dc, type: 2}
   state: {fileID: 11400000, guid: 345119662dd621c47b3ba1959b3c797c, type: 2}
+  player2Dispatcher: {fileID: 11400000, guid: 0c12633213f1c7d4abbc8dffdf0623ea, type: 2}
+  player2State: {fileID: 11400000, guid: 6cdfc0b9a301a8a4d82f4526ba4185e6, type: 2}

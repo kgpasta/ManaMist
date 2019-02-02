@@ -15,4 +15,5 @@ MonoBehaviour:
   id: 1
   entities: []
   resources: {fileID: 11400000, guid: 75440fe5635526b4880cc75178705265, type: 2}
-  behavior: {fileID: 11400000, guid: 022852ecebe377249b4d6fdbec83dadc, type: 2}
+  behavior: {fileID: 0}
+  color: {r: 0.7871307, g: 0.97288156, b: 0.8957118, a: 1}
