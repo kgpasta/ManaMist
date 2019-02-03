@@ -17,6 +17,7 @@ public class MapTileWidget : MonoBehaviour, IPointerClickHandler
         {
             m_MapTile = value;
             SetResourceModel(m_MapTile.resource);
+            DisplayTerrain();
         }
     }
 
@@ -25,7 +26,7 @@ public class MapTileWidget : MonoBehaviour, IPointerClickHandler
         public Vector3 m_MeteorTargetPosition;
         public Transform m_MeteorTransform;
 
-        public CometData (Transform meteorTransform, Vector3 meteorTargetPosition)
+        public CometData(Transform meteorTransform, Vector3 meteorTargetPosition)
         {
             m_MeteorTransform = meteorTransform;
             m_MeteorTargetPosition = meteorTargetPosition;
@@ -35,10 +36,17 @@ public class MapTileWidget : MonoBehaviour, IPointerClickHandler
     private List<CometData> m_CurrentAciveCometsList;
 
     [Header("UI Elements")]
-    [SerializeField] private Image m_TileImage;
     [SerializeField] private GameObject m_HighlightTile;
 
-    [Header("Prefab References")]
+    [Header("Terrain References")]
+    [SerializeField] private List<GameObject> m_WaterTerrain;
+    [SerializeField] private List<GameObject> m_GrassTerrain;
+    [SerializeField] private List<GameObject> m_SwampTerrain;
+    [SerializeField] private List<GameObject> m_MountainTerrain;
+    [SerializeField] private List<GameObject> m_HillTerrain;
+
+
+    [Header("Resource Prefab References")]
     [SerializeField] private GameObject m_ManaResourcePrefabReference;
     [SerializeField] private GameObject m_MetalResourcePrefabReference;
     [SerializeField] private GameObject m_FoodResourcePrefabReference;
@@ -105,7 +113,6 @@ public class MapTileWidget : MonoBehaviour, IPointerClickHandler
     {
         if (m_MapTile != null)
         {
-            m_TileImage.color = MassiveShittyColorSwitchStatement();
             m_HighlightTile.SetActive(m_MapTile.isHighlighted);
         }
     }
@@ -115,41 +122,37 @@ public class MapTileWidget : MonoBehaviour, IPointerClickHandler
         MapTileClicked.Invoke(this, new MapTileClickedEventArgs(eventData));
     }
 
-    private Color MassiveShittyColorSwitchStatement()
+    private void DisplayTerrain()
     {
         switch (mapTile.terrain)
         {
-            case ManaMist.Models.Terrain.DESERT:
-
-                return new Color32(255, 214, 127, 255);
-
             case ManaMist.Models.Terrain.FOREST:
-
-                return new Color32(8, 89, 0, 255);
-
+                m_GrassTerrain[0].SetActive(true);
+                break;
             case ManaMist.Models.Terrain.GRASS:
-
-                return new Color32(67, 147, 65, 255);
-
+                int grassIndex = UnityEngine.Random.Range(0, m_GrassTerrain.Count);
+                m_GrassTerrain[grassIndex].SetActive(true);
+                break;
             case ManaMist.Models.Terrain.HILL:
-
-                return new Color32(58, 68, 59, 255);
-
+                m_GrassTerrain[0].SetActive(true);
+                int hillIndex = UnityEngine.Random.Range(0, m_HillTerrain.Count);
+                m_HillTerrain[hillIndex].SetActive(true);
+                break;
             case ManaMist.Models.Terrain.MOUNTAIN:
-
-                return new Color32(112, 112, 112, 255);
-
+                m_GrassTerrain[0].SetActive(true);
+                int mountainIndex = UnityEngine.Random.Range(0, m_MountainTerrain.Count);
+                m_MountainTerrain[mountainIndex].SetActive(true);
+                break;
             case ManaMist.Models.Terrain.SWAMP:
-
-                return new Color32(127, 77, 165, 255);
-
+                int swampIndex = UnityEngine.Random.Range(0, m_SwampTerrain.Count);
+                m_SwampTerrain[swampIndex].SetActive(true);
+                break;
             case ManaMist.Models.Terrain.WATER:
-
-                return new Color32(7, 106, 193, 255);
-
+                int waterIndex = UnityEngine.Random.Range(0, m_WaterTerrain.Count);
+                m_WaterTerrain[waterIndex].SetActive(true);
+                break;
             default:
-
-                return new Color32(0, 0, 0, 255);
+                break;
 
         }
     }
