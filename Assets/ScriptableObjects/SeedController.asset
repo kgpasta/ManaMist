@@ -12,8 +12,26 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3d9f9dfd42c03f04b80edb1d641022cb, type: 3}
   m_Name: SeedController
   m_EditorClassIdentifier: 
-  mapController: {fileID: 11400000, guid: 687951a7835bd5a43b17fca05b9af0d8, type: 2}
-  entityController: {fileID: 11400000, guid: 593c198e947f0e54db3b61d5592dcf53, type: 2}
-  townCenterType: {fileID: 11400000, guid: b72520978ed831f48bcea4a40ac10f02, type: 2}
-  workerType: {fileID: 11400000, guid: 2ede1ec4856cbb24cb28fc7aafe188d0, type: 2}
-  warriorType: {fileID: 11400000, guid: be16e642e7c5bfc4fb0a43f6d3d20d92, type: 2}
+  m_MapController: {fileID: 11400000, guid: 687951a7835bd5a43b17fca05b9af0d8, type: 2}
+  m_EntityController: {fileID: 11400000, guid: 593c198e947f0e54db3b61d5592dcf53, type: 2}
+  m_PlayerColors:
+  - {r: 1, g: 0.64142984, b: 0, a: 1}
+  - {r: 0, g: 0.3955245, b: 1, a: 1}
+  m_PlayerOneTownCenterCoordinate:
+    m_X: 11
+    m_Y: 2
+  m_PlayerOneWorkerCoordinate:
+    m_X: 10
+    m_Y: 2
+  m_PlayerOneWarriorCoordinate:
+    m_X: 13
+    m_Y: 4
+  m_PlayerTwoTownCenterCoordinate:
+    m_X: 11
+    m_Y: 22
+  m_PlayerTwoWorkerCoordinate:
+    m_X: 12
+    m_Y: 22
+  m_PlayerTwoWarriorCoordinate:
+    m_X: 13
+    m_Y: 20
