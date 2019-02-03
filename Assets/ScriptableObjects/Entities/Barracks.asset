@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2b1fab0055ef7f449a8b2234452fbf09, type: 3}
   m_Name: Barracks
   m_EditorClassIdentifier: 
-  m_Id: 305255ae-7a0b-4bcb-8dfd-b10ca613df32
+  m_Id: 29d52e15-71c8-4cb0-ad06-a6ac55273753
   m_Type: {fileID: 11400000, guid: 5cbdc120fc1d470458644d95a2c09b4b, type: 2}
   m_Cost: {fileID: 11400000, guid: c9ba0a0977231a34592f161a0e33c280, type: 2}
   actions:
@@ -21,3 +21,4 @@ MonoBehaviour:
   actionPoints: 0
   maxHp: 60
   hp: 60
+  color: {r: 0, g: 0, b: 0, a: 0}
