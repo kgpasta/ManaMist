@@ -41,6 +41,8 @@ namespace ManaMist.Utility
                     && nextPath.Count - 1 <= maxDistance
                     && neighbor.x < mapDimension
                     && neighbor.y < mapDimension
+                    && neighbor.x >= 0
+                    && neighbor.y >= 0
                     && canMoveFunction(neighbor))
                     {
                         queue.Enqueue(nextPath);
