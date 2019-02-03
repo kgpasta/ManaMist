@@ -27,6 +27,12 @@ namespace ManaMist.Controllers
         public Coordinate previousCoordinate;
     }
 
+    public class MaptTileModifiedArgs
+    {
+        public MapTile mapTile;
+        public Coordinate coordinate;
+    }
+
     [CreateAssetMenu(menuName = "ManaMist/Map Controller")]
     public class MapController : ScriptableObject
     {
@@ -34,6 +40,7 @@ namespace ManaMist.Controllers
         public event EventHandler<EntityArgs> EntityAdded;
         public event EventHandler<EntityMovedArgs> EntityMoved;
         public event EventHandler<EntityArgs> EntityRemoved;
+        public event EventHandler<MaptTileModifiedArgs> MapTileModified;
         private Dictionary<Coordinate, MapTile> m_CoordinateToMapTile = new Dictionary<Coordinate, MapTile>();
         private Dictionary<string, Coordinate> m_EntityIdToCoordinate = new Dictionary<string, Coordinate>();
 
@@ -119,6 +126,29 @@ namespace ManaMist.Controllers
             {
                 MapTileAdded?.Invoke(this, new MapTileAddedArgs() { mapTile = pair.Value, coordinate = pair.Key });
             }
+        }
+
+        //this only does mana additions for now
+        public void WorldEvent()
+        {
+            Coordinate targetCoordinate = new Coordinate(UnityEngine.Random.Range(1, MAP_DIMENSION - 1), UnityEngine.Random.Range(1, MAP_DIMENSION - 1)); 
+            MapTile targetTile = GetMapTileAtCoordinate(targetCoordinate);
+
+            if (targetTile.resource == Resource.NONE)
+            {
+                ModifyTileResource(targetTile, Resource.MANA, targetCoordinate);
+            }
+            else
+            {
+                WorldEvent();
+            }
+        }
+
+        private void ModifyTileResource (MapTile targetTile, Resource newResource, Coordinate targetCoordinate)
+        {
+            targetTile.resource = newResource;
+            MapTileModified?.Invoke(this, new MaptTileModifiedArgs() { mapTile = targetTile, coordinate = targetCoordinate });
+
         }
     }
 }

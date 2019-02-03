@@ -20,6 +20,20 @@ public class MapTileWidget : MonoBehaviour, IPointerClickHandler
         }
     }
 
+    private struct CometData
+    {
+        public Vector3 m_MeteorTargetPosition;
+        public Transform m_MeteorTransform;
+
+        public CometData (Transform meteorTransform, Vector3 meteorTargetPosition)
+        {
+            m_MeteorTransform = meteorTransform;
+            m_MeteorTargetPosition = meteorTargetPosition;
+        }
+    }
+
+    private List<CometData> m_CurrentAciveCometsList;
+
     [Header("UI Elements")]
     [SerializeField] private Image m_TileImage;
     [SerializeField] private GameObject m_HighlightTile;
@@ -46,6 +60,41 @@ public class MapTileWidget : MonoBehaviour, IPointerClickHandler
     public event EventHandler<MapTileClickedEventArgs> MapTileClicked;
 
     #endregion
+
+    private void OnEnable()
+    {
+        m_CurrentAciveCometsList = new List<CometData>();
+    }
+
+    private void Update()
+    {
+        UpdateComets();
+    }
+
+    private void UpdateComets()
+    {
+        //realized this is all overkill, each tile manages itself so don't need a list here...@todo to simplify
+        List<int> indicesToRemove = new List<int>();
+        foreach (CometData comet in m_CurrentAciveCometsList)
+        {
+            float step = 2.5f * Time.deltaTime; // calculate distance to move
+            comet.m_MeteorTransform.position = Vector3.MoveTowards(comet.m_MeteorTransform.position, comet.m_MeteorTargetPosition, step);
+
+            // Check if the position of the cube and sphere are approximately equal.
+            if (Vector3.Distance(comet.m_MeteorTransform.position, comet.m_MeteorTargetPosition) < 0.001f)
+            {
+                // Swap the position of the cylinder.
+                comet.m_MeteorTransform.position = comet.m_MeteorTargetPosition;
+                indicesToRemove.Add(m_CurrentAciveCometsList.IndexOf(comet));
+                m_CurrentMapTileModel.GetComponent<ParticleSystem>().Stop();
+            }
+        }
+
+        foreach (int index in indicesToRemove)
+        {
+            m_CurrentAciveCometsList.RemoveAt(index);
+        }
+    }
 
     private void OnGUI()
     {
@@ -105,7 +154,7 @@ public class MapTileWidget : MonoBehaviour, IPointerClickHandler
         }
     }
 
-    private void SetResourceModel(Resource resource)
+    public void SetResourceModel(Resource resource)
     {
         if (m_CurrentMapTileModel != null)
         {
@@ -122,15 +171,25 @@ public class MapTileWidget : MonoBehaviour, IPointerClickHandler
             case Resource.MANA:
 
                 m_CurrentMapTileModel = Instantiate(m_ManaResourcePrefabReference, transform);
+                m_CurrentMapTileModel.GetComponent<ParticleSystem>().Stop();
                 break;
 
             case Resource.METAL:
 
-                m_CurrentMapTileModel = Instantiate(m_MetalResourcePrefabReference, transform);
+                m_CurrentMapTileModel = Instantiate(m_MetalResourcePrefabReference, this.transform);
                 break;
 
             default:
                 break;
         }
+    }
+
+    public void InitiateManaComet()
+    {
+        m_CurrentMapTileModel = Instantiate(m_ManaResourcePrefabReference, this.transform);
+        Vector3 targetPosition = m_CurrentMapTileModel.transform.position;
+        m_CurrentMapTileModel.transform.position = new Vector3(this.transform.position.x, this.transform.position.y + 4.0f, this.transform.position.z);
+        m_CurrentMapTileModel.GetComponent<ParticleSystem>().Play();
+        m_CurrentAciveCometsList.Add(new CometData(m_CurrentMapTileModel.transform, targetPosition));
     }
 }
