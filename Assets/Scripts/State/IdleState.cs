@@ -1,5 +1,6 @@
 using ManaMist.Input;
 using ManaMist.Models;
+using ManaMist.Utility;
 using UnityEngine;
 
 namespace ManaMist.State
@@ -24,7 +25,21 @@ namespace ManaMist.State
                     dispatcher.Dispatch<SelectedState>(selectedStateData);
                 }
             }
-            else if (inputEvent is EndOfTurnInput)
+
+            if (inputEvent is CycleSelectionInput)
+            {
+                Entity availableEntity = player.entities.Find(entity => entity.actionPoints > 0);
+                if (availableEntity != null)
+                {
+                    Coordinate coordinate = mapController.GetPositionOfEntity(availableEntity.id);
+                    SelectedStateData selectedStateData = ScriptableObject.CreateInstance<SelectedStateData>();
+                    selectedStateData.coordinate = coordinate;
+
+                    dispatcher.Dispatch<SelectedState>(selectedStateData);
+                }
+            }
+
+            if (inputEvent is EndOfTurnInput)
             {
                 dispatcher.Dispatch<WaitingState>();
             }

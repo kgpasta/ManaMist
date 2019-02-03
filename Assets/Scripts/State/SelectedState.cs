@@ -85,6 +85,27 @@ namespace ManaMist.State
                 }
             }
 
+            if (inputEvent is CycleSelectionInput)
+            {
+                int currentIndex = player.entities.FindIndex(entity => entity.id == CurrentlySelectedEntity.id);
+                Entity availableEntity = player.entities
+                .GetRange(currentIndex + 1, player.entities.Count - currentIndex - 1)
+                .Find(entity => entity.actionPoints > 0);
+
+                if (availableEntity != null)
+                {
+                    Coordinate coordinate = mapController.GetPositionOfEntity(availableEntity.id);
+                    SelectedStateData selectedStateData = ScriptableObject.CreateInstance<SelectedStateData>();
+                    selectedStateData.coordinate = coordinate;
+
+                    dispatcher.Dispatch<SelectedState>(selectedStateData);
+                }
+                else
+                {
+                    dispatcher.Dispatch<IdleState>();
+                }
+            }
+
             if (inputEvent is ActionButtonClickedInput)
             {
                 ActionButtonClickedInput actionButtonClickedInput = inputEvent as ActionButtonClickedInput;

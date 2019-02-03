@@ -30,6 +30,7 @@ namespace ManaMist.UI
             mapController.EntityAdded += AddEntityModelToMap;
             mapController.EntityMoved += MoveEntityModel;
             mapController.EntityRemoved += RemoveEntityModelFromMap;
+            mapController.MapTileModified += ModifyMapTileOnMap;
         }
 
         private void OnDisable()
@@ -38,6 +39,7 @@ namespace ManaMist.UI
             mapController.EntityAdded -= AddEntityModelToMap;
             mapController.EntityMoved -= MoveEntityModel;
             mapController.EntityRemoved -= RemoveEntityModelFromMap;
+            mapController.MapTileModified -= ModifyMapTileOnMap;
         }
 
         private void AddMapTileToMap(object sender, MapTileAddedArgs args)
@@ -96,6 +98,13 @@ namespace ManaMist.UI
         {
             Transform transform = m_CoordinateToTransform[args.coordinate];
             Destroy(transform.GetComponentInChildren<EntityView>().gameObject);
+        }
+
+        private void ModifyMapTileOnMap(object sender, MaptTileModifiedArgs args)
+        {
+            MapTileWidget myWidget = m_CoordinateToTransform[args.coordinate].GetComponent<MapTileWidget>();
+            Debug.Log(myWidget.gameObject.name);
+            myWidget.InitiateManaComet();
         }
 
         private void ShowEntityInspectorCanvas(MapTileWidget mapTileWidget)
