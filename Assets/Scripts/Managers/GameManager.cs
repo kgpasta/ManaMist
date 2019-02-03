@@ -44,6 +44,11 @@ namespace ManaMist.Managers
             player2Dispatcher.OnDispatch += SetState;
             turnController.OnTurnStart += OnTurnStart;
             inputController.OnInputEvent += OnInputEvent;
+
+            foreach (Player player in players)
+            {
+                player.VictoryConditionEntityRemoved += DeclarePlayerVictory;
+            }
         }
 
         private void OnDisable()
@@ -52,6 +57,11 @@ namespace ManaMist.Managers
             player2Dispatcher.OnDispatch -= SetState;
             turnController.OnTurnStart -= OnTurnStart;
             inputController.OnInputEvent -= OnInputEvent;
+
+            foreach (Player player in players)
+            {
+                player.VictoryConditionEntityRemoved -= DeclarePlayerVictory;
+            }
         }
 
         private void SetState(object sender, GameState newState)
@@ -81,11 +91,9 @@ namespace ManaMist.Managers
             // Setup Map
             mapController.SetupMap(resourceMapPath + mapName);
 
-            int i = 0;
             // Initialize Players
             foreach (Player player in players)
             {
-                i++;
                 seedController.SeedPlayer(player);
             }
 
@@ -97,6 +105,15 @@ namespace ManaMist.Managers
         {
             Player currentPlayer = players.Find(player => player.id == args.player.id);
             currentPlayer?.InitializeTurn();
+        }
+
+        private void DeclarePlayerVictory(object sender, EventArgs args)
+        {
+            Player loser = (Player)sender;
+
+            Player winner = players.Find(player => loser.id != player.id);
+
+            Debug.Log(winner.name + " is the winner!");
         }
     }
 }

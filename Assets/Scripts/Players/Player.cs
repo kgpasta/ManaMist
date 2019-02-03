@@ -14,9 +14,12 @@ namespace ManaMist.Players
     {
         public int id;
         public List<Entity> entities = new List<Entity>();
+        public Entity victoryConditionEntity;
         public Cost resources;
         public Behavior behavior;
         public Color color;
+
+        public event EventHandler VictoryConditionEntityRemoved;
 
         public void InitializeTurn()
         {
@@ -37,6 +40,11 @@ namespace ManaMist.Players
         public void RemoveEntity(Entity entity)
         {
             entities.Remove(entity);
+
+            if (entity?.id == victoryConditionEntity.id)
+            {
+                VictoryConditionEntityRemoved?.Invoke(this, EventArgs.Empty);
+            }
         }
 
         public Entity GetEntity(string id)

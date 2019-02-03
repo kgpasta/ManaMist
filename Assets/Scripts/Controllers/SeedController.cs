@@ -47,10 +47,11 @@ namespace ManaMist.Controllers
                     warriorCoordinate = m_PlayerTwoWarriorCoordinate;
                     break;
             }
-            
+
             EntityType townCenterType = ScriptableObject.CreateInstance<EntityType>();
             townCenterType.Name = "TownCenter";
             Entity townCenter = m_EntityController.CreateEntity(townCenterType);
+            player.victoryConditionEntity = townCenter;
             player.AddEntity(townCenter);
             m_MapController.AddToMap(townCenterCoordinate, townCenter);
 
