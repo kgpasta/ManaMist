@@ -10,7 +10,7 @@ namespace ManaMist.Actions
     {
         public int Range => 1;
 
-        public override bool CanExecute(Player player, Entity entity, Coordinate targetCoordinate, Entity target = null)
+        public override bool CanExecute(Player player, Entity entity, Coordinate targetCoordinate, Entity target)
         {
             MapTile mapTile = mapController.GetMapTileAtCoordinate(targetCoordinate);
 
@@ -20,14 +20,13 @@ namespace ManaMist.Actions
             && mapTile.entities[0].type.EntityClass != EntityClass.Building;
         }
 
-        public override void Execute(Player player, Entity entity, Coordinate targetCoordinate, Entity target = null)
+        public override void Execute(Player player, Entity entity, Coordinate targetCoordinate, Entity target)
         {
             base.Execute(player, entity, targetCoordinate, target);
             Coordinate currentCoordinate = mapController.GetPositionOfEntity(entity.id);
-            MapTile mapTile = mapController.GetMapTileAtCoordinate(targetCoordinate);
 
             Coordinate newCoordinate = GetDirectionOfShove(currentCoordinate, targetCoordinate);
-            mapController.MoveEntity(newCoordinate, mapTile.entities[0]);
+            mapController.MoveEntity(newCoordinate, target);
         }
 
         private Coordinate GetDirectionOfShove(Coordinate currentCoordinate, Coordinate targetCoordinate)
