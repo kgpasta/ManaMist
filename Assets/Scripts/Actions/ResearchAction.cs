@@ -8,13 +8,13 @@ namespace ManaMist.Actions
     {
         public Research research;
 
-        public override bool CanExecute(Player player, Entity entity, Coordinate targetCoordinate = null, Entity target = null)
+        public override bool CanExecute(Player player, Entity entity = null, Coordinate targetCoordinate = null, Entity target = null)
         {
             return player.resources.CanDecrement(research.cost)
             && !player.research.Contains(research);
         }
 
-        public override void Execute(Player player, Entity entity, Coordinate targetCoordinate = null, Entity target = null)
+        public override void Execute(Player player, Entity entity = null, Coordinate targetCoordinate = null, Entity target = null)
         {
             player.resources.Decrement(research.cost);
             player.research.Add(research);
