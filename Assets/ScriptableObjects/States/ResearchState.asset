@@ -1,0 +1,20 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d8b018d5f89410941acda48d7756f962, type: 3}
+  m_Name: ResearchState
+  m_EditorClassIdentifier: 
+  dispatcher: {fileID: 11400000, guid: 383ccc1db4476d9489be8ebfffa284dc, type: 2}
+  turnController: {fileID: 11400000, guid: 78e7dde5c14b28b4d8539bf03c17fe3d, type: 2}
+  mapController: {fileID: 11400000, guid: 687951a7835bd5a43b17fca05b9af0d8, type: 2}
+  researchController: {fileID: 11400000, guid: fa72dde3bbf62754f83e69756ca95c80, type: 2}
+  player: {fileID: 11400000, guid: 2b006e764554fe545b94dfadae66cdc4, type: 2}
+  m_Data: {fileID: 0}

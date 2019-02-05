@@ -6,18 +6,18 @@ namespace ManaMist.Actions
 {
     public class ResearchAction : Action
     {
-        public ResearchBase researchBase;
+        public Research research;
 
         public override bool CanExecute(Player player, Entity entity, Coordinate targetCoordinate = null, Entity target = null)
         {
-            return player.resources.CanDecrement(researchBase.cost)
-            && !player.research.Contains(researchBase);
+            return player.resources.CanDecrement(research.cost)
+            && !player.research.Contains(research);
         }
 
         public override void Execute(Player player, Entity entity, Coordinate targetCoordinate = null, Entity target = null)
         {
-            player.resources.Decrement(researchBase.cost);
-            player.research.Add(researchBase);
+            player.resources.Decrement(research.cost);
+            player.research.Add(research);
         }
     }
 }

@@ -3,9 +3,10 @@ using UnityEngine;
 
 namespace ManaMist.Models
 {
-    public class ResearchBase : ScriptableObject
+    [CreateAssetMenu(menuName = "ManaMist/Research")]
+    public class Research : ScriptableObject
     {
         public Cost cost;
-        public List<ResearchBase> prerequesites;
+        public List<Research> prerequesites;
     }
 }

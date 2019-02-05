@@ -18,7 +18,7 @@ namespace ManaMist.Players
         public Cost resources;
         public Behavior behavior;
         public Color color;
-        public List<ResearchBase> research;
+        public List<Research> research;
 
         public event EventHandler VictoryConditionEntityRemoved;
 
