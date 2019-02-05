@@ -14,9 +14,11 @@ namespace ManaMist.UI
         [SerializeField] private GameObject m_LevelThree;
         [SerializeField] private GameObject m_ResearchButtonPrefab;
         [SerializeField] private ResearchState m_ResearchState;
+        private CanvasGroup m_CanvasGroup;
 
         private void Awake()
         {
+            m_CanvasGroup = this.GetComponent<CanvasGroup>();
             m_ResearchState.OnEnter += OnEnter;
             m_ResearchState.OnExit += OnExit;
         }
@@ -30,10 +32,12 @@ namespace ManaMist.UI
         private void OnEnter(object sender, EventArgs e)
         {
             Setup(m_ResearchState.AvailableResearch);
+            m_CanvasGroup.alpha = 1;
         }
 
         private void OnExit(object sender, EventArgs e)
         {
+            m_CanvasGroup.alpha = 0;
             Clear();
         }
 

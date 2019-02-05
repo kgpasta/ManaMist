@@ -9,10 +9,13 @@ namespace ManaMist.State
     public class ResearchState : GameState
     {
         private List<Research> m_AvailableResearch = new List<Research>();
-        public List<Research> AvailableResearch { get; }
+        public List<Research> AvailableResearch { get { return m_AvailableResearch; } }
         public override void HandleInput(InputEvent inputEvent)
         {
-            return;
+            if (inputEvent is OpenResearchInput)
+            {
+                dispatcher.Dispatch<IdleState>();
+            }
         }
 
         protected override void Enter()

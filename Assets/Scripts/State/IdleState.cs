@@ -39,6 +39,11 @@ namespace ManaMist.State
                 }
             }
 
+            if (inputEvent is OpenResearchInput)
+            {
+                dispatcher.Dispatch<ResearchState>();
+            }
+
             if (inputEvent is EndOfTurnInput)
             {
                 dispatcher.Dispatch<WaitingState>();
