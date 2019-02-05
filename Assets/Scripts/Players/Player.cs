@@ -55,7 +55,8 @@ namespace ManaMist.Players
 
         private void OnDisable()
         {
-            entities = new List<Entity>();
+            research.Clear();
+            entities.Clear();
             resources.food = 100;
             resources.mana = 100;
             resources.metal = 100;

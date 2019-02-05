@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 5971498922332696893}
   - component: {fileID: 2070368097761435343}
   - component: {fileID: 4646135084761455256}
+  - component: {fileID: 1084673935266144891}
   m_Layer: 5
   m_Name: ResearchPanel
   m_TagString: Untagged
@@ -119,7 +120,20 @@ MonoBehaviour:
   m_LevelThree: {fileID: 7432080961547455457}
   m_ResearchButtonPrefab: {fileID: 5239981940174892662, guid: 036be428d77f4194d82a21bc7838a1dc,
     type: 3}
+  m_InputController: {fileID: 11400000, guid: 8a78e43eac7c677448d699f6292adaa7, type: 2}
   m_ResearchState: {fileID: 11400000, guid: 6766a4aa09ceab74ea748499cc08719d, type: 2}
+--- !u!225 &1084673935266144891
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1197424067207033815}
+  m_Enabled: 1
+  m_Alpha: 0
+  m_Interactable: 0
+  m_BlocksRaycasts: 0
+  m_IgnoreParentGroups: 0
 --- !u!1 &1413223562032192611
 GameObject:
   m_ObjectHideFlags: 0

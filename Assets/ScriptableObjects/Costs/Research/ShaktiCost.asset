@@ -14,4 +14,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   food: 0
   metal: 0
-  mana: 150
+  mana: 100

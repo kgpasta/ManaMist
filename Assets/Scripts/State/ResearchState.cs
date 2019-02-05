@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using ManaMist.Actions;
 using ManaMist.Input;
 using ManaMist.Models;
 using UnityEngine;
@@ -12,6 +13,15 @@ namespace ManaMist.State
         public List<Research> AvailableResearch { get { return m_AvailableResearch; } }
         public override void HandleInput(InputEvent inputEvent)
         {
+            if (inputEvent is ResearchButtonClickedInput)
+            {
+                ResearchButtonClickedInput researchButtonClickedInput = inputEvent as ResearchButtonClickedInput;
+                ResearchAction researchAction = researchController.CreateResearch(player, researchButtonClickedInput.research);
+                if (researchAction.CanExecute(player, null))
+                {
+                    researchAction.Execute(player, null);
+                }
+            }
             if (inputEvent is OpenResearchInput)
             {
                 dispatcher.Dispatch<IdleState>();

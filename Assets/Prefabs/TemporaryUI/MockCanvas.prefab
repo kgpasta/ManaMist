@@ -2371,6 +2371,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: ResearchPanel
       objectReference: {fileID: 0}
+    - target: {fileID: 1197424067207033815, guid: 7bdb2e0a72729a548bf2e12c4233b4bb,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8248794207726536329, guid: 7bdb2e0a72729a548bf2e12c4233b4bb,
         type: 3}
       propertyPath: m_LocalPosition.x
