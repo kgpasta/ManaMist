@@ -16,7 +16,7 @@ namespace ManaMist.State
             if (inputEvent is ResearchButtonClickedInput)
             {
                 ResearchButtonClickedInput researchButtonClickedInput = inputEvent as ResearchButtonClickedInput;
-                ResearchAction researchAction = researchController.CreateResearch(player, researchButtonClickedInput.research);
+                ResearchAction researchAction = researchController.CreateResearch(researchButtonClickedInput.research);
                 if (researchAction.CanExecute(player))
                 {
                     researchAction.Execute(player);

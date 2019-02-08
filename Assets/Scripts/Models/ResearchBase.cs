@@ -6,6 +6,7 @@ namespace ManaMist.Models
     [CreateAssetMenu(menuName = "ManaMist/Research")]
     public class Research : ScriptableObject
     {
+        public string displayName;
         public Cost cost;
         public List<Research> prerequesites;
     }

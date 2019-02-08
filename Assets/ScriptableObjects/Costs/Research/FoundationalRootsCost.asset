@@ -10,8 +10,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 1c8cc23b66d70774ea3119a300186762, type: 3}
-  m_Name: ShaktiCost
+  m_Name: FoundationalRootsCost
   m_EditorClassIdentifier: 
   food: 0
   metal: 0
-  mana: 100
+  mana: 0

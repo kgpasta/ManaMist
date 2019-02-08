@@ -118,9 +118,11 @@ MonoBehaviour:
   m_LevelOne: {fileID: 1413223562032192611}
   m_LevelTwo: {fileID: 4030470324654499184}
   m_LevelThree: {fileID: 7432080961547455457}
-  m_ResearchButtonPrefab: {fileID: 5239981940174892662, guid: 036be428d77f4194d82a21bc7838a1dc,
+  m_ResearchButtonPrefab: {fileID: 4300238501294936564, guid: c9e11dfe59ee40944ad2c0b28bcfbbbe,
     type: 3}
   m_InputController: {fileID: 11400000, guid: 8a78e43eac7c677448d699f6292adaa7, type: 2}
+  m_ResearchController: {fileID: 11400000, guid: fa72dde3bbf62754f83e69756ca95c80,
+    type: 2}
   m_ResearchState: {fileID: 11400000, guid: 6766a4aa09ceab74ea748499cc08719d, type: 2}
 --- !u!225 &1084673935266144891
 CanvasGroup:

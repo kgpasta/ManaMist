@@ -10,7 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 0}
-  m_Name: Shakti
+  m_Name: FoundationalRoots
   m_EditorClassIdentifier: Assembly-CSharp:ManaMist.Models:Research
-  cost: {fileID: 11400000, guid: ef3a142099d3074409b230d5ef7b64b1, type: 2}
-  prerequesites: []
+  displayName: Foundational Roots
+  cost: {fileID: 11400000, guid: 02459d1c023eab5488df2c22eea4d869, type: 2}
+  prerequesites:
+  - {fileID: 11400000, guid: 18d753d010496e446ba55974a773e7e5, type: 2}
+  - {fileID: 11400000, guid: 203b05e647f058e4ba989d436983d0fd, type: 2}

@@ -4,6 +4,7 @@ using ManaMist.Controllers;
 using ManaMist.Input;
 using ManaMist.Models;
 using ManaMist.State;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -21,6 +22,7 @@ namespace ManaMist.UI
 
         [Header("Controllers")]
         [SerializeField] private InputController m_InputController;
+        [SerializeField] private ResearchController m_ResearchController;
 
         [Header("State")]
         [SerializeField] private ResearchState m_ResearchState;
@@ -65,7 +67,7 @@ namespace ManaMist.UI
                 {
                     CreateResearchButton(research, m_LevelOne.transform);
                 }
-                else if (research.prerequesites.Count < 2)
+                else if (research.prerequesites.Count == 1)
                 {
                     CreateResearchButton(research, m_LevelTwo.transform);
                 }
@@ -80,17 +82,17 @@ namespace ManaMist.UI
         {
             foreach (Transform child in m_LevelOne.transform)
             {
-                child.GetComponent<Button>().onClick.RemoveAllListeners();
+                child.GetComponentInChildren<Button>().onClick.RemoveAllListeners();
                 Destroy(child.gameObject);
             }
             foreach (Transform child in m_LevelTwo.transform)
             {
-                child.GetComponent<Button>().onClick.RemoveAllListeners();
+                child.GetComponentInChildren<Button>().onClick.RemoveAllListeners();
                 Destroy(child.gameObject);
             }
             foreach (Transform child in m_LevelThree.transform)
             {
-                child.GetComponent<Button>().onClick.RemoveAllListeners();
+                child.GetComponentInChildren<Button>().onClick.RemoveAllListeners();
                 Destroy(child.gameObject);
             }
             gameObject.SetActive(false);
@@ -98,9 +100,13 @@ namespace ManaMist.UI
 
         private void CreateResearchButton(Research research, Transform parent)
         {
-            GameObject newButton = Instantiate(m_ResearchButtonPrefab, parent);
-            newButton.GetComponentInChildren<Text>().text = research.name;
-            newButton.GetComponent<Button>().onClick.AddListener(() =>
+            GameObject researchButton = Instantiate(m_ResearchButtonPrefab, parent);
+
+            GameObject researchViewPrefab = m_ResearchController.GetResearchPrefab(research);
+
+            researchButton.GetComponentInChildren<TextMeshProUGUI>().text = research.displayName;
+            researchButton.GetComponentInChildren<Image>().sprite = researchViewPrefab.GetComponent<ResearchView>().Sprite;
+            researchButton.GetComponentInChildren<Button>().onClick.AddListener(() =>
             {
                 ResearchButtonClickedInput researchButtonClickedInput = new ResearchButtonClickedInput()
                 {

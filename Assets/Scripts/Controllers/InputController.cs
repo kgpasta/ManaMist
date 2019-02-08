@@ -13,5 +13,10 @@ namespace ManaMist.Controllers
         {
             OnInputEvent?.Invoke(this, inputEvent);
         }
+
+        public void Test(string test)
+        {
+            Debug.Log(test);
+        }
     }
 }
