@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using ManaMist.Controllers;
 using ManaMist.Input;
 using ManaMist.Models;
@@ -16,6 +17,7 @@ namespace ManaMist.UI
         [SerializeField] private GameObject m_LevelOne;
         [SerializeField] private GameObject m_LevelTwo;
         [SerializeField] private GameObject m_LevelThree;
+        private List<GameObject> m_ResearchButtons = new List<GameObject>();
 
         [Header("Prefab References")]
         [SerializeField] private GameObject m_ResearchButtonPrefab;
@@ -33,6 +35,11 @@ namespace ManaMist.UI
             m_CanvasGroup = this.GetComponent<CanvasGroup>();
             m_ResearchState.OnEnter += OnEnter;
             m_ResearchState.OnExit += OnExit;
+        }
+
+        private void OnGUI()
+        {
+            UpdateUI();
         }
 
         private void OnDestroy()
@@ -55,6 +62,16 @@ namespace ManaMist.UI
             m_CanvasGroup.interactable = false;
             m_CanvasGroup.blocksRaycasts = false;
             Clear();
+        }
+
+        private void UpdateUI()
+        {
+            foreach (GameObject researchButton in m_ResearchButtons)
+            {
+                Research research = researchButton.GetComponentInChildren<ResearchView>().Research;
+                bool fulfilledPrerequisites = research.prerequesites.All(prerequesite => m_ResearchState.AlreadyResearched.Contains(prerequesite));
+                researchButton.GetComponentInChildren<Button>().interactable = !m_ResearchState.AlreadyResearched.Contains(research) && fulfilledPrerequisites;
+            }
         }
 
         private void Setup(List<Research> researchs)
@@ -80,20 +97,9 @@ namespace ManaMist.UI
 
         private void Clear()
         {
-            foreach (Transform child in m_LevelOne.transform)
+            foreach (GameObject researchButton in m_ResearchButtons)
             {
-                child.GetComponentInChildren<Button>().onClick.RemoveAllListeners();
-                Destroy(child.gameObject);
-            }
-            foreach (Transform child in m_LevelTwo.transform)
-            {
-                child.GetComponentInChildren<Button>().onClick.RemoveAllListeners();
-                Destroy(child.gameObject);
-            }
-            foreach (Transform child in m_LevelThree.transform)
-            {
-                child.GetComponentInChildren<Button>().onClick.RemoveAllListeners();
-                Destroy(child.gameObject);
+                Destroy(researchButton);
             }
             gameObject.SetActive(false);
         }
@@ -103,6 +109,7 @@ namespace ManaMist.UI
             GameObject researchButton = Instantiate(m_ResearchButtonPrefab, parent);
 
             GameObject researchViewPrefab = m_ResearchController.GetResearchPrefab(research);
+            GameObject researchViewObject = Instantiate(researchViewPrefab, researchButton.transform);
 
             researchButton.GetComponentInChildren<TextMeshProUGUI>().text = research.displayName;
             researchButton.GetComponentInChildren<Image>().sprite = researchViewPrefab.GetComponent<ResearchView>().Sprite;
@@ -114,6 +121,8 @@ namespace ManaMist.UI
                 };
                 m_InputController.RegisterInputEvent(researchButtonClickedInput);
             });
+
+            m_ResearchButtons.Add(researchButton);
         }
 
     }

@@ -11,6 +11,7 @@ namespace ManaMist.State
     {
         private List<Research> m_AvailableResearch = new List<Research>();
         public List<Research> AvailableResearch { get { return m_AvailableResearch; } }
+        public List<Research> AlreadyResearched { get { return player.research; } }
         public override void HandleInput(InputEvent inputEvent)
         {
             if (inputEvent is ResearchButtonClickedInput)
@@ -30,7 +31,7 @@ namespace ManaMist.State
 
         protected override void Enter()
         {
-            m_AvailableResearch = researchController.GetAvailableResearch(player);
+            m_AvailableResearch = researchController.GetAvailableResearch();
         }
 
         protected override void Exit()

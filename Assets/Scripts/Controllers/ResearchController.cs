@@ -13,11 +13,9 @@ namespace ManaMist.Controllers
     {
         [SerializeField] private List<ResearchView> availableResearch;
 
-        public List<Research> GetAvailableResearch(Player player)
+        public List<Research> GetAvailableResearch()
         {
-            return availableResearch.Where(researchView => !player.research.Contains(researchView.Research))
-                                    .Select(researchView => researchView.Research)
-                                    .ToList();
+            return availableResearch.Select(researchView => researchView.Research).ToList();
         }
 
         public ResearchAction CreateResearch(Research research)
