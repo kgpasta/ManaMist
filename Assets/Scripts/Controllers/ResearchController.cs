@@ -13,12 +13,12 @@ namespace ManaMist.Controllers
     {
         [SerializeField] private List<ResearchView> availableResearch;
 
-        public List<Research> GetAvailableResearch()
+        public List<ResearchBase> GetAvailableResearch()
         {
             return availableResearch.Select(researchView => researchView.Research).ToList();
         }
 
-        public ResearchAction CreateResearch(Research research)
+        public ResearchAction CreateResearch(ResearchBase research)
         {
             ResearchAction researchAction = ScriptableObject.CreateInstance<ResearchAction>();
             researchAction.research = research;
@@ -26,7 +26,7 @@ namespace ManaMist.Controllers
             return researchAction;
         }
 
-        public GameObject GetResearchPrefab(Research research)
+        public GameObject GetResearchPrefab(ResearchBase research)
         {
             return availableResearch.Find(researchView => researchView.Research.name == research.name).gameObject;
         }

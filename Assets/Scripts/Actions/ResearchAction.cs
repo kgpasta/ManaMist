@@ -6,7 +6,7 @@ namespace ManaMist.Actions
 {
     public class ResearchAction : Action
     {
-        public Research research;
+        public ResearchBase research;
 
         public override bool CanExecute(Player player, Entity entity = null, Coordinate targetCoordinate = null, Entity target = null)
         {
@@ -18,6 +18,7 @@ namespace ManaMist.Actions
         {
             player.resources.Decrement(research.cost);
             player.research.Add(research);
+            research.PerformResearch(player);
         }
     }
 }

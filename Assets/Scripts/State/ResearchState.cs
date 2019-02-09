@@ -9,9 +9,9 @@ namespace ManaMist.State
     [CreateAssetMenu(menuName = "ManaMist/States/ResearchState")]
     public class ResearchState : GameState
     {
-        private List<Research> m_AvailableResearch = new List<Research>();
-        public List<Research> AvailableResearch { get { return m_AvailableResearch; } }
-        public List<Research> AlreadyResearched { get { return player.research; } }
+        private List<ResearchBase> m_AvailableResearch = new List<ResearchBase>();
+        public List<ResearchBase> AvailableResearch { get { return m_AvailableResearch; } }
+        public List<ResearchBase> AlreadyResearched { get { return player.research; } }
         public override void HandleInput(InputEvent inputEvent)
         {
             if (inputEvent is ResearchButtonClickedInput)

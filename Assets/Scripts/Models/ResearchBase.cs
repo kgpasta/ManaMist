@@ -1,13 +1,15 @@
 using System.Collections.Generic;
+using ManaMist.Players;
 using UnityEngine;
 
 namespace ManaMist.Models
 {
-    [CreateAssetMenu(menuName = "ManaMist/Research")]
-    public class Research : ScriptableObject
+    public abstract class ResearchBase : ScriptableObject
     {
         public string displayName;
         public Cost cost;
-        public List<Research> prerequesites;
+        public List<ResearchBase> prerequesites = new List<ResearchBase>();
+
+        public abstract void PerformResearch(Player player);
     }
 }

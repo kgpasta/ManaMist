@@ -68,17 +68,17 @@ namespace ManaMist.UI
         {
             foreach (GameObject researchButton in m_ResearchButtons)
             {
-                Research research = researchButton.GetComponentInChildren<ResearchView>().Research;
+                ResearchBase research = researchButton.GetComponentInChildren<ResearchView>().Research;
                 bool fulfilledPrerequisites = research.prerequesites.All(prerequesite => m_ResearchState.AlreadyResearched.Contains(prerequesite));
                 researchButton.GetComponentInChildren<Button>().interactable = !m_ResearchState.AlreadyResearched.Contains(research) && fulfilledPrerequisites;
             }
         }
 
-        private void Setup(List<Research> researchs)
+        private void Setup(List<ResearchBase> researchs)
         {
             gameObject.SetActive(true);
 
-            foreach (Research research in researchs)
+            foreach (ResearchBase research in researchs)
             {
                 if (research.prerequesites.Count == 0)
                 {
@@ -104,7 +104,7 @@ namespace ManaMist.UI
             gameObject.SetActive(false);
         }
 
-        private void CreateResearchButton(Research research, Transform parent)
+        private void CreateResearchButton(ResearchBase research, Transform parent)
         {
             GameObject researchButton = Instantiate(m_ResearchButtonPrefab, parent);
 
