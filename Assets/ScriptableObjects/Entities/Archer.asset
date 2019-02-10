@@ -10,15 +10,16 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 2b1fab0055ef7f449a8b2234452fbf09, type: 3}
-  m_Name: Fount
+  m_Name: Archer
   m_EditorClassIdentifier: 
-  m_Id: 96b69297-8bf7-4156-97bd-60aaf2fb2030
-  m_Type: {fileID: 11400000, guid: 2de7984d3af76a34da719d952d1cbd23, type: 2}
-  m_Cost: {fileID: 11400000, guid: 691f4ec12cb70eb4dad25ade3cafa28a, type: 2}
+  m_Id: 1902e588-3fdf-4a5f-8ec6-44403cd204fb
+  m_Type: {fileID: 11400000, guid: 3669c22b9e046184c84c4bb582fc3103, type: 2}
+  m_Cost: {fileID: 11400000, guid: 9a7ff16f049edf948bf1fa8a7ce1500f, type: 2}
   actions:
-  - {fileID: 11400000, guid: 6ea42f43b248c5547ab7871df9a9dea4, type: 2}
-  maxActionPoints: 0
+  - {fileID: 11400000, guid: f8da8596651163a4f9106fb924db506c, type: 2}
+  - {fileID: 11400000, guid: a6eb45d84b5339247b7c1376c6803658, type: 2}
+  maxActionPoints: 2
   actionPoints: 0
-  maxHp: 40
-  hp: 40
+  maxHp: 12
+  hp: 12
   color: {r: 0, g: 0, b: 0, a: 0}

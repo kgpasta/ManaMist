@@ -12,13 +12,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2b1fab0055ef7f449a8b2234452fbf09, type: 3}
   m_Name: TownCenter
   m_EditorClassIdentifier: 
-  m_Id: b947e16d-ffc3-437f-bb98-56c911002da3
+  m_Id: e2a524aa-5e3e-4774-9867-c5068e0ef7cd
   m_Type: {fileID: 11400000, guid: b72520978ed831f48bcea4a40ac10f02, type: 2}
   m_Cost: {fileID: 11400000, guid: 9642d25ca1e0c294f8dc8297cea92c1f, type: 2}
   actions:
   - {fileID: 11400000, guid: 1d8568cfeb159794a96ceb996b902e67, type: 2}
   - {fileID: 11400000, guid: 6ec257cb6b6493241852c9b064e743c1, type: 2}
-  - {fileID: 11400000, guid: 370d0725bfd6d0d4f9bf55e89e555d67, type: 2}
   maxActionPoints: 1
   actionPoints: 0
   maxHp: 100

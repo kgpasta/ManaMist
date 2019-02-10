@@ -5,5 +5,7 @@ TownCenter,Building,1,100,100,100,100,,,,1,10,10,10,80,0,2,1,Worker:Guru,,,,,,,,
 Farm,Building,0,0,30,30,40,,,,,,,,,,,,,0,Food,30,0,0,,,
 Mine,Building,0,30,0,30,40,,,,,,,,,,,,,0,Metal,0,30,0,,,
 Fount,Building,0,30,30,0,40,,,,,,,,,,,,,0,Mana,0,0,30,,,
-Barracks,Building,0,50,50,0,60,,,,,,,,,,,1,Warrior,,,,,,,,
+Barracks,Building,0,50,50,0,60,,,,,,,,,,,1,Warrior:Archer:Charioteer,,,,,,,,
 Guru,Magic,2,10,10,100,10,4,1,Grass:Hill:Desert:Forest:Swamp:Mountain,,,,,,,,,,,,,,,1,5,3
+Archer,Ranged,2,80,10,0,12,5,1,Grass:Hill:Desert:Forest:Swamp,2,7,3,5,80,3,2,,,,,,,,,,
+Charioteer,Mounted,3,70,50,0,12,7,1,Grass:Hill:Desert:Forest:Swamp,2,9,3,6,75,7,1,,,,,,,,,,

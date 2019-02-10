@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2b1fab0055ef7f449a8b2234452fbf09, type: 3}
   m_Name: Mine
   m_EditorClassIdentifier: 
-  m_Id: 90ee76dd-591c-44bf-ba52-d1533984ec61
+  m_Id: 0553060e-ca27-4cfc-8236-3e9f6db753ae
   m_Type: {fileID: 11400000, guid: 0c1091157032b9d42bdee1cdc2b60440, type: 2}
   m_Cost: {fileID: 11400000, guid: 322ff45c5075feb4c9527063e39997bd, type: 2}
   actions:
@@ -21,3 +21,4 @@ MonoBehaviour:
   actionPoints: 0
   maxHp: 40
   hp: 40
+  color: {r: 0, g: 0, b: 0, a: 0}

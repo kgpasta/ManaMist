@@ -9,12 +9,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7e099a3f873840e469fe5c847738d8e4, type: 3}
-  m_Name: BarracksBuildAction
+  m_Script: {fileID: 11500000, guid: 85e9907785a76094a86b6642c3859808, type: 3}
+  m_Name: CharioteerMoveAction
   m_EditorClassIdentifier: 
   mapController: {fileID: 11400000, guid: 687951a7835bd5a43b17fca05b9af0d8, type: 2}
   actionPoints: 1
-  canBuildList:
-  - {fileID: 11400000, guid: be16e642e7c5bfc4fb0a43f6d3d20d92, type: 2}
-  - {fileID: 11400000, guid: 3669c22b9e046184c84c4bb582fc3103, type: 2}
-  - {fileID: 11400000, guid: 8d0c79e59df29ea47a348c76fcd61750, type: 2}
+  movementRange: 7
+  allowedTerrain: 0100000002000000050000000600000007000000

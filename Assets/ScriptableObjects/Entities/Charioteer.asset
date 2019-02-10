@@ -10,15 +10,16 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 2b1fab0055ef7f449a8b2234452fbf09, type: 3}
-  m_Name: Fount
+  m_Name: Charioteer
   m_EditorClassIdentifier: 
-  m_Id: 96b69297-8bf7-4156-97bd-60aaf2fb2030
-  m_Type: {fileID: 11400000, guid: 2de7984d3af76a34da719d952d1cbd23, type: 2}
-  m_Cost: {fileID: 11400000, guid: 691f4ec12cb70eb4dad25ade3cafa28a, type: 2}
+  m_Id: dea4d55c-ce38-40c9-80ca-4ee6d0fcebcd
+  m_Type: {fileID: 11400000, guid: 8d0c79e59df29ea47a348c76fcd61750, type: 2}
+  m_Cost: {fileID: 11400000, guid: 3f37d451cc7890543b438a08460b8581, type: 2}
   actions:
-  - {fileID: 11400000, guid: 6ea42f43b248c5547ab7871df9a9dea4, type: 2}
-  maxActionPoints: 0
+  - {fileID: 11400000, guid: 0b147de2c1ce8744aac58cd986f823de, type: 2}
+  - {fileID: 11400000, guid: fd0a5e0e4a9008f469bfd69264d1a400, type: 2}
+  maxActionPoints: 3
   actionPoints: 0
-  maxHp: 40
-  hp: 40
+  maxHp: 12
+  hp: 12
   color: {r: 0, g: 0, b: 0, a: 0}
