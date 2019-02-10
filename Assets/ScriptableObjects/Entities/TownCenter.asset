@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2b1fab0055ef7f449a8b2234452fbf09, type: 3}
   m_Name: TownCenter
   m_EditorClassIdentifier: 
-  m_Id: e2a524aa-5e3e-4774-9867-c5068e0ef7cd
+  m_Id: 90d88fd6-3c2a-441b-9e33-66139120bdf2
   m_Type: {fileID: 11400000, guid: b72520978ed831f48bcea4a40ac10f02, type: 2}
   m_Cost: {fileID: 11400000, guid: 9642d25ca1e0c294f8dc8297cea92c1f, type: 2}
   actions:

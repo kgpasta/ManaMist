@@ -1,5 +1,5 @@
 Name,EntityClass,ActionPoints,Food,Metal,Mana,HP,MoveAction.MovementRange,MoveAction.ActionPoints,MoveAction.AllowedTerrain,AttackAction.ActionPoints,AttackAction.Attack,AttackAction.Defense,AttackAction.Skill,AttackAction.Accuracy,AttackAction.Speed,AttackAction.Range,BuildAction.ActionPoints,BuildAction.CanBuildList,HarvestAction.ActionPoints,HarvestAction.Resource,HarvestAction.Food,HarvestAction.Metal,HarvestAction.Mana,HealAction.ActionPoints,HealAction.HealAmount,HealAction.Range
-Worker,Melee,2,50,20,0,10,5,1,Grass:Hill:Desert:Forest:Swamp,2,5,0,0,70,2,1,1,TownCenter:Farm:Mine:Fount,,,,,,,,
+Worker,Melee,2,50,20,0,10,5,1,Grass:Hill:Desert:Forest:Swamp,2,5,0,0,70,2,1,1,TownCenter:Farm:Mine:Fount:Barracks,,,,,,,,
 Warrior,Melee,2,100,40,0,20,5,1,Grass:Hill:Desert:Forest:Swamp,2,10,5,5,90,5,1,,,,,,,,,,
 TownCenter,Building,1,100,100,100,100,,,,1,10,10,10,80,0,2,1,Worker:Guru,,,,,,,,
 Farm,Building,0,0,30,30,40,,,,,,,,,,,,,0,Food,30,0,0,,,
