@@ -101,6 +101,7 @@ namespace ManaMist.UI
             {
                 Destroy(researchButton);
             }
+            m_ResearchButtons.Clear();
             gameObject.SetActive(false);
         }
 

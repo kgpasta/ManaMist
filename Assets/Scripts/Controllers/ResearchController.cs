@@ -8,7 +8,7 @@ using UnityEngine;
 
 namespace ManaMist.Controllers
 {
-    [CreateAssetMenu(menuName = "ManaMist/ResearchController")]
+    [CreateAssetMenu(menuName = "ManaMist/Research Controller")]
     public class ResearchController : ScriptableObject
     {
         [SerializeField] private List<ResearchView> availableResearch;
