@@ -128,27 +128,15 @@ namespace ManaMist.Controllers
             }
         }
 
-        //this only does mana additions for now
-        public void WorldEvent()
-        {
-            Coordinate targetCoordinate = new Coordinate(UnityEngine.Random.Range(1, MAP_DIMENSION - 1), UnityEngine.Random.Range(1, MAP_DIMENSION - 1)); 
-            MapTile targetTile = GetMapTileAtCoordinate(targetCoordinate);
-
-            if (targetTile.resource == Resource.NONE)
-            {
-                ModifyTileResource(targetTile, Resource.MANA, targetCoordinate);
-            }
-            else
-            {
-                WorldEvent();
-            }
-        }
-
-        private void ModifyTileResource (MapTile targetTile, Resource newResource, Coordinate targetCoordinate)
+        public void ModifyTileResource(MapTile targetTile, Resource newResource, Coordinate targetCoordinate)
         {
             targetTile.resource = newResource;
             MapTileModified?.Invoke(this, new MaptTileModifiedArgs() { mapTile = targetTile, coordinate = targetCoordinate });
+        }
 
+        public Coordinate GetRandomCoordinate()
+        {
+            return new Coordinate(UnityEngine.Random.Range(1, MAP_DIMENSION - 1), UnityEngine.Random.Range(1, MAP_DIMENSION - 1));
         }
     }
 }

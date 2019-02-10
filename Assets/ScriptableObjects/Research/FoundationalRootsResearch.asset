@@ -1,0 +1,20 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 0}
+  m_Name: FoundationalRootsResearch
+  m_EditorClassIdentifier: Assembly-CSharp:ManaMist.Research:FoundationalRootsResearch
+  displayName: Foundational Roots
+  cost: {fileID: 11400000, guid: 02459d1c023eab5488df2c22eea4d869, type: 2}
+  prerequesites:
+  - {fileID: 11400000, guid: 50a14aa6605da88468a822524c5365dd, type: 2}
+  - {fileID: 11400000, guid: c8e393f1207f71b4eac063e95f2b4d9c, type: 2}
+  moveAction: {fileID: 11400000, guid: 1f02667a9078da64eab1e76ec56cb4f1, type: 2}

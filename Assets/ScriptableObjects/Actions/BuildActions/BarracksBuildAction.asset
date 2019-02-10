@@ -16,3 +16,5 @@ MonoBehaviour:
   actionPoints: 1
   canBuildList:
   - {fileID: 11400000, guid: be16e642e7c5bfc4fb0a43f6d3d20d92, type: 2}
+  - {fileID: 11400000, guid: 3669c22b9e046184c84c4bb582fc3103, type: 2}
+  - {fileID: 11400000, guid: 8d0c79e59df29ea47a348c76fcd61750, type: 2}

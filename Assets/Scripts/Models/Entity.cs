@@ -23,7 +23,7 @@ namespace ManaMist.Models
         [SerializeField] protected int maxActionPoints;
         public int actionPoints;
         [SerializeField] protected int maxHp;
-        public int MaxHp { get { return maxHp; } }
+        public int MaxHp { get { return maxHp; } set { maxHp = value; } }
         public int hp;
         public Color color;
 

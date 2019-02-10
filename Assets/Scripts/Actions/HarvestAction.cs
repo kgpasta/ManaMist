@@ -19,7 +19,7 @@ namespace ManaMist.Actions
             player.resources.Increment(harvestAmount);
         }
 
-        public bool CanBuild(MapTile mapTile)
+        public bool CanBuild(Player player, MapTile mapTile)
         {
             return resource == mapTile.resource;
         }

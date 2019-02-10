@@ -14,6 +14,12 @@ namespace ManaMist.UI
                 CycleSelectionInput cycleSelectionInput = new CycleSelectionInput();
                 inputController.RegisterInputEvent(cycleSelectionInput);
             }
+
+            if (UnityEngine.Input.GetKeyDown(KeyCode.R))
+            {
+                OpenResearchInput openResearchInput = new OpenResearchInput();
+                inputController.RegisterInputEvent(openResearchInput);
+            }
         }
     }
 }

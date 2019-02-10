@@ -11,6 +11,7 @@ namespace ManaMist.State
         public Dispatcher dispatcher;
         public TurnController turnController;
         public MapController mapController;
+        public ResearchController researchController;
         public Player player;
 
         [SerializeField]

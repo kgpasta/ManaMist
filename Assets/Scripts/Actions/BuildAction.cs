@@ -24,7 +24,7 @@ namespace ManaMist.Actions
             return base.CanExecute(player, entity, targetCoordinate, target)
             && player.resources.CanDecrement(target.cost)
             && canBuildList.Contains(target.type)
-            && buildConstraints.All(constraint => constraint.CanBuild(mapTile));
+            && buildConstraints.All(constraint => constraint.CanBuild(player, mapTile));
         }
 
         public override void Execute(Player player, Entity entity, Coordinate targetCoordinate, Entity target)
@@ -39,6 +39,6 @@ namespace ManaMist.Actions
 
     public interface IBuildConstraint
     {
-        bool CanBuild(MapTile mapTile);
+        bool CanBuild(Player player, MapTile mapTile);
     }
 }

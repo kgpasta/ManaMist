@@ -18,6 +18,7 @@ namespace ManaMist.Players
         public Cost resources;
         public Behavior behavior;
         public Color color;
+        public List<ResearchBase> research;
 
         public event EventHandler VictoryConditionEntityRemoved;
 
@@ -54,7 +55,8 @@ namespace ManaMist.Players
 
         private void OnDisable()
         {
-            entities = new List<Entity>();
+            research.Clear();
+            entities.Clear();
             resources.food = 100;
             resources.mana = 100;
             resources.metal = 100;

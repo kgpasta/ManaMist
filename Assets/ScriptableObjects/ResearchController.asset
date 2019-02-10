@@ -1,0 +1,19 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 475d95f89419de349b53eff98792ac61, type: 3}
+  m_Name: ResearchController
+  m_EditorClassIdentifier: 
+  availableResearch:
+  - {fileID: 1056202503365098546, guid: eac307acd7488d847ae9f49d91d6a59a, type: 3}
+  - {fileID: 1056202503365098546, guid: f4b51cf49dd04e54c84daff05297a20b, type: 3}
+  - {fileID: 1056202503365098546, guid: f34ba724844efb942a9509bcf0ad4e96, type: 3}
+  - {fileID: 1056202503365098546, guid: aa1bd390a6fd8984781cb9dcbec4595b, type: 3}

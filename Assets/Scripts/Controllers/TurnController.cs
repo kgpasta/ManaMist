@@ -22,7 +22,7 @@ namespace ManaMist.Controllers
     {
         private Queue<Player> playerQueue = new Queue<Player>();
         public Player currentPlayer;
-        private int m_TurnNumber = 0;
+        [SerializeField] private int m_TurnNumber = 0;
         public int turnNumber
         {
             get
@@ -32,17 +32,10 @@ namespace ManaMist.Controllers
         }
         public event EventHandler<TurnEventArgs> OnTurnStart;
         public event EventHandler<TurnEventArgs> OnTurnEnd;
-        private MapController m_MapController;
-
-        private void OnEnable()
-        {
-            m_MapController = Resources.FindObjectsOfTypeAll<MapController>()[0];
-        }
 
         private void OnDisable()
         {
             m_TurnNumber = 0;
-            m_MapController = null;
         }
 
         public void Init(List<Player> players)
@@ -60,15 +53,8 @@ namespace ManaMist.Controllers
 
             m_TurnNumber++;
 
-
-            //handle actions that occur in between player turns
-            if (m_TurnNumber%3 == 0)
-            {
-                m_MapController.WorldEvent();
-            }
-
             OnTurnStart?.Invoke(this, new TurnEventArgs(turnNumber, currentPlayer));
-            
+
         }
 
         private void MoveToNextPlayer()
