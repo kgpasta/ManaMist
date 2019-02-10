@@ -17,7 +17,7 @@ MonoBehaviour:
   m_Cost: {fileID: 11400000, guid: c9ba0a0977231a34592f161a0e33c280, type: 2}
   actions:
   - {fileID: 11400000, guid: c4fe1e3f59753cc4ebd170b78d882dac, type: 2}
-  maxActionPoints: 0
+  maxActionPoints: 1
   actionPoints: 0
   maxHp: 60
   hp: 60
