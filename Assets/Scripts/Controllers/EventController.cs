@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using ManaMist.Models;
 using ManaMist.Utility;
 using UnityEngine;
@@ -7,6 +8,7 @@ namespace ManaMist.Controllers
     [CreateAssetMenu(menuName = "ManaMist/Event Controller")]
     public class EventController : ScriptableObject
     {
+        private const int CometDamage = 5;
         [SerializeField] private MapController mapController;
         [SerializeField] private TurnController turnController;
 
@@ -36,6 +38,17 @@ namespace ManaMist.Controllers
             if (targetTile.resource == Resource.NONE)
             {
                 mapController.ModifyTileResource(targetTile, Resource.MANA, targetCoordinate);
+                List<Coordinate> coordinates = targetCoordinate.GetNeighbors();
+                coordinates.Add(targetCoordinate);
+
+                foreach (Coordinate coordinate in coordinates)
+                {
+                    MapTile mapTile = mapController.GetMapTileAtCoordinate(coordinate);
+                    foreach (Entity entity in mapTile.entities)
+                    {
+                        entity.hp = ManaMistMath.Clamp(entity.hp - CometDamage, 1, entity.hp);
+                    }
+                }
             }
             else
             {
