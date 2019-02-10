@@ -7,7 +7,7 @@ using UnityEngine;
 namespace ManaMist.Research
 {
     [CreateAssetMenu(menuName = "ManaMist/Research/Foundational Roots")]
-    public class FoundationalRootsResearch : ResearchBase
+    public class FoundationalRoots : ResearchBase
     {
         [SerializeField] private MoveAction moveAction;
 

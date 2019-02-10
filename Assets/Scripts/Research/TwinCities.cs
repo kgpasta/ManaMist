@@ -7,7 +7,7 @@ using UnityEngine;
 namespace ManaMist.Research
 {
     [CreateAssetMenu(menuName = "ManaMist/Research/Twin Cities")]
-    public class TwinCitiesResearch : ResearchBase
+    public class TwinCities : ResearchBase
     {
         [SerializeField] private EntityType m_EntityType;
 

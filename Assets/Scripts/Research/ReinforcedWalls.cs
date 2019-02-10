@@ -6,7 +6,7 @@ using UnityEngine;
 namespace ManaMist.Research
 {
     [CreateAssetMenu(menuName = "ManaMist/Research/Reinforced Walls")]
-    public class ReinforcedWallsResearch : ResearchBase
+    public class ReinforcedWalls : ResearchBase
     {
         [SerializeField] private double scaleFactor;
 
