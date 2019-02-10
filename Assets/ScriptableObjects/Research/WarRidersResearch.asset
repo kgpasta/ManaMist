@@ -1,0 +1,19 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a825853710a442643b6823d24fb5804b, type: 3}
+  m_Name: WarRidersResearch
+  m_EditorClassIdentifier: 
+  displayName: War Riders
+  cost: {fileID: 11400000, guid: e99aeb6e4b4d64448ac4cc843d2a2eca, type: 2}
+  prerequesites: []
+  m_RescueAction: {fileID: 11400000, guid: 2c1a61ca5df9cbe42815e5f2cf27912f, type: 2}
+  m_DropAction: {fileID: 11400000, guid: 73e735f20f9f9074181af503d2fb7c09, type: 2}
