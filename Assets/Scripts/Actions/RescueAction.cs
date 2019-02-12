@@ -21,8 +21,8 @@ namespace ManaMist.Actions
             && dropAction != null
             && dropAction.entityToDrop == null
             && mapTile.entities.Count > 0
-            && player.GetEntity(mapTile.entities[0].id) != null
-            && rescuableClasses.Contains(mapTile.entities[0].type.EntityClass);
+            && player.GetEntity(mapTile.entities[0].Id) != null
+            && rescuableClasses.Contains(mapTile.entities[0].Type.EntityClass);
         }
 
         public override void Execute(Player player, Entity entity, Coordinate targetCoordinate, Entity target)

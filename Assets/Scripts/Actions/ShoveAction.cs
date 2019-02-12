@@ -16,14 +16,14 @@ namespace ManaMist.Actions
 
             return base.CanExecute(player, entity, targetCoordinate, target)
             && mapTile.entities.Count > 0
-            && player.GetEntity(mapTile.entities[0].id) != null
-            && mapTile.entities[0].type.EntityClass != EntityClass.Building;
+            && player.GetEntity(mapTile.entities[0].Id) != null
+            && mapTile.entities[0].Type.EntityClass != EntityClass.Building;
         }
 
         public override void Execute(Player player, Entity entity, Coordinate targetCoordinate, Entity target)
         {
             base.Execute(player, entity, targetCoordinate, target);
-            Coordinate currentCoordinate = mapController.GetPositionOfEntity(entity.id);
+            Coordinate currentCoordinate = mapController.GetPositionOfEntity(entity.Id);
 
             Coordinate newCoordinate = GetDirectionOfShove(currentCoordinate, targetCoordinate);
             mapController.MoveEntity(newCoordinate, target);

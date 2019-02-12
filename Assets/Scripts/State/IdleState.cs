@@ -17,7 +17,7 @@ namespace ManaMist.State
 
                 MapTile mapTile = mapController.GetMapTileAtCoordinate(mapTileClickedInput.coordinate);
 
-                if (mapTile.entities.Count > 0 && player.GetEntity(mapTile.entities[0].id) != null)
+                if (mapTile.entities.Count > 0 && player.GetEntity(mapTile.entities[0].Id) != null)
                 {
                     SelectedStateData selectedStateData = ScriptableObject.CreateInstance<SelectedStateData>();
                     selectedStateData.coordinate = mapTileClickedInput.coordinate;
@@ -28,10 +28,10 @@ namespace ManaMist.State
 
             if (inputEvent is CycleSelectionInput)
             {
-                Entity availableEntity = player.entities.Find(entity => entity.actionPoints > 0);
+                Entity availableEntity = player.entities.Find(entity => entity.ActionPoints > 0);
                 if (availableEntity != null)
                 {
-                    Coordinate coordinate = mapController.GetPositionOfEntity(availableEntity.id);
+                    Coordinate coordinate = mapController.GetPositionOfEntity(availableEntity.Id);
                     SelectedStateData selectedStateData = ScriptableObject.CreateInstance<SelectedStateData>();
                     selectedStateData.coordinate = coordinate;
 

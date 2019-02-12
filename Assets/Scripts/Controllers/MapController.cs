@@ -52,7 +52,9 @@ namespace ManaMist.Controllers
 
             mapTile.entities.Add(entity);
 
-            m_EntityIdToCoordinate[entity.id] = coordinate;
+            m_EntityIdToCoordinate[entity.Id] = coordinate;
+
+            entity.EntityKilled += RemoveFromMap;
 
             EntityAdded?.Invoke(this, new EntityArgs()
             {
@@ -78,16 +80,17 @@ namespace ManaMist.Controllers
 
         public void RemoveFromMap(Entity entity)
         {
-            if (m_EntityIdToCoordinate.ContainsKey(entity.id))
+            if (m_EntityIdToCoordinate.ContainsKey(entity.Id))
             {
-                Coordinate current = m_EntityIdToCoordinate[entity.id];
+                entity.EntityKilled -= RemoveFromMap;
+                Coordinate current = m_EntityIdToCoordinate[entity.Id];
 
                 if (m_CoordinateToMapTile.ContainsKey(current))
                 {
                     m_CoordinateToMapTile[current].entities.Remove(entity);
                 }
 
-                m_EntityIdToCoordinate.Remove(entity.id);
+                m_EntityIdToCoordinate.Remove(entity.Id);
 
                 EntityRemoved?.Invoke(this, new EntityArgs()
                 {
@@ -99,14 +102,14 @@ namespace ManaMist.Controllers
 
         public void MoveEntity(Coordinate coordinate, Entity entity)
         {
-            if (GetPositionOfEntity(entity.id) != null)
+            if (GetPositionOfEntity(entity.Id) != null)
             {
                 // Remove from old coordinate
-                Coordinate oldCoordinate = m_EntityIdToCoordinate[entity.id];
+                Coordinate oldCoordinate = m_EntityIdToCoordinate[entity.Id];
                 m_CoordinateToMapTile[oldCoordinate].entities.Remove(entity);
 
                 //Add to new coordinate
-                m_EntityIdToCoordinate[entity.id] = coordinate;
+                m_EntityIdToCoordinate[entity.Id] = coordinate;
                 m_CoordinateToMapTile[coordinate].entities.Add(entity);
 
                 EntityMoved?.Invoke(this, new EntityMovedArgs()

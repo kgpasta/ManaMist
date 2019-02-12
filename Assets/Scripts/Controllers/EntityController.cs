@@ -18,13 +18,13 @@ namespace ManaMist.Controllers
 
         public Entity CreateEntity(EntityType entityType)
         {
-            Entity entityOutline = entities.Find(entity => entity.type.Equals(entityType));
+            Entity entityOutline = entities.Find(entity => entity.Type.Equals(entityType));
             return ScriptableObject.Instantiate(entityOutline);
         }
 
         public GameObject GetEntityPrefab(Entity entity)
         {
-            GameObject entityPrefab = entityViews.Find(entityView => entityView.name.Equals(entity.type.Name, StringComparison.InvariantCultureIgnoreCase));
+            GameObject entityPrefab = entityViews.Find(entityView => entityView.name.Equals(entity.Type.Name, StringComparison.InvariantCultureIgnoreCase));
             return entityPrefab != null ? entityPrefab : m_DefaultEntityPrefab;
         }
     }

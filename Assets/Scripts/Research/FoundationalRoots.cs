@@ -15,7 +15,7 @@ namespace ManaMist.Research
         {
             foreach (Entity playerEntity in player.entities)
             {
-                if (playerEntity.type.EntityClass == EntityClass.Building)
+                if (playerEntity.Type.EntityClass == EntityClass.Building)
                 {
                     playerEntity.AddAction(moveAction);
                 }

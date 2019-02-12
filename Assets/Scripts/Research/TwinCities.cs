@@ -13,7 +13,7 @@ namespace ManaMist.Research
 
         public override void PerformResearch(Player player)
         {
-            Entity target = player.entities.Find(entity => entity.type.Equals(m_EntityType));
+            Entity target = player.entities.Find(entity => entity.Type.Equals(m_EntityType));
 
             LimitedEntityAction limitedEntityAction = target.GetAction<LimitedEntityAction>();
             limitedEntityAction.EntitiesAllowed++;

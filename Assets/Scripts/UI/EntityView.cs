@@ -12,12 +12,12 @@ namespace ManaMist.UI
         {
             this.entity = entity;
             this.gameObject.name = entity.name;
-            this.m_BaseColor = entity.color;
+            this.m_BaseColor = entity.Color;
         }
 
         private void OnGUI()
         {
-            this.GetComponent<MeshRenderer>().material.color = entity.actionPoints > 0 ? m_BaseColor : Color.gray;
+            this.GetComponent<MeshRenderer>().material.color = entity.ActionPoints > 0 ? m_BaseColor : Color.gray;
         }
     }
 }

@@ -46,7 +46,7 @@ namespace ManaMist.Controllers
                     MapTile mapTile = mapController.GetMapTileAtCoordinate(coordinate);
                     foreach (Entity entity in mapTile.entities)
                     {
-                        entity.hp = ManaMistMath.Clamp(entity.hp - CometDamage, 1, entity.hp);
+                        entity.Hp = ManaMistMath.Clamp(entity.Hp - CometDamage, 0, entity.Hp);
                     }
                 }
             }

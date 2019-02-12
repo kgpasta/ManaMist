@@ -12,7 +12,7 @@ namespace ManaMist.Actions
         public int EntitiesAllowed { get { return m_EntitiesAllowed; } set { m_EntitiesAllowed = value; } }
         public bool CanBuild(Player player, MapTile mapTile)
         {
-            return player.entities.FindAll(entity => entity.type.Equals(m_EntityType)).Count < m_EntitiesAllowed;
+            return player.entities.FindAll(entity => entity.Type.Equals(m_EntityType)).Count < m_EntitiesAllowed;
         }
     }
 }

@@ -14,7 +14,7 @@ namespace ManaMist.Actions
 
         public virtual bool CanExecute(Player player, Entity entity, Coordinate targetCoordinate = null, Entity target = null)
         {
-            return entity.actionPoints >= actionPoints;
+            return entity.ActionPoints >= actionPoints;
         }
 
         public virtual void Execute(Player player, Entity entity, Coordinate targetCoordinate = null, Entity target = null)

@@ -23,7 +23,7 @@ namespace ManaMist.Actions
         {
             base.Execute(player, entity, targetCoordinate, target);
 
-            target.hp = ManaMistMath.Clamp(target.hp + healAmount, 0, target.MaxHp);
+            target.Hp = ManaMistMath.Clamp(target.Hp + healAmount, 0, target.MaxHp);
         }
     }
 }

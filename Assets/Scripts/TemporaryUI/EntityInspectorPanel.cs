@@ -32,10 +32,10 @@ public class EntityInspectorPanel : MonoBehaviour
         if (entity != null)
         {
             m_NameText.text = entity.name;
-            m_TypeText.text = entity.type.Name;
-            m_EntityClassText.text = entity.type.EntityClass.ToString();
-            m_ActionPointsText.text = entity.actionPoints.ToString();
-            m_HpBarContainer.currentHp = entity.hp;
+            m_TypeText.text = entity.Type.Name;
+            m_EntityClassText.text = entity.Type.EntityClass.ToString();
+            m_ActionPointsText.text = entity.ActionPoints.ToString();
+            m_HpBarContainer.currentHp = entity.Hp;
             m_HpBarContainer.maxHp = entity.MaxHp;
         }
     }

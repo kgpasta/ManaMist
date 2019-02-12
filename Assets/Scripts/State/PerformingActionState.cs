@@ -55,7 +55,7 @@ namespace ManaMist.State
             }
             else if (m_Action is ISelectableTargetAction)
             {
-                Coordinate currentCoordinate = mapController.GetPositionOfEntity(m_Source.id);
+                Coordinate currentCoordinate = mapController.GetPositionOfEntity(m_Source.Id);
                 m_Paths = ShowPaths(currentCoordinate, m_Action);
 
                 foreach (Coordinate coord in m_Paths.Keys)

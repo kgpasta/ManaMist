@@ -12,13 +12,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2b1fab0055ef7f449a8b2234452fbf09, type: 3}
   m_Name: Mine
   m_EditorClassIdentifier: 
-  m_Id: a117056a-2920-42cd-8fb4-6e894066613d
+  m_Id: a4e4d16a-d4c8-412c-a369-0c86eab509d0
   m_Type: {fileID: 11400000, guid: 0c1091157032b9d42bdee1cdc2b60440, type: 2}
   m_Cost: {fileID: 11400000, guid: 322ff45c5075feb4c9527063e39997bd, type: 2}
   actions:
   - {fileID: 11400000, guid: 119d3ff6d500a6e4290ef60d7a8c5fc6, type: 2}
-  maxActionPoints: 0
-  actionPoints: 0
-  maxHp: 40
-  hp: 40
-  color: {r: 0, g: 0, b: 0, a: 0}
+  m_MaxActionPoints: 0
+  ActionPoints: 0
+  m_MaxHp: 40
+  m_Hp: 40
+  Color: {r: 0, g: 0, b: 0, a: 0}

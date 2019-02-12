@@ -24,10 +24,10 @@ namespace ManaMist.Combat
             {
                 int damageModifier = WillCrit(attacker) ? 2 : 1;
                 int damage = CalculateDamage(attacker, defender, damageModifier);
-                defendingEntity.hp -= ManaMistMath.Clamp(damage, 0, defendingEntity.hp);
+                defendingEntity.Hp -= ManaMistMath.Clamp(damage, 0, defendingEntity.Hp);
                 Debug.Log(attackingEntity.name + " hit for " + damage);
 
-                if (defendingEntity.hp <= 0)
+                if (defendingEntity.Hp <= 0)
                 {
                     return CombatResult.WIN;
                 }
@@ -37,10 +37,10 @@ namespace ManaMist.Combat
             {
                 int damageModifier = WillCrit(defender) ? 2 : 1;
                 int damage = CalculateDamage(defender, attacker, damageModifier);
-                attackingEntity.hp -= ManaMistMath.Clamp(damage, 0, attackingEntity.hp);
+                attackingEntity.Hp -= ManaMistMath.Clamp(damage, 0, attackingEntity.Hp);
                 Debug.Log(defendingEntity.name + " hit for " + damage);
 
-                if (attackingEntity.hp <= 0)
+                if (attackingEntity.Hp <= 0)
                 {
                     return CombatResult.LOSS;
                 }

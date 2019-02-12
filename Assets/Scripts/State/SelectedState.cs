@@ -36,7 +36,7 @@ namespace ManaMist.State
                 mapTile.isHighlighted = true;
                 MoveAction moveAction = m_CurrentlySelectedEntity.GetAction<MoveAction>();
 
-                if (moveAction != null && moveAction.actionPoints <= m_CurrentlySelectedEntity.actionPoints)
+                if (moveAction != null && moveAction.actionPoints <= m_CurrentlySelectedEntity.ActionPoints)
                 {
                     m_Paths = ShowPaths(m_CurrentlySelectedCoordinate, moveAction);
 
@@ -72,7 +72,7 @@ namespace ManaMist.State
 
                     dispatcher.Dispatch<PerformingActionState>(stateData);
                 }
-                else if (mapTileClickedInput.mapTile.entities.Count > 0 && player.GetEntity(mapTileClickedInput.mapTile.entities[0].id) != null)
+                else if (mapTileClickedInput.mapTile.entities.Count > 0 && player.GetEntity(mapTileClickedInput.mapTile.entities[0].Id) != null)
                 {
                     SelectedStateData selectedStateData = ScriptableObject.CreateInstance<SelectedStateData>();
                     selectedStateData.coordinate = mapTileClickedInput.coordinate;
@@ -87,14 +87,14 @@ namespace ManaMist.State
 
             if (inputEvent is CycleSelectionInput)
             {
-                int currentIndex = player.entities.FindIndex(entity => entity.id == CurrentlySelectedEntity.id);
+                int currentIndex = player.entities.FindIndex(entity => entity.Id == CurrentlySelectedEntity.Id);
                 Entity availableEntity = player.entities
                 .GetRange(currentIndex + 1, player.entities.Count - currentIndex - 1)
-                .Find(entity => entity.actionPoints > 0);
+                .Find(entity => entity.ActionPoints > 0);
 
                 if (availableEntity != null)
                 {
-                    Coordinate coordinate = mapController.GetPositionOfEntity(availableEntity.id);
+                    Coordinate coordinate = mapController.GetPositionOfEntity(availableEntity.Id);
                     SelectedStateData selectedStateData = ScriptableObject.CreateInstance<SelectedStateData>();
                     selectedStateData.coordinate = coordinate;
 

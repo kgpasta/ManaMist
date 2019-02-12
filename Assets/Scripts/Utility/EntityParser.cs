@@ -46,14 +46,14 @@ namespace ManaMist.Utility
         {
             EntityParser entity = ScriptableObject.CreateInstance<EntityParser>();
             entity.name = fields[nameof(name)];
-            entity.m_Type = GetOrCreateEntityType(fields[nameof(name)], fields[nameof(entity.type.EntityClass)]);
+            entity.m_Type = GetOrCreateEntityType(fields[nameof(name)], fields[nameof(entity.Type.EntityClass)]);
 
-            entity.maxActionPoints = Int32.Parse(fields[nameof(actionPoints)]);
-            entity.maxHp = Int32.Parse(fields[nameof(hp)]);
-            entity.hp = entity.maxHp;
+            entity.m_MaxActionPoints = Int32.Parse(fields[nameof(ActionPoints)]);
+            entity.m_MaxHp = Int32.Parse(fields[nameof(Hp)]);
+            entity.m_Hp = entity.m_MaxHp;
 
             entity.m_Cost = ParseCost(fields);
-            AssetDatabase.CreateAsset(entity.cost, "Assets/ScriptableObjects/Costs/Entities/" + entity.name + "Cost.asset");
+            AssetDatabase.CreateAsset(entity.Cost, "Assets/ScriptableObjects/Costs/Entities/" + entity.name + "Cost.asset");
 
             MapController mapController = AssetDatabase.LoadAssetAtPath<MapController>("Assets/ScriptableObjects/MapController.asset");
             if (fields.Keys.Any(field => field.Contains(nameof(MoveAction))))
@@ -104,9 +104,9 @@ namespace ManaMist.Utility
         private static Cost ParseCost(Dictionary<string, string> fields, string prefix = "")
         {
             Cost cost = ScriptableObject.CreateInstance<Cost>();
-            cost.food = Int32.Parse(fields[prefix + nameof(Cost.food)]);
-            cost.metal = Int32.Parse(fields[prefix + nameof(Cost.metal)]);
-            cost.mana = Int32.Parse(fields[prefix + nameof(Cost.mana)]);
+            cost.food = int.Parse(fields[prefix + nameof(Models.Cost.food)]);
+            cost.metal = int.Parse(fields[prefix + nameof(Models.Cost.metal)]);
+            cost.mana = int.Parse(fields[prefix + nameof(Models.Cost.mana)]);
             return cost;
         }
 
@@ -134,7 +134,7 @@ namespace ManaMist.Utility
         {
             T action = ScriptableObject.CreateInstance<T>();
             action.mapController = mapController;
-            action.actionPoints = Int32.Parse(fields[typeof(T).Name + "." + nameof(actionPoints)]);
+            action.actionPoints = Int32.Parse(fields[typeof(T).Name + "." + nameof(ActionPoints)]);
 
             return action;
         }

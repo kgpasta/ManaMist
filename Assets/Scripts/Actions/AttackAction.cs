@@ -23,7 +23,7 @@ namespace ManaMist.Actions
 
         public override bool CanExecute(Player player, Entity entity, Coordinate targetCoordinate, Entity target)
         {
-            Coordinate startCoordinate = mapController.GetPositionOfEntity(entity.id);
+            Coordinate startCoordinate = mapController.GetPositionOfEntity(entity.Id);
             MapTile mapTile = mapController.GetMapTileAtCoordinate(targetCoordinate);
 
             return base.CanExecute(player, entity, targetCoordinate, target)
@@ -35,7 +35,7 @@ namespace ManaMist.Actions
         {
             base.Execute(player, entity, targetCoordinate, target);
 
-            int distance = mapController.GetPositionOfEntity(entity.id).Distance(mapController.GetPositionOfEntity(target.id));
+            int distance = mapController.GetPositionOfEntity(entity.Id).Distance(mapController.GetPositionOfEntity(target.Id));
             CombatEngine combatEngine = new CombatEngine()
             {
                 attackingEntity = entity,
@@ -45,15 +45,6 @@ namespace ManaMist.Actions
             };
 
             CombatResult result = combatEngine.Battle();
-            if (result == CombatResult.LOSS)
-            {
-                player.RemoveEntity(entity);
-                mapController.RemoveFromMap(entity);
-            }
-            else if (result == CombatResult.WIN)
-            {
-                mapController.RemoveFromMap(target);
-            }
         }
     }
 }

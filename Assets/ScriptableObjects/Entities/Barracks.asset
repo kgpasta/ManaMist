@@ -12,13 +12,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2b1fab0055ef7f449a8b2234452fbf09, type: 3}
   m_Name: Barracks
   m_EditorClassIdentifier: 
-  m_Id: 5a972f98-e20d-442a-bb7a-9fed621e06f1
+  m_Id: 8a9c3d99-5e6f-4635-9667-689d1bd11b83
   m_Type: {fileID: 11400000, guid: 5cbdc120fc1d470458644d95a2c09b4b, type: 2}
   m_Cost: {fileID: 11400000, guid: c9ba0a0977231a34592f161a0e33c280, type: 2}
   actions:
   - {fileID: 11400000, guid: c4fe1e3f59753cc4ebd170b78d882dac, type: 2}
-  maxActionPoints: 1
-  actionPoints: 0
-  maxHp: 60
-  hp: 60
-  color: {r: 0, g: 0, b: 0, a: 0}
+  m_MaxActionPoints: 1
+  ActionPoints: 0
+  m_MaxHp: 60
+  m_Hp: 60
+  Color: {r: 0, g: 0, b: 0, a: 0}

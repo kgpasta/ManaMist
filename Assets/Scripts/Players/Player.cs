@@ -34,15 +34,17 @@ namespace ManaMist.Players
 
         public void AddEntity(Entity entity)
         {
-            entity.color = this.color;
+            entity.Color = this.color;
             entities.Add(entity);
+            entity.EntityKilled += RemoveEntity;
         }
 
         public void RemoveEntity(Entity entity)
         {
+            entity.EntityKilled -= RemoveEntity;
             entities.Remove(entity);
 
-            if (entity?.id == victoryConditionEntity.id)
+            if (entity?.Id == victoryConditionEntity.Id)
             {
                 VictoryConditionEntityRemoved?.Invoke(this, EventArgs.Empty);
             }
@@ -50,7 +52,7 @@ namespace ManaMist.Players
 
         public Entity GetEntity(string id)
         {
-            return entities.Find(entity => entity.id == id);
+            return entities.Find(entity => entity.Id == id);
         }
 
         private void OnDisable()

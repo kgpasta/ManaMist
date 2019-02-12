@@ -14,12 +14,12 @@ namespace ManaMist.Combat
 
         public override int CalculateDamageModifier(Entity attacker, Entity defender, int baseDamage)
         {
-            return entityClass.Equals(defender.type.EntityClass) ? baseDamage * DamageMultiplier : baseDamage;
+            return entityClass.Equals(defender.Type.EntityClass) ? baseDamage * DamageMultiplier : baseDamage;
         }
 
         public override int WillHitModifier(Entity attacker, Entity defender, int baseWillHit)
         {
-            return entityClass.Equals(attacker.type.EntityClass) ? baseWillHit * HitMultiplier : baseWillHit;
+            return entityClass.Equals(attacker.Type.EntityClass) ? baseWillHit * HitMultiplier : baseWillHit;
         }
     }
 }

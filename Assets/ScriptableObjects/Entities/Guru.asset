@@ -12,14 +12,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2b1fab0055ef7f449a8b2234452fbf09, type: 3}
   m_Name: Guru
   m_EditorClassIdentifier: 
-  m_Id: bafbcd9f-187b-449c-9ffc-12605dd5dee2
+  m_Id: 73a7a428-d980-43a3-8f7d-f360e3e35645
   m_Type: {fileID: 11400000, guid: 06bbcd9887935fe459429e4229cc74be, type: 2}
   m_Cost: {fileID: 11400000, guid: 5f493e8a9080c3e47a993bc599fc2d6e, type: 2}
   actions:
   - {fileID: 11400000, guid: 7b54a693cc47d724b810dd2c905a822a, type: 2}
   - {fileID: 11400000, guid: 28aae93db26f61b44a5b0b2f5bc9c3db, type: 2}
-  maxActionPoints: 2
-  actionPoints: 0
-  maxHp: 10
-  hp: 10
-  color: {r: 0, g: 0, b: 0, a: 0}
+  m_MaxActionPoints: 2
+  ActionPoints: 0
+  m_MaxHp: 10
+  m_Hp: 10
+  Color: {r: 0, g: 0, b: 0, a: 0}

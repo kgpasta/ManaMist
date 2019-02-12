@@ -22,8 +22,8 @@ namespace ManaMist.Actions
             List<IBuildConstraint> buildConstraints = target.GetActions<IBuildConstraint>();
 
             return base.CanExecute(player, entity, targetCoordinate, target)
-            && player.resources.CanDecrement(target.cost)
-            && canBuildList.Contains(target.type)
+            && player.resources.CanDecrement(target.Cost)
+            && canBuildList.Contains(target.Type)
             && buildConstraints.All(constraint => constraint.CanBuild(player, mapTile));
         }
 
@@ -31,7 +31,7 @@ namespace ManaMist.Actions
         {
             base.Execute(player, entity, targetCoordinate, target);
 
-            player.resources.Decrement(target.cost);
+            player.resources.Decrement(target.Cost);
             player.AddEntity(target);
             mapController.AddToMap(targetCoordinate, target);
         }

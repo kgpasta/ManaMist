@@ -15,8 +15,8 @@ namespace ManaMist.Research
         {
             foreach (Entity playerEntity in player.entities)
             {
-                if (playerEntity.type.EntityClass == EntityClass.Flying ||
-                    playerEntity.type.EntityClass == EntityClass.Mounted)
+                if (playerEntity.Type.EntityClass == EntityClass.Flying ||
+                    playerEntity.Type.EntityClass == EntityClass.Mounted)
                 {
                     playerEntity.AddAction(Instantiate(m_RescueAction));
                     playerEntity.AddAction(Instantiate(m_DropAction));
