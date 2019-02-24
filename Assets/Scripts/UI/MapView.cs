@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using ManaMist.Controllers;
 using ManaMist.Input;
@@ -66,17 +67,15 @@ namespace ManaMist.UI
 
                         break;
 
-                    case UnityEngine.EventSystems.PointerEventData.InputButton.Right:
-
-                        ShowEntityInspectorCanvas(mapTileWidget);
-
-                        break;
-
                     default:
 
                         break;
                 }
             };
+
+            mapTileWidget.MapTileHover += (sentBy, e) => ShowEntityInspectorCanvas(mapTileWidget);
+
+            mapTileWidget.MapTileUnHover += (sentBy, e) => HideEntityInspectorCanvas();
 
             m_CoordinateToTransform.Add(args.coordinate, newMapTileWidgetInstance.transform);
         }
@@ -103,7 +102,6 @@ namespace ManaMist.UI
         private void ModifyMapTileOnMap(object sender, MaptTileModifiedArgs args)
         {
             MapTileWidget myWidget = m_CoordinateToTransform[args.coordinate].GetComponent<MapTileWidget>();
-            Debug.Log(myWidget.gameObject.name);
             myWidget.InitiateManaComet();
         }
 
@@ -118,6 +116,12 @@ namespace ManaMist.UI
             {
                 m_EntityInspector.gameObject.SetActive(false);
             }
+        }
+
+        private void HideEntityInspectorCanvas()
+        {
+            m_EntityInspector.entity = null;
+            m_EntityInspector.gameObject.SetActive(false);
         }
 
     }

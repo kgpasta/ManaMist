@@ -6,7 +6,7 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-public class MapTileWidget : MonoBehaviour, IPointerClickHandler
+public class MapTileWidget : MonoBehaviour, IPointerClickHandler, IPointerEnterHandler, IPointerExitHandler
 {
     [SerializeField]
     private MapTile m_MapTile = null;
@@ -66,6 +66,8 @@ public class MapTileWidget : MonoBehaviour, IPointerClickHandler
     }
 
     public event EventHandler<MapTileClickedEventArgs> MapTileClicked;
+    public event EventHandler MapTileHover;
+    public event EventHandler MapTileUnHover;
 
     #endregion
 
@@ -120,6 +122,16 @@ public class MapTileWidget : MonoBehaviour, IPointerClickHandler
     public void OnPointerClick(PointerEventData eventData)
     {
         MapTileClicked.Invoke(this, new MapTileClickedEventArgs(eventData));
+    }
+
+    public void OnPointerEnter(PointerEventData eventData)
+    {
+        MapTileHover.Invoke(this, EventArgs.Empty);
+    }
+
+    public void OnPointerExit(PointerEventData eventData)
+    {
+        MapTileUnHover.Invoke(this, EventArgs.Empty);
     }
 
     private void DisplayTerrain()
