@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2b1fab0055ef7f449a8b2234452fbf09, type: 3}
   m_Name: Warrior
   m_EditorClassIdentifier: 
-  m_Id: 1b96764a-15df-42d7-bbeb-5296552a4eeb
+  m_Id: 5f3131be-3741-4e3a-a490-9190ce53e586
   m_Type: {fileID: 11400000, guid: be16e642e7c5bfc4fb0a43f6d3d20d92, type: 2}
   m_Cost: {fileID: 11400000, guid: 9bb43b81c522f11408903444a45950dc, type: 2}
   actions:
