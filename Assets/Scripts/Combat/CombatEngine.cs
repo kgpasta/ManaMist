@@ -72,7 +72,7 @@ namespace ManaMist.Combat
         private int CalculateDamage(AttackAction attacker, AttackAction defender, int damageModifier)
         {
             int defenderDefense = defender != null ? defender.defense : 0;
-            int baseDamage = (attacker.attack - defender.defense) * damageModifier;
+            int baseDamage = (attacker.attack - defenderDefense) * damageModifier;
             foreach (AttackModifier modifier in modifiers)
             {
                 baseDamage = modifier.CalculateDamageModifier(attackingEntity, defendingEntity, baseDamage);
