@@ -18,10 +18,12 @@ namespace ManaMist.Actions
 
         public override bool CanExecute(Player player, Entity entity, Coordinate targetCoordinate, Entity target)
         {
+            Coordinate currentCoordinate = mapController.GetPositionOfEntity(entity.Id);
             MapTile mapTile = mapController.GetMapTileAtCoordinate(targetCoordinate);
             List<IBuildConstraint> buildConstraints = target.GetActions<IBuildConstraint>();
 
             return base.CanExecute(player, entity, targetCoordinate, target)
+            && currentCoordinate.Distance(targetCoordinate) <= Range
             && player.resources.CanDecrement(target.Cost)
             && canBuildList.Contains(target.Type)
             && buildConstraints.All(constraint => constraint.CanBuild(player, mapTile));
