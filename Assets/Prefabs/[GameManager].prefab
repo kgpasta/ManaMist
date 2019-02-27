@@ -195,6 +195,8 @@ MonoBehaviour:
   inputController: {fileID: 11400000, guid: 8a78e43eac7c677448d699f6292adaa7, type: 2}
   entityController: {fileID: 11400000, guid: 593c198e947f0e54db3b61d5592dcf53, type: 2}
   seedController: {fileID: 11400000, guid: ed65bf083b89a7040a90c946d35cac34, type: 2}
+  eventController: {fileID: 11400000, guid: 5adf11441a667d54aa6267273d96dc2b, type: 2}
+  researchController: {fileID: 11400000, guid: fa72dde3bbf62754f83e69756ca95c80, type: 2}
   dispatcher: {fileID: 11400000, guid: 383ccc1db4476d9489be8ebfffa284dc, type: 2}
   state: {fileID: 11400000, guid: 345119662dd621c47b3ba1959b3c797c, type: 2}
   player2Dispatcher: {fileID: 11400000, guid: 0c12633213f1c7d4abbc8dffdf0623ea, type: 2}

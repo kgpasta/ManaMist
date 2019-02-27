@@ -24,6 +24,8 @@ namespace ManaMist.Managers
         public InputController inputController;
         public EntityController entityController;
         public SeedController seedController;
+        public EventController eventController;
+        public ResearchController researchController;
 
         [Header("State")]
         public Dispatcher dispatcher;

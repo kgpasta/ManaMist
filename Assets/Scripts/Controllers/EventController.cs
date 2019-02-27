@@ -24,7 +24,7 @@ namespace ManaMist.Controllers
 
         private void OnTurnEnd(object sender, TurnEventArgs args)
         {
-            if (args.turnNumber % 3 == 0)
+            if (args.turnNumber % 6 == 0)
             {
                 CreateManaComet();
             }
