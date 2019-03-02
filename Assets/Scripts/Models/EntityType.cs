@@ -28,6 +28,7 @@ namespace ManaMist.Models
         Flying,
         Magic,
         Creature,
-        Building
+        Building,
+        Utility
     }
 }

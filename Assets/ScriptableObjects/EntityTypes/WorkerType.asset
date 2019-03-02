@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: WorkerType
   m_EditorClassIdentifier: 
   Name: Worker
-  EntityClass: 0
+  EntityClass: 7

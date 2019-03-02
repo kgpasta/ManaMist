@@ -12,13 +12,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2b1fab0055ef7f449a8b2234452fbf09, type: 3}
   m_Name: Farm
   m_EditorClassIdentifier: 
-  m_Id: 75e20961-fea7-4451-bd55-145943e11847
+  m_Id: 10b4e0b4-dc5d-4158-9196-ff1c37017deb
   m_Type: {fileID: 11400000, guid: b436b7b94d08f684dbdf56fac2b314ec, type: 2}
   m_Cost: {fileID: 11400000, guid: 8d8da896cb297f240ac54f1ba3d6e30a, type: 2}
   actions:
   - {fileID: 11400000, guid: e9a08525141d3a6468373c70fc2e374a, type: 2}
   m_MaxActionPoints: 0
   ActionPoints: 0
+  m_Defense: 0
   m_MaxHp: 40
   m_Hp: 40
   Color: {r: 0, g: 0, b: 0, a: 0}

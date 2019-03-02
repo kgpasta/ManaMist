@@ -51,6 +51,7 @@ namespace ManaMist.Utility
             entity.m_MaxActionPoints = Int32.Parse(fields[nameof(ActionPoints)]);
             entity.m_MaxHp = Int32.Parse(fields[nameof(Hp)]);
             entity.m_Hp = entity.m_MaxHp;
+            entity.m_Defense = Int32.Parse(fields[nameof(Defense)]);
 
             entity.m_Cost = ParseCost(fields);
             AssetDatabase.CreateAsset(entity.Cost, "Assets/ScriptableObjects/Costs/Entities/" + entity.name + "Cost.asset");
@@ -156,7 +157,6 @@ namespace ManaMist.Utility
             AttackAction attackAction = ParseAction<AttackAction>(mapController, fields);
 
             attackAction.attack = Int32.Parse(fields[nameof(AttackAction) + "." + nameof(AttackAction.attack)]);
-            attackAction.defense = Int32.Parse(fields[nameof(AttackAction) + "." + nameof(AttackAction.defense)]);
             attackAction.accuracy = Int32.Parse(fields[nameof(AttackAction) + "." + nameof(AttackAction.accuracy)]);
             attackAction.speed = Int32.Parse(fields[nameof(AttackAction) + "." + nameof(AttackAction.speed)]);
             attackAction.skill = Int32.Parse(fields[nameof(AttackAction) + "." + nameof(AttackAction.skill)]);

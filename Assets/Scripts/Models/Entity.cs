@@ -22,6 +22,8 @@ namespace ManaMist.Models
         public List<Action> actions = new List<Action>();
         [SerializeField] protected int m_MaxActionPoints;
         public int ActionPoints;
+        [SerializeField] protected int m_Defense;
+        public int Defense { get { return m_Defense; } }
         [SerializeField] protected int m_MaxHp;
         public int MaxHp { get { return m_MaxHp; } set { m_MaxHp = value; } }
         [SerializeField] protected int m_Hp;

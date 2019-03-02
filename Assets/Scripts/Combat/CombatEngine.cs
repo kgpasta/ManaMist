@@ -23,7 +23,7 @@ namespace ManaMist.Combat
             if (WillHit(attacker, defender, distance))
             {
                 int damageModifier = WillCrit(attacker) ? 2 : 1;
-                int damage = CalculateDamage(attacker, defender, damageModifier);
+                int damage = CalculateDamage(attacker, defendingEntity, damageModifier);
                 defendingEntity.Hp -= ManaMistMath.Clamp(damage, 0, defendingEntity.Hp);
                 Debug.Log(attackingEntity.name + " hit for " + damage);
 
@@ -36,7 +36,7 @@ namespace ManaMist.Combat
             if (WillHit(defender, attacker, distance))
             {
                 int damageModifier = WillCrit(defender) ? 2 : 1;
-                int damage = CalculateDamage(defender, attacker, damageModifier);
+                int damage = CalculateDamage(defender, attackingEntity, damageModifier);
                 attackingEntity.Hp -= ManaMistMath.Clamp(damage, 0, attackingEntity.Hp);
                 Debug.Log(defendingEntity.name + " hit for " + damage);
 
@@ -69,9 +69,9 @@ namespace ManaMist.Combat
             return new System.Random().Next(0, 100) < attacker.skill;
         }
 
-        private int CalculateDamage(AttackAction attacker, AttackAction defender, int damageModifier)
+        private int CalculateDamage(AttackAction attacker, Entity defender, int damageModifier)
         {
-            int defenderDefense = defender != null ? defender.defense : 0;
+            int defenderDefense = defender != null ? defender.Defense : 0;
             int baseDamage = (attacker.attack - defenderDefense) * damageModifier;
             foreach (AttackModifier modifier in modifiers)
             {

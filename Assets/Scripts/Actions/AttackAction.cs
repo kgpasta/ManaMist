@@ -12,7 +12,6 @@ namespace ManaMist.Actions
     public class AttackAction : Action, ISelectableTargetAction
     {
         public int attack;
-        public int defense;
         public int skill;
         public int accuracy;
         public int speed;

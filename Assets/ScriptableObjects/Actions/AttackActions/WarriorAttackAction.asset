@@ -15,7 +15,6 @@ MonoBehaviour:
   mapController: {fileID: 11400000, guid: 687951a7835bd5a43b17fca05b9af0d8, type: 2}
   actionPoints: 2
   attack: 10
-  defense: 5
   skill: 5
   accuracy: 90
   speed: 5
