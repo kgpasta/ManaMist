@@ -24,6 +24,7 @@ namespace ManaMist.Actions
 
             return base.CanExecute(player, entity, targetCoordinate, target)
             && currentCoordinate.Distance(targetCoordinate) <= Range
+            && mapTile.entities.Count == 0
             && player.resources.CanDecrement(target.Cost)
             && canBuildList.Contains(target.Type)
             && buildConstraints.All(constraint => constraint.CanBuild(player, mapTile));
