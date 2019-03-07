@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2b1fab0055ef7f449a8b2234452fbf09, type: 3}
   m_Name: Guru
   m_EditorClassIdentifier: 
-  m_Id: 274bac2d-7846-4128-a65f-a47e6724e594
+  m_Id: d2b1945d-4ddb-405e-979d-24cef18e519b
   m_Type: {fileID: 11400000, guid: 06bbcd9887935fe459429e4229cc74be, type: 2}
   m_Cost: {fileID: 11400000, guid: 5f493e8a9080c3e47a993bc599fc2d6e, type: 2}
   actions:

@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2b1fab0055ef7f449a8b2234452fbf09, type: 3}
   m_Name: Charioteer
   m_EditorClassIdentifier: 
-  m_Id: 15fbad51-1450-4809-982c-2fe2d9dbd1f0
+  m_Id: 9a347e43-eda8-4c95-86b6-893ca0f06191
   m_Type: {fileID: 11400000, guid: 8d0c79e59df29ea47a348c76fcd61750, type: 2}
   m_Cost: {fileID: 11400000, guid: 3f37d451cc7890543b438a08460b8581, type: 2}
   actions:

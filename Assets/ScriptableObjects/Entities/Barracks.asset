@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2b1fab0055ef7f449a8b2234452fbf09, type: 3}
   m_Name: Barracks
   m_EditorClassIdentifier: 
-  m_Id: fa1d70ac-2922-4f07-9da5-84a748bd6cd6
+  m_Id: de18df36-790d-4546-8566-f6545fb1d42d
   m_Type: {fileID: 11400000, guid: 5cbdc120fc1d470458644d95a2c09b4b, type: 2}
   m_Cost: {fileID: 11400000, guid: c9ba0a0977231a34592f161a0e33c280, type: 2}
   actions:

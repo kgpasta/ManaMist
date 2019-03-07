@@ -16,7 +16,7 @@ MonoBehaviour:
   actionPoints: 2
   attack: 7
   skill: 5
-  accuracy: 80
-  speed: 3
+  accuracy: 110
+  speed: 25
   range: 2
   attackModifiers: []

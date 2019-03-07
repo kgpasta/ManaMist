@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2b1fab0055ef7f449a8b2234452fbf09, type: 3}
   m_Name: Archer
   m_EditorClassIdentifier: 
-  m_Id: 3589d137-e955-4daf-992f-582ef056fc97
+  m_Id: 7da9392b-fe36-4c24-a176-b21e8d5961ce
   m_Type: {fileID: 11400000, guid: 3669c22b9e046184c84c4bb582fc3103, type: 2}
   m_Cost: {fileID: 11400000, guid: 9a7ff16f049edf948bf1fa8a7ce1500f, type: 2}
   actions:
